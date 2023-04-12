@@ -41,7 +41,7 @@ setAlarmBtn.addEventListener('click', () => {
         })
     }
     else {
-        if (isNegative(userTime)) {
+        if (userTime.value<=0) {
             alert('you cannot write negative number')
             userTime.value = '';
         }
@@ -49,6 +49,15 @@ setAlarmBtn.addEventListener('click', () => {
             console.log('alram set ho gaya')
             setInterval(() => {
                 count++
+                if (count == userTime.value) {
+                    x.play();
+                    alarmTimeBtn.innerHTML = `<button id="stopAlarmBtn">Stop Alarm</button>`
+                    let stopAlarmBtn = document.getElementById('stopAlarmBtn')
+                    stopAlarmBtn.addEventListener('click', () => {
+                        x.pause()
+                    })
+                }
+                console.log(count)
             }, 1000)
         }
     }
