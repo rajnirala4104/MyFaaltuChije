@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 99.7%;
+    height: 90vh;
+    border: 2px solid green;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    border: 2px solid red;
+    margin: 40px auto;
+    width: 60%;
+    height: 40vh;
+}
+
+.container .clock{
+    border: 2px solid yellow;
+}
+
+.stopWatch{
+    border: 2px solid blue;
+    width: 15rem;
+    height: 6rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
