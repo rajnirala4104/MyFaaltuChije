@@ -33,7 +33,7 @@ setAlarmBtn.addEventListener('click', () => {
     let count = 0
     if (count == userTime.value) {
         x.play();
-
+        
         alarmTimeBtn.innerHTML = `<button id="stopAlarmBtn">Stop Alarm</button>`
         let stopAlarmBtn = document.getElementById('stopAlarmBtn')
         stopAlarmBtn.addEventListener('click', () => {
@@ -47,7 +47,7 @@ setAlarmBtn.addEventListener('click', () => {
         }
         else {
             console.log('alram set ho gaya')
-            setInterval(() => {
+            setInterval(() => {x
                 count++
                 if (count == userTime.value) {
                     x.play();

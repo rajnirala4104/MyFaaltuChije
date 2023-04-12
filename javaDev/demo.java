@@ -15,5 +15,6 @@ public class demo{
         for(int i=1; i<=10; i++){
             System.out.println(i*a);
         }
+        inpMethod.close();
     }
 }

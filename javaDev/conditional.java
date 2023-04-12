@@ -12,5 +12,6 @@ public class conditional{
         else{
             System.out.println("You can vote");
         }
+        sc.close();
     }
 }
