@@ -99,9 +99,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: moveLeftToRight 2s;
 }
-
 
 
 .sideBarMessage{
@@ -127,6 +125,7 @@ body {
         left: 0vh;
     }
 }
+
 @keyframes moveRightToLeft {
     from{
         left: 0vh;
