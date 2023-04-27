@@ -38,7 +38,7 @@ body {
     border: none;
 }
 
-.myBtn:hover {
+.myBtn:hover{
     background: transparent !important;
     color: black;
     border: none;
@@ -89,23 +89,26 @@ body {
 /* --------sideBar Message------- */
 .sideBar{
     /* border: 2px solid yellow; */
-    width: 50%;
-    height: 100vh;
+    width: 30%;
+    height: 92vh;
     background: rgba(0, 0, 0, .4);
     z-index: 3;
     position: absolute;
-    top: 0;
+    top: 8vh;
     left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: moveLeftToRight 2s;
 }
+
+
 
 .sideBarMessage{
     border: none;
     box-shadow: 0px 0px 10px 0px black;
     border-radius: 10px;
-    width: 60%;
+    width: 96%;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -113,4 +116,22 @@ body {
     text-align: center;
     padding: 5px;
     background: white;
+}
+
+
+@keyframes moveLeftToRight {
+    from{
+        left: -100vh;
+    }
+    to{
+        left: 0vh;
+    }
+}
+@keyframes moveRightToLeft {
+    from{
+        left: 0vh;
+    }
+    to{
+        left: -100vh;
+    }
 }
