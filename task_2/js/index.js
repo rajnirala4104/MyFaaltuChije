@@ -1,25 +1,15 @@
 //------popup functionality-----
 const popup = document.querySelector('.popup');
-const popupFunc = () => {
-    if("d-none" in sideBar.classList){
-        popup.classList.toggle('d-none');
-    }
-    else{
-        sideBar.classList.toggle('d-none');
-        popup.classList.toggle('d-none')
-    }
-}
+const popupFunc = () => popup.classList.toggle('d-none');
 
 const sideBar = document.querySelector('.sideBar')
 const sideBarFunc = ()=>{
     if("d-none" === sideBar.classList[1]){
-        sideBar.style.animation = "moveLeftToRight 2s"
-        sideBar.classList.toggle('d-none');
+        sideBar.style.animation = "moveLeftToRight 1.5s";
     }else{
-        sideBar.style.animation = "moveRightToLeft 2s"
-        sideBar.classList.toggle('d-none');
+        sideBar.style.animation = "moveRightToLeft 1.5s"
     }
-
+    sideBar.classList.toggle('d-none');
 }
 
 
