@@ -11,9 +11,9 @@ async function connectDatabase(){
         await client.connect()
         console.log(`Database connected successfully`);
         await showAllTheDatabases(client) //we're calling the showAllTheDatabases() function
-        // await insertDataInDatabase(client, {userDummyName: "MsDummy", userDummyAge: 22}); //---we're calling insert funtion.
+        // await insertDataInDatabase(client, {userDummyName: "Raj Nirala", userDummyAge: 100}); //---we're calling insert funtion.
         // await deleteTheDataFromeDatabase(client, {userDummyName: "MeDummy"})
-        await updateDataFromTheDatabase(client, "MrDummy", "Raj Nirala")
+        // await updateDataFromTheDatabase(client, "MrDummy", "Raj Nirala")
         await readAllTheDataFromDatabase(client)
     }catch(e){
         console.log(`Oops!! something went wrong, check your code.. \n--------error----------\n${e}`);
