@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { InputSection } from "./components/InputSection";
+import { TaskCardModal } from "./modal";
+import { constants } from "buffer";
 
 function App() {
+  const [userInputTask, setUserInputTask] = useState<string>("");
+  const [allTodos, setAllTodos] = useState<TaskCardModal[]>([]);
+
+  // console.log(userInputTask)
+
+  const handleTask = () => {
+    // console.log(userInputTask);
+    if(userInputTask){
+      setAllTodos([...allTodos ,{taskId: Date.now(), task:userInputTask, isDone:false}])
+    }
+      setUserInputTask("");
+      console.log(allTodos)
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container display-6 p-2 my-4 bg-dark text-light">
+        ToDo
+      </div>
+      <div className="taskContainer">
+        <InputSection
+          userInputTask={userInputTask}
+          handleTaskFunction={handleTask}
+          setUserInputTask={setUserInputTask}
+        />
+      </div>
     </div>
   );
 }
