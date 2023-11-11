@@ -1,10 +1,10 @@
 require("dotenv").config();
 const express = require("express");
-const userControllers = require("./controllers/userControllers");
+const { userRouter } = require("./routers/users.routes");
 
 const app = express();
+app.use(express.json());
 
-app.get("/api/users", userControllers.getAllUsers);
-app.get("/api/user/:id", userControllers.getUserById);
+app.use("/api/user", userRouter);
 
 module.exports = app;

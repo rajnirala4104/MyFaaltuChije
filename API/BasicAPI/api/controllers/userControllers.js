@@ -1,3 +1,5 @@
+const { StatusCodes } = require("http-status-codes");
+
 const users = [
    {
       id: 1,
@@ -54,11 +56,9 @@ const users = [
 const userControllers = {
    getAllUsers: (req, res) => {
       if (users.length === 0) {
-         return res.json({
-            message: "Oops!!",
-            data: null,
-         });
+         res.json({ message: "Oops!!", data: null });
       }
+
       return res.json({
          message: "OK",
          data: users,
@@ -71,6 +71,27 @@ const userControllers = {
       return res.json({
          message: "ok",
          data: singleUser,
+      });
+   },
+
+   addUser: (req, res) => {
+      const { id, name, age, work, hobbies } = req.body;
+      if (!id || !name || !age || !work || !hobbies) {
+         res.status(StatusCodes.BAD_REQUEST).json({
+            message: "Oops!!",
+            data: null,
+         });
+      }
+      users.push({
+         id,
+         name,
+         age,
+         work,
+         hobbies,
+      });
+      return res.status(StatusCodes.OK).json({
+         message: "User Added",
+         data: [{ id, name, age, work, hobbies }],
       });
    },
 };
