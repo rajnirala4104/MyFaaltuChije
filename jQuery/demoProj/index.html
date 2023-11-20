@@ -67,6 +67,18 @@
          $("#decreament").click(() => {
             $(".value").text($(".value").text() - 1);
          });
+
+         $("button").mouseover(() => {
+            console.log("i'm hovering on the button");
+         });
+
+         $("#increament").click(() => {
+            $("#increament").hide();
+         });
+
+         setTimeout(() => {
+            $("#increament").show();
+         }, 3000);
       });
    </script>
 </html>
