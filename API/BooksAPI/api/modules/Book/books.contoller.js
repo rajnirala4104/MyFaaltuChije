@@ -1,5 +1,4 @@
 const { StatusCodes } = require("http-status-codes");
-const { Books } = require("../data/dummuBookData");
 const asyncHandler = require("express-async-handler");
 const BookModel = require("./books.model");
 const booksControllers = {
@@ -12,40 +11,16 @@ const booksControllers = {
    }),
 
    inserBookInDatabase: asyncHandler(async (req, res) => {
-      const {
-         name,
-         description,
-         author,
-         type,
-         BookImage,
-         price,
-         discountPrice,
-      } = req.body;
-      if (
-         !name ||
-         !description ||
-         !author ||
-         !type ||
-         !BookImage ||
-         !price ||
-         !discountPrice
-      ) {
+      const { name, description, author, type, BookImage, price, discountPrice, } = req.body;
+      if ( !name || !description || !author || !type || !BookImage || !price || !discountPrice ) {
          res.status(StatusCodes.BAD_REQUEST);
          throw new Error("bad data given");
       }
 
       if (!(await BookModel.findOne({ name, description, BookImage }))) {
-         const response = await BookModel.insertMany({
-            name,
-            description,
-            author,
-            type,
-            BookImage,
-            price,
-            discountPrice,
-         });
+         const response = await BookModel.insertMany({ name, description, author, type, BookImage, price, discountPrice, });
          console.log("data inserted successfully -- ", response);
-         return res.status(StatusCodes.OK).json({
+         return res.status(StatusCodes.CREATED).json({
             message: "data inserted successfully",
             data: response,
          });
