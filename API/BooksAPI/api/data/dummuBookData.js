@@ -1,6 +1,5 @@
 const Books = [
    {
-      _id: 1,
       name: "Do Epic Shit",
       description: "This is Book's Description",
       author: "Ankur Warikoo",
@@ -11,7 +10,6 @@ const Books = [
       discountPrice: 459,
    },
    {
-      _id: 15,
       name: "A Manual for Living (A Little Book of Wisdom)",
       description: "This is Book's Description",
       type: "Philosophy",
@@ -22,7 +20,6 @@ const Books = [
       discountPrice: 1149,
    },
    {
-      _id: 2,
       name: "Get Epic Shit Done",
       description: "This is Book's Description",
       author: "Ankur Warikoo",
@@ -32,7 +29,6 @@ const Books = [
       discountPrice: 459,
    },
    {
-      _id: 3,
       name: "Linchpin",
       description: "This is Book's Description",
       author: "Seth Godin",
@@ -43,7 +39,6 @@ const Books = [
       discountPrice: 459,
    },
    {
-      _id: 4,
       name: "Mathmetics Class 9th NCERT",
       description: "This is Book's Description",
       author: "Seth Godin",
@@ -54,7 +49,6 @@ const Books = [
       discountPrice: 459,
    },
    {
-      _id: 5,
       name: "Eight Hours Five Six Friends Survive One Sniper",
       description: "This is Book's Description",
       author: "Unknown",
@@ -65,7 +59,6 @@ const Books = [
       discountPrice: 459,
    },
    {
-      _id: 6,
       name: "The Last Town Wayward Pines Book Three Block Crouch",
       description: "This is Book's Description",
       author: "Unknown",
@@ -76,7 +69,6 @@ const Books = [
       discountPrice: 459,
    },
    {
-      _id: 7,
       name: "Think Like a Monk",
       description: "This is Book's Description",
       author: "Jay Shetty",
@@ -87,7 +79,6 @@ const Books = [
       discountPrice: 459,
    },
    {
-      _id: 8,
       name: "Physics Class 12 NCERT",
       description: "This is Book's Description",
       author: "R.D Sharma",
@@ -98,7 +89,6 @@ const Books = [
       discountPrice: 459,
    },
    {
-      _id: 9,
       name: "The Monk Who Sold His Ferrarri",
       description: "This is Book's Description",
       author: "Robien Sharma",
@@ -109,7 +99,6 @@ const Books = [
       discountPrice: 459,
    },
    {
-      _id: 10,
       name: "Deep Work",
       description: "This is Book's Description",
       author: "Raj Nirala",
@@ -119,7 +108,6 @@ const Books = [
       discountPrice: 499,
    },
    {
-      _id: 11,
       name: "Iinfluence: The Psychology of Persuasion",
       description: "This is Book's Description",
       author: "Robert Cialdini",
@@ -130,7 +118,6 @@ const Books = [
       discountPrice: 499,
    },
    {
-      _id: 12,
       name: "Public Speaking and Influencing Men in Business",
       description: "This is Book's Description",
       author: "Dale Carnegie",
@@ -141,18 +128,16 @@ const Books = [
       discountPrice: 2000,
    },
    {
-      _id: 13,
       name: "Courage to be Disliked",
       description: "This is Book's Description",
       author: " Ichiro Kishimi and Fumitake Koga",
       type: "Philosophy",
-      // BookImage:
-      //    "https://m.media-amazon.com/images/I/51y34ZoVTTL._SY264_BO1,204,203,200_QL40_FMwebp_.jpg",
+      BookImage:
+         "https://m.media-amazon.com/images/I/51y34ZoVTTL._SY264_BO1,204,203,200_QL40_FMwebp_.jpg",
       price: 179,
       discountPrice: 245,
    },
    {
-      _id: 14,
       name: "Can't Hurt Me: Master Your Mind and Defy the Odds Hardcover",
       description: "This is Book's Description",
       author: "David Goggins",

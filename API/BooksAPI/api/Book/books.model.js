@@ -15,6 +15,10 @@ const BooksSchema = Schema({
       type: String,
       required: true,
    },
+   type: {
+      type: String,
+      required: true,
+   },
    BookImage: {
       type: String,
       required: true,
