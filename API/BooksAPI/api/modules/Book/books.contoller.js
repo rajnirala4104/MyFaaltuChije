@@ -29,6 +29,16 @@ const booksControllers = {
          throw new Error("Data is allready exist in our database");
       }
    }),
+
+   updateBookInDatabase: asyncHandler(async(req, res) => {
+      const id = req.params
+   }),
+
+   deleteBookDataFromTheDataBase: asyncHandler(async(req, res) => {
+      const id = req.params
+   })
+
+
 };
 
 module.exports = booksControllers;

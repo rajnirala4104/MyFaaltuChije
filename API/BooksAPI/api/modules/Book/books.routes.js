@@ -4,5 +4,8 @@ const BookRouter = Router();
 
 BookRouter.get("/", booksControllers.getAllTheBooks);
 BookRouter.post("/", booksControllers.inserBookInDatabase);
+BookRouter.put('/:id', booksControllers.updateBookInDatabase)
+BookRouter.delete('/:id', booksControllers.deleteBookDataFromTheDataBase)
+
 
 module.exports = { BookRouter };
