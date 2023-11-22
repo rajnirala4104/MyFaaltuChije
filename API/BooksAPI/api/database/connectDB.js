@@ -8,11 +8,11 @@ const connectDatabase = async () => {
          useNewUrlParser: true,
          useUnifiedTopology: true,
       });
-      LOGGER.info(`mongo has connected - ${connection.connection.host}`)
       console.log(`mongo has connected - ${connection.connection.host}`.blue);
+      LOGGER.info(`mongo has connected - ${connection.connection.host}`)
    } catch (e) {
-      LOGGER.info(`Oops!! something went wrong,  - ${e.message}`)
       console.log(`Oops!! something went wrong,  - ${e.message}`.red.bold);
+      LOGGER.info(`Oops!! something went wrong,  - ${e.message}`)
       process.exit();
    }
 };

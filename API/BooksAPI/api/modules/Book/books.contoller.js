@@ -14,7 +14,22 @@ const booksControllers = {
          throw new Error("Oops!! something went wrong in book api get function")
       }
    }),
+   getBookDataById: asyncHandler( async (req, res) => {
+      const id = req.params
+      try {
+         const response = await BookModel.findOne({'_id': id.id})
+         return res.status(StatusCodes.OK).json({
+            message: "ok",
+            data: response
+         })
 
+      } catch (error) {
+         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            message: "Oops!! something went wrong in getBookDataById function",
+            data: id
+         })
+      }
+}),
    inserBookInDatabase: asyncHandler(async (req, res) => {
       const { name, description, author, type, BookImage, price, discountPrice, } = req.body;
       try {
