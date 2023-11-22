@@ -1,41 +1,83 @@
 const { StatusCodes } = require("http-status-codes");
 const asyncHandler = require("express-async-handler");
 const BookModel = require("./books.model");
+const { LOGGER } = require("../../common/logger");
 const booksControllers = {
    getAllTheBooks: asyncHandler(async (req, res) => {
-      const response = await BookModel.find({});
-      return res.status(StatusCodes.OK).json({
-         message: "Here all the Book which we have",
-         data: response,
-      });
+      try {
+         const response = await BookModel.find({});
+         return res.status(StatusCodes.OK).json({
+            message: "Here all the Book which we have",
+            data: response,
+         });
+      } catch (error) {
+         throw new Error("Oops!! something went wrong in book api get function")
+      }
    }),
 
    inserBookInDatabase: asyncHandler(async (req, res) => {
       const { name, description, author, type, BookImage, price, discountPrice, } = req.body;
-      if ( !name || !description || !author || !type || !BookImage || !price || !discountPrice ) {
-         res.status(StatusCodes.BAD_REQUEST);
-         throw new Error("bad data given");
-      }
-
-      if (!(await BookModel.findOne({ name, description, BookImage }))) {
-         const response = await BookModel.insertMany({ name, description, author, type, BookImage, price, discountPrice, });
-         console.log("data inserted successfully -- ", response);
-         return res.status(StatusCodes.CREATED).json({
-            message: "data inserted successfully",
-            data: response,
-         });
-      } else {
+      try {
+         if ( !name || !description || !author || !type || !BookImage || !price || !discountPrice ) {
+            res.status(StatusCodes.BAD_REQUEST);
+            throw new Error("bad data given");
+         }
+   
+         if (!(await BookModel.findOne({ name, description, BookImage }))) {
+            const response = await BookModel.insertMany({ name, description, author, type, BookImage, price, discountPrice, });
+            console.log("data inserted successfully -- ", response);
+            return res.status(StatusCodes.CREATED).json({
+               message: "data inserted successfully",
+               data: response,
+            });
+         }
+      } catch (error) {
+         LOGGER.error(`status - ${StatusCodes.BAD_REQUEST} - Data is allready exist in our database`)
          res.status(StatusCodes.BAD_REQUEST);
          throw new Error("Data is allready exist in our database");
       }
    }),
 
    updateBookInDatabase: asyncHandler(async(req, res) => {
-      const id = req.params
+      try {
+         const id = req.params
+         const { name, description, author, type, BookImage, price, discountPrice } = req.body
+         if(!name || !description || !author || !type || !BookImage || !price || !discountPrice){
+            return res.status(StatusCodes.BAD_REQUEST).json({
+               message: "Bad Data given",
+               data: null
+            })
+         }
+         const response = await BookModel.findByIdAndUpdate(id, {name, description, author, type, BookImage, price, discountPrice})
+         return res.status(StatusCodes.OK).json({
+            message: "data updated successfully",
+            data:response
+         })
+      } catch (error) {
+         // throw new Error("Oops!! something went wrong in update book function")         
+         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            message:"Oops!! something went wrong in update book function",
+            data:null
+         })
+      }
    }),
 
    deleteBookDataFromTheDataBase: asyncHandler(async(req, res) => {
-      const id = req.params
+      try {
+         const id = req.params
+         const response = await BookModel.findByIdAndDelete(id)
+         return res.status(StatusCodes.OK).json({
+            message:"Data deleted successfully",
+            data: response
+         })
+      } catch (error) {
+         LOGGER.error("Oops!! somethin went wrong in delete book function")
+         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            message:"Oops!! somethin went wrong in delete book function",
+            data: null
+         })
+      }
+
    })
 
 
