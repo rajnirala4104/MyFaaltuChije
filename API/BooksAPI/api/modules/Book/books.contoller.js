@@ -40,11 +40,15 @@ const booksControllers = {
    
          if (!(await BookModel.findOne({ name, description, BookImage }))) {
             const response = await BookModel.insertMany({ name, description, author, type, BookImage, price, discountPrice, });
-            console.log("data inserted successfully -- ", response);
             return res.status(StatusCodes.CREATED).json({
                message: "data inserted successfully",
                data: response,
             });
+         }else{
+            return res.status(StatusCodes.BAD_REQUEST).json({
+               message: "Data is already in our database",
+               data: null
+            })
          }
       } catch (error) {
          LOGGER.error(`status - ${StatusCodes.BAD_REQUEST} - Data is allready exist in our database`)
@@ -53,23 +57,18 @@ const booksControllers = {
       }
    }),
 
-   updateBookInDatabase: asyncHandler(async(req, res) => {
+   updateBookInDatabase: asyncHandler(async (req, res) => {
       try {
-         const id = req.params
-         const { name, description, author, type, BookImage, price, discountPrice } = req.body
-         if(!name || !description || !author || !type || !BookImage || !price || !discountPrice){
-            return res.status(StatusCodes.BAD_REQUEST).json({
-               message: "Bad Data given",
-               data: null
-            })
-         }
-         const response = await BookModel.findByIdAndUpdate(id, {name, description, author, type, BookImage, price, discountPrice})
+         const {id} = req.params
+         const data = req.body
+         const response = await BookModel.findByIdAndUpdate(id, data);
          return res.status(StatusCodes.OK).json({
             message: "data updated successfully",
-            data:response
+            data: await BookModel.findOne({'_id': id})
          })
       } catch (error) {
          // throw new Error("Oops!! something went wrong in update book function")         
+         LOGGER.error("Oops!! someting went wrong in updateBookInDatabase function")
          return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             message:"Oops!! something went wrong in update book function",
             data:null
@@ -79,7 +78,7 @@ const booksControllers = {
 
    deleteBookDataFromTheDataBase: asyncHandler(async(req, res) => {
       try {
-         const id = req.params
+         const {id} = req.params
          const response = await BookModel.findByIdAndDelete(id)
          return res.status(StatusCodes.OK).json({
             message:"Data deleted successfully",

@@ -23,5 +23,5 @@ app.use(morgan("combined", { stream: accessLogStream }));
 
 app.use(logErrors);
 app.use(clientErrorHandler);
-app.use(errorHandler);
+// app.use(errorHandler);
 module.exports = app;
