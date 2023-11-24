@@ -29,7 +29,7 @@ const booksControllers = {
             data: id
          })
       }
-}),
+   }),
    inserBookInDatabase: asyncHandler(async (req, res) => {
       const { name, description, author, type, BookImage, price, discountPrice, } = req.body;
       try {

@@ -8,6 +8,7 @@ const {
    errorHandler,
    logErrors,
 } = require("./common/error.handler");
+const { StatusCodes } = require("http-status-codes");
 const app = express();
 
 app.use(express.json());
