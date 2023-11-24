@@ -37,19 +37,17 @@ const booksControllers = {
             res.status(StatusCodes.BAD_REQUEST);
             throw new Error("bad data given");
          }
-   
-         if (!(await BookModel.findOne({ name, description, BookImage }))) {
-            const response = await BookModel.insertMany({ name, description, author, type, BookImage, price, discountPrice, });
-            return res.status(StatusCodes.CREATED).json({
-               message: "data inserted successfully",
-               data: response,
-            });
-         }else{
+         if (await BookModel.findOne({ name, description, BookImage })) {
             return res.status(StatusCodes.BAD_REQUEST).json({
                message: "Data is already in our database",
                data: null
-            })
+            }) 
          }
+         const response = await BookModel.insertMany({ name, description, author, type, BookImage, price, discountPrice, });
+         return res.status(StatusCodes.CREATED).json({
+            message: "data inserted successfully",
+            data: response,
+         });
       } catch (error) {
          LOGGER.error(`status - ${StatusCodes.BAD_REQUEST} - Data is allready exist in our database`)
          res.status(StatusCodes.BAD_REQUEST);
