@@ -1,8 +1,8 @@
 const express = require("express");
 const { appRouter } = require("./router");
-const morgan = require('morgan')
-const fs = require('fs')
-const path = require('path')
+const morgan = require("morgan");
+const fs = require("fs");
+const path = require("path");
 const {
    clientErrorHandler,
    errorHandler,
@@ -20,7 +20,6 @@ const accessLogStream = fs.createWriteStream(
 app.get("/health", (req, res) => res.status(StatusCodes.OK));
 app.use("/api", appRouter);
 app.use(morgan("combined", { stream: accessLogStream }));
-
 
 app.use(logErrors);
 app.use(clientErrorHandler);

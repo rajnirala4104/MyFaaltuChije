@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Calculator</title>
+      <style>
+         body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background: rgb(0, 38, 4);
+            flex-direction: column;
+
+            > section {
+               display: flex;
+               justify-content: space-between;
+               align-items: center;
+               flex-direction: column;
+               /* border: 2px solid red; */
+               border-radius: 7px;
+               width: 70%;
+               height: 50%;
+               background: rgb(2, 23, 0);
+               padding: 10px;
+
+               > .showCommands {
+                  /* border: 2px solid red; */
+                  width: 100%;
+                  height: 100%;
+                  > span {
+                     color: greenyellow;
+                  }
+               }
+
+               > .inputs {
+                  width: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  /* border: 1px solid red; */
+                  padding: 5px;
+                  > input {
+                     width: 100%;
+                     background: transparent;
+                     outline: none;
+                     border: none;
+                     color: greenyellow;
+                     font-size: 18px;
+                     padding: 5px;
+                     border-radius: 5px;
+                  }
+                  > input:active,
+                  input:focus {
+                     background: rgb(0, 42, 0);
+                  }
+
+                  > button {
+                     background: green;
+                     border: none;
+                     padding: 3px 5px;
+                     font-size: 18px;
+                     border-radius: 3px;
+                     margin: 0px 5px;
+                     cursor: pointer;
+                  }
+                  > button:hover {
+                     background: rgb(0, 158, 0);
+                  }
+               }
+            }
+
+            > .example {
+               /* border: 2px solid red; */
+               width: 70%;
+               margin: 10px 0px;
+               display: flex;
+               flex-direction: row;
+               flex-wrap: wrap;
+               > span {
+                  color: greenyellow;
+                  margin: 4px 10px;
+                  > span {
+                     color: rgb(254, 7, 7);
+                     font-weight: 800;
+                  }
+               }
+            }
+         }
+      </style>
+   </head>
+   <body>
+      <section>
+         <div class="showCommands" id="showCommands">
+            <span>12 + 12 = 24</span>
+         </div>
+         <div class="inputs">
+            <input type="text" id="userCommand" placeholder="write command" />
+            <button id="runBtn">run</button>
+         </div>
+      </section>
+      <div class="example">
+         <span> <span> e.g:</span> 12 + 14</span>
+         <span> <span> e.g:</span> 12 - 14</span>
+         <span> <span> e.g:</span> 12 / 14</span>
+         <span> <span> e.g:</span> 12 * 14</span>
+         <span> <span> e.g:</span> 2 ** 3</span>
+      </div>
+   </body>
+   <script src="./calculator.js"></script>
+</html>
