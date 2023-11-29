@@ -13,7 +13,6 @@ runBtn?.addEventListener('click', () => {
     }))
 })
 
-
 while (true) {
     const firstNumber = prompt("Enter the Frist number :");
     const op = prompt("Enter the Oprations, e.g: +, -, *, /, etc ")
