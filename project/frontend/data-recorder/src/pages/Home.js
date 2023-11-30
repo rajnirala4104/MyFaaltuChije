@@ -1,6 +1,10 @@
 import React, { Fragment } from "react";
-import { DataContainer } from "../components";
+import { Form } from "../components";
 
 export const Home = () => {
-   return <Fragment>{/* <DataContainer /> */}</Fragment>;
+   return (
+      <Fragment>
+         <Form />
+      </Fragment>
+   );
 };
