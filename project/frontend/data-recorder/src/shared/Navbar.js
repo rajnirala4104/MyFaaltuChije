@@ -13,7 +13,7 @@ export const Navbar = () => {
             <div className="searchUser lg:flex hidden">
                <input
                   type="text"
-                  className="bg-lime-400 outline-none rounded-sm px-2 placeholder:text-slate-700"
+                  className="bg-lime-400 outline-none rounded-sm px-2 py-[7px] placeholder:text-slate-700"
                   placeholder="Search"
                />
                <button className="bg-lime-500 mx-2 rounded-sm px-2 text-slate-700 hover:bg-lime-400">

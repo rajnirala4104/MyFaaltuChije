@@ -5,7 +5,7 @@ const userController = {
    getAllUsers: async (req, res) => {
       return res.status(StatusCodes.OK).json({
          message: "ok",
-         dada: await User.find(),
+         data: await User.find(),
       });
    },
    insertAndUser: async (req, res) => {
