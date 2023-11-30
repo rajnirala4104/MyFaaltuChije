@@ -20,12 +20,12 @@ export const DataTable = () => {
    useEffect(() => {
       fetchAllUsesFromApi();
    }, []);
-   console.log(users);
+   //    console.log(users);
 
    return (
       <Fragment>
          <Suspense fallback="loading..">
-            <div className="flex flex-col justify-start rounded-md border border-green-800 overflow-x-auto w-[90%] h-[74vh] lg:w-full ">
+            <div className="flex flex-col justify-start rounded-md border border-green-800 overflow-x-auto w-[90%] h-[74vh] lg:w-[80%] ">
                <table className="table-fixed rounded-md ">
                   <thead className="bg-green-700 text-lime-300">
                      <tr className="">
@@ -41,7 +41,9 @@ export const DataTable = () => {
                      {users.map((singleUserData, i) => {
                         return (
                            <tr
-                              className={`my-2  h-12  ${
+                              key={i}
+                              onClick={() => alert(singleUserData.name)}
+                              className={`my-2  h-12 cursor-pointer hover:bg-green-600 hover:text-lime-300  ${
                                  i % 2 === 0 ? "bg-lime-200" : "bg-lime-300"
                               }`}
                            >

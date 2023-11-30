@@ -1,8 +1,57 @@
-import React, { Fragment, Suspense, useContext } from "react";
+import axios from "axios";
+import React, {
+   Fragment,
+   Suspense,
+   useContext,
+   useReducer,
+   useState,
+} from "react";
 import { FormPopupProvider } from "../Contexts";
 
 export const Form = () => {
    const { formPopup, setFormPopup } = useContext(FormPopupProvider);
+   const [userName, setUserName] = useState("");
+   const [userEmail, setUserEmail] = useState("");
+   const [userAddress, setUserAddress] = useState("");
+   const [userPhoneNumber, setUserPhoneNumber] = useState("");
+   const [userGender, setUserGender] = useState();
+
+   const submitHandler = async () => {
+      console.log(
+         userName,
+         userEmail,
+         userAddress,
+         userPhoneNumber,
+         userGender
+      );
+      if (
+         !userName ||
+         !userEmail ||
+         !userAddress ||
+         !userPhoneNumber ||
+         !userGender
+      ) {
+         return "Data is invailid";
+      }
+
+      try {
+         const response = await axios.post(
+            "/api/user",
+            { userName, userEmail, userAddress, userPhoneNumber, userGender },
+            {
+               Headers: {
+                  "Content-type": "application/json",
+               },
+            }
+         );
+
+         setFormPopup(!formPopup);
+         console.log(response.data);
+      } catch (error) {
+         alert("Oops!! something went wrong.. in submit handler function");
+      }
+   };
+
    return (
       <Fragment>
          <Suspense fallback="loading..">
@@ -30,6 +79,7 @@ export const Form = () => {
                         <div className="w-72">
                            <div className="relative w-full min-w-[200px] h-10">
                               <input
+                                 onChange={(e) => setUserName(e.target.value)}
                                  className="peer shadow-lg w-[100%] h-full bg-transparent text-green-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-green-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-green-gray-200 focus:border-green-600"
                                  placeholder=" "
                               />
@@ -43,6 +93,7 @@ export const Form = () => {
                         <div className="w-72">
                            <div className="relative w-full min-w-[200px] h-10">
                               <input
+                                 onChange={(e) => setUserEmail(e.target.value)}
                                  className="peer shadow-lg w-[100%] h-full bg-transparent text-green-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-green-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-green-gray-200 focus:border-green-600"
                                  placeholder=" "
                               />
@@ -56,6 +107,9 @@ export const Form = () => {
                         <div className="w-72">
                            <div className="relative w-full min-w-[200px] h-10">
                               <input
+                                 onChange={(e) =>
+                                    setUserAddress(e.target.value)
+                                 }
                                  className="peer shadow-lg w-[100%] h-full bg-transparent text-green-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-green-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-green-gray-200 focus:border-green-600"
                                  placeholder=" "
                               />
@@ -69,6 +123,9 @@ export const Form = () => {
                         <div className="w-72">
                            <div className="relative w-full min-w-[200px] h-10">
                               <input
+                                 onChange={(e) =>
+                                    setUserPhoneNumber(e.target.value)
+                                 }
                                  type="number"
                                  className="peer shadow-lg w-[100%] h-full bg-transparent text-green-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-green-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-green-gray-200 focus:border-green-600"
                                  placeholder=" "
@@ -188,6 +245,7 @@ export const Form = () => {
                         </div> */}
 
                         <select
+                           onChange={(e) => setUserGender(e.target.value)}
                            name="gender"
                            id="gender"
                            className="relative w-full min-w-[200px] h-10 rounded-md cursor-pointer py-2 px-1 outline-none bg-transparent shadow-lg text-green-600 "
@@ -201,7 +259,10 @@ export const Form = () => {
                   </div>
 
                   <div className="button flex justify-center items-start w-full">
-                     <button className="hover:bg-green-600 bg-green-700 text-lime-300 px-3 rounded-md py-2 font-bold">
+                     <button
+                        onClick={() => submitHandler()}
+                        className="hover:bg-green-600 bg-green-700 text-lime-300 px-3 rounded-md py-2 font-bold"
+                     >
                         Add Data
                      </button>
                   </div>
