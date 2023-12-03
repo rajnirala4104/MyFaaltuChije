@@ -17,3 +17,7 @@ export const insertUserInDatabase = (data) => {
       },
    });
 };
+
+export const deleteUserFromDatabase = (userId) => {
+   return http.delete(`${ENDPOINTS.users}/${userId}`);
+};

@@ -12,5 +12,6 @@ app.use(cors());
 app.get("/health", (req, res) => res.status(StatusCodes.OK));
 app.get("/api", userController.getAllUsers);
 app.post("/api/user", userController.insertAndUser);
+app.delete("/api/user/:id", userController.deleteUser);
 
 module.exports = { app };
