@@ -1,12 +1,7 @@
 import axios from "axios";
-import React, {
-   Fragment,
-   Suspense,
-   useContext,
-   useReducer,
-   useState,
-} from "react";
+import React, { Fragment, Suspense, useContext, useState } from "react";
 import { FormPopupProvider } from "../Contexts";
+import { insertUserInDatabase } from "../api/service/users.service";
 
 export const Form = () => {
    const { formPopup, setFormPopup } = useContext(FormPopupProvider);
@@ -35,18 +30,16 @@ export const Form = () => {
       }
 
       try {
-         const response = await axios.post(
-            "/api/user",
-            { userName, userEmail, userAddress, userPhoneNumber, userGender },
-            {
-               Headers: {
-                  "Content-type": "application/json",
-               },
-            }
-         );
+         const response = await insertUserInDatabase({
+            name: userName,
+            email: userEmail,
+            address: userAddress,
+            phoneNumber: userPhoneNumber,
+            gender: userGender,
+         });
 
          setFormPopup(!formPopup);
-         console.log(response.data);
+         window.location.reload();
       } catch (error) {
          alert("Oops!! something went wrong.. in submit handler function");
       }
@@ -93,6 +86,7 @@ export const Form = () => {
                         <div className="w-72">
                            <div className="relative w-full min-w-[200px] h-10">
                               <input
+                                 type="email"
                                  onChange={(e) => setUserEmail(e.target.value)}
                                  className="peer shadow-lg w-[100%] h-full bg-transparent text-green-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-green-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-green-gray-200 focus:border-green-600"
                                  placeholder=" "

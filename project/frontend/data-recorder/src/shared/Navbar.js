@@ -4,7 +4,7 @@ export const Navbar = () => {
    return (
       <Fragment>
          <header className=" flex justify-between items-center h-16 px-2 bg-green-700 ">
-            <div className="logo cursor-pointer">
+            <div className="logo cursor-pointer" onClick={() => {}}>
                <strong>
                   <span className="text-lime-300 text-2xl">Data</span>
                </strong>

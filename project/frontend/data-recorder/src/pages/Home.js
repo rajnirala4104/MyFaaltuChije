@@ -1,14 +1,16 @@
 import React, { Fragment, useContext } from "react";
-import { FormPopupProvider } from "../Contexts";
-import { DataTable } from "../components";
+import { FormPopupProvider, UserInfoPopupProvider } from "../Contexts";
+import { DataTable, UserInfoPopup } from "../components";
 import { Form } from "../components/Form";
 
 export const Home = () => {
    const { formPopup, setFormPopup } = useContext(FormPopupProvider);
+   const { userInfoPopup } = useContext(UserInfoPopupProvider);
 
    return (
       <Fragment>
-         <section className="w-full h-[90vh] bg-lime-200 flex flex-col border border-red-500 justify-center items-center">
+         <section className="w-full h-[90vh] bg-lime-200 flex flex-col  justify-center items-center">
+            {userInfoPopup ? <UserInfoPopup /> : ""}
             {formPopup ? <Form /> : ""}
             <DataTable />
             <div className=" my-4">

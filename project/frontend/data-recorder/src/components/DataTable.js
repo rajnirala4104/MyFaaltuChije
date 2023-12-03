@@ -1,17 +1,25 @@
 import axios from "axios";
-import React, { Fragment, Suspense, useEffect, useState } from "react";
+import React, {
+   Fragment,
+   Suspense,
+   useContext,
+   useEffect,
+   useState,
+} from "react";
+import "../CSS/utils.css";
+import { UserInfoPopupProvider } from "../Contexts";
+import { capitalizeWord } from "../Utils";
+import { getAllUsers } from "../api/service/users.service";
 
 export const DataTable = () => {
    const [users, setUsers] = useState([]);
+   const { userInfoPopup, setUserInfoPopup } = useContext(
+      UserInfoPopupProvider
+   );
 
    const fetchAllUsesFromApi = async () => {
       try {
-         const config = {
-            headers: {
-               "Content-type": "application/json",
-            },
-         };
-         const { data } = await axios.get("/api", config);
+         const { data } = await getAllUsers();
          setUsers(data.data);
       } catch (e) {
          console.log("Oops!! something went wron fetchChats function");
@@ -32,7 +40,7 @@ export const DataTable = () => {
                         <th>Sno.</th>
                         <th>Name</th>
                         <th>Gender</th>
-                        <th className="">Adress</th>
+                        <th>Address</th>
                         <th>Phone</th>
                         <th>Email</th>
                      </tr>
@@ -40,32 +48,41 @@ export const DataTable = () => {
                   <tbody className="my-2 px-2">
                      {users.map((singleUserData, i) => {
                         return (
-                           <tr
-                              key={i}
-                              onClick={() => alert(singleUserData.name)}
-                              className={`my-2  h-12 cursor-pointer hover:bg-green-600 hover:text-lime-300  ${
-                                 i % 2 === 0 ? "bg-lime-200" : "bg-lime-300"
-                              }`}
-                           >
-                              <td className="mx-3 m-auto border border-black px-3">
-                                 <span>{i + 1}</span>
-                              </td>
-                              <td className="mx-3 m-auto border border-black px-3">
-                                 <span>{singleUserData.name}</span>
-                              </td>
-                              <td className="mx-3 m-auto border border-black px-3">
-                                 <span>{singleUserData.gender}</span>
-                              </td>
-                              <td className="mx-3 m-auto border border-black px-3">
-                                 <span>{singleUserData.address}</span>
-                              </td>
-                              <td className="mx-3 m-auto border border-black px-3">
-                                 <span>{singleUserData.phoneNumber}</span>
-                              </td>
-                              <td className="mx-3 m-auto border border-black px-3">
-                                 <span>{singleUserData.email}</span>
-                              </td>
-                           </tr>
+                           <Fragment key={i}>
+                              <tr
+                                 onClick={() => {
+                                    localStorage.setItem(
+                                       "userInfo",
+                                       JSON.stringify(singleUserData)
+                                    );
+                                    setUserInfoPopup(!userInfoPopup);
+                                 }}
+                                 className={`my-2  h-12 cursor-pointer hover:bg-green-600 hover:text-lime-300  ${
+                                    i % 2 === 0 ? "bg-lime-200" : "bg-lime-300"
+                                 }`}
+                              >
+                                 <td className="mx-3 m-auto border border-black px-3">
+                                    <span>{i + 1}</span>
+                                 </td>
+                                 <td className="mx-3 m-auto border border-black px-3">
+                                    <span>
+                                       {capitalizeWord(singleUserData.name)}
+                                    </span>
+                                 </td>
+                                 <td className="mx-3 m-auto border border-black px-3">
+                                    <span>{singleUserData.gender}</span>
+                                 </td>
+                                 <td className="mx-3 m-auto border border-black px-3">
+                                    <span>{singleUserData.address}</span>
+                                 </td>
+                                 <td className="mx-3 m-auto border border-black px-3">
+                                    <span>{singleUserData.phoneNumber}</span>
+                                 </td>
+                                 <td className="mx-3 m-auto border border-black px-3">
+                                    <span>{singleUserData.email}</span>
+                                 </td>
+                              </tr>
+                           </Fragment>
                         );
                      })}
                   </tbody>
