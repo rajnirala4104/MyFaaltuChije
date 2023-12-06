@@ -10,9 +10,7 @@ function App() {
    return (
       <Fragment>
          <FormPopupProvider.Provider value={{ formPopup, setFormPopup }}>
-            <UserInfoPopupProvider.Provider
-               value={{ userInfoPopup, setUserInfoPopup }}
-            >
+            <UserInfoPopupProvider.Provider value={{ userInfoPopup, setUserInfoPopup }}>
                <RouterProvider router={_ROUTER} />
             </UserInfoPopupProvider.Provider>
          </FormPopupProvider.Provider>

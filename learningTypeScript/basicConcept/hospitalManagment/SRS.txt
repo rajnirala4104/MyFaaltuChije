@@ -1,0 +1,22 @@
+SRS | requirement
+- doctor
+- test
+- inspation
+
+ER diagram
+- DOCTOR 
+    - name
+    - type | branch
+    - expirence
+- HOSPITAL
+    - name 
+    - type - "gov." | "private"
+    - location
+- PATIENT
+    - name
+    - age 
+    - gender - "male" | "female" | "other" 
+    - disease
+- DISEASE 
+    - name
+    - type

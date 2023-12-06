@@ -47,6 +47,20 @@ const userController = {
          next(error);
       }
    },
+
+   getUserBySearch: async (req, res, next) => {
+      console.log("dfasdf");
+      const query = req.query.search;
+      console.log(query);
+      try {
+         return res.status(StatusCodes.OK).json({
+            message: "ok",
+            data: await User.find({ name: query.search }),
+         });
+      } catch (error) {
+         next(EvalError);
+      }
+   },
 };
 
 module.exports = { userController };
