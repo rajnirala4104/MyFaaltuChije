@@ -11,9 +11,9 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/health", (req, res) =>
-   res
-      .status(StatusCodes.OK)
-      .json({ message: "API is running successfully", status: StatusCodes.OK })
+  res
+    .status(StatusCodes.OK)
+    .json({ message: "API is running successfully", status: StatusCodes.OK })
 );
 app.get("/api", userController.getAllUsers);
 // app.get("/api?search", userController.getUserBySearch);
