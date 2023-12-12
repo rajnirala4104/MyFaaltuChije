@@ -10,10 +10,10 @@ const userSchema = new Schema(
     },
     email: {
       type: String,
-      match: [
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        "Enter a valid email address",
-      ],
+      // match: [
+      //   /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      //   "Enter a valid email address",
+      // ],
       required: true,
       unique: true,
     },
@@ -23,10 +23,10 @@ const userSchema = new Schema(
     phoneNumber: {
       type: String,
       length: 9,
-      match: [
-        /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/,
-        "Enter a valid phone number",
-      ],
+      // match: [
+      //   /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/,
+      //   "Enter a valid phone number",
+      // ],
     },
     gender: { type: String },
   },

@@ -62,7 +62,19 @@ const userController = {
     }
   },
 
-  updateUserInfo: async (req, res) => {},
+  updateUserInfo: async (req, res, next) => {
+    try {
+      const body = req.body;
+      console.log(req.body);
+      const response = await User.findOneAndUpdate({ _id: body.id }, body);
+      return res.status(StatusCodes.OK).json({
+        message: "data edited successfully",
+        data: response.data,
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 module.exports = { userController };
