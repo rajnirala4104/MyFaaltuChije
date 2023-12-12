@@ -18,12 +18,19 @@ export const UserInfoPopup = () => {
   const [userGender, setUserGender] = useState("");
   const [userPhoneNumber, setUserPhoneNumber] = useState("");
   const [userEmail, setuserEmail] = useState("");
-  const [userAdress, setuserAdress] = useState("");
+  const [userAddress, setuserAddress] = useState("");
 
   const deleteUserFunction = async (id) => {
     await deleteUserFromDatabase(id);
     setUserInfoPopup(!userInfoPopup);
     window.location.reload();
+  };
+
+  const updateUserInfo = () => {
+    if (!userGender || !userPhoneNumber || !userEmail || !userAddress) {
+      console.log(userGender, userPhoneNumber, userEmail, userAddress);
+    }
+    setEditUser(!editUser);
   };
 
   useEffect(() => {
@@ -137,7 +144,7 @@ export const UserInfoPopup = () => {
                       </div>
                       <div className="my-4 w-[60%] lg:w-[50%] flex justify-evenly items-center">
                         <button
-                          onClick={() => setEditUser(!editUser)}
+                          onClick={() => updateUserInfo()}
                           className={`${
                             editUser
                               ? " bg-lime-500 text-green-700 hover:bg-lime-400"

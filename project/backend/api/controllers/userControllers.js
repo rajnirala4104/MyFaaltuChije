@@ -65,8 +65,9 @@ const userController = {
   updateUserInfo: async (req, res, next) => {
     try {
       const body = req.body;
-      console.log(req.body);
-      const response = await User.findOneAndUpdate({ _id: body.id }, body);
+      const { id } = req.params;
+      // console.log(req.body);
+      const response = await User.findOneAndUpdate({ _id: id }, body);
       return res.status(StatusCodes.OK).json({
         message: "data edited successfully",
         data: response.data,
