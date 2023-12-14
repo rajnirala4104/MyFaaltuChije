@@ -18,7 +18,7 @@ export const UserInfoPopup = () => {
   const [userGender, setUserGender] = useState("");
   const [userPhoneNumber, setUserPhoneNumber] = useState("");
   const [userEmail, setuserEmail] = useState("");
-  const [userAddress, setuserAddress] = useState("");
+  const [userAddress, setUserAddress] = useState("");
 
   const deleteUserFunction = async (id) => {
     await deleteUserFromDatabase(id);
@@ -28,8 +28,9 @@ export const UserInfoPopup = () => {
 
   const updateUserInfo = () => {
     if (!userGender || !userPhoneNumber || !userEmail || !userAddress) {
-      console.log(userGender, userPhoneNumber, userEmail, userAddress);
+      console.log("somethin went wrong..");
     }
+    console.log(userGender, userPhoneNumber, userEmail, userAddress);
     setEditUser(!editUser);
   };
 
