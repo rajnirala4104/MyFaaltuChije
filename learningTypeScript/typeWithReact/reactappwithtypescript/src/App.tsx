@@ -18,8 +18,8 @@ function App() {
     }
   };
   return (
-    <div className="App">
-      <div className="container display-6 p-2 my-4 bg-dark text-light">
+    <div className="App ">
+      <div className="bg-black text-white width-[100%] h-[4rem] flex justify-center items-center font-bold text-3xl">
         ToDo
       </div>
       <div className="taskContainer">
@@ -29,7 +29,7 @@ function App() {
           setUserInputTask={setUserInputTask}
         />
       </div>
-      <section className="container bg-light">
+      <section className="container">
         <ShowTaskSection showAllTodos={allTodos}/>
       </section>
     </div>
