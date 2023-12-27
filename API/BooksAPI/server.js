@@ -7,8 +7,8 @@ const { PORT } = process.env || 8080;
 connectDatabase();
 
 const server = createServer(app).listen(PORT, () => {
-   LOGGER.info(`Server has connected on ${PORT} - http://127.0.0.1:8080/api/v1/books`)
+   LOGGER.info(`Server has connected on ${PORT} - http://127.0.0.1:${PORT}/api/v1/books`)
    console.info(
-      `Server has connected on ${PORT} - http://127.0.0.1:8080/api/v1/books`.yellow.bold
+      `Server has connected on ${PORT} - http://127.0.0.1:${PORT}/api/v1/books`.yellow.bold
    );
 });

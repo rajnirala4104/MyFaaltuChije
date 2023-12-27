@@ -30,7 +30,7 @@ function App() {
         />
       </div>
       <section className="container">
-        <ShowTaskSection showAllTodos={allTodos}/>
+        <ShowTaskSection showAllTodos={allTodos} />
       </section>
     </div>
   );
