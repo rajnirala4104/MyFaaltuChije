@@ -15,7 +15,7 @@ const booksControllers = {
          const response = await BookModel.find({});
 
          // if the database is empty or null then insert some dummy data from dummyBookData.js
-         if (!response) {
+         if (response.length === 0) {
             // using ".insertMany()" mongoose query 
             const { data } = await BookModel.insertMany(Books)
             return res.status(StatusCodes.CREATED).json({

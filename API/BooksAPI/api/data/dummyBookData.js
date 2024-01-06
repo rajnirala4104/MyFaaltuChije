@@ -1,11 +1,28 @@
 const Books = [
    {
+      name: "will",
+      description: "biography of will smith",
+      author: "will smith | mark manson",
+      type: "Biography",
+      BookImage: "https://m.media-amazon.com/images/I/911Xi0DqzRL._SL1500_.jpg",
+      price: 649,
+      discountPrice: 700
+   },
+   {
+      name: "make epic money",
+      description: "Prepare to unlock the secrets to financial well-being with this no-non…",
+      author: "ankur warikoo",
+      type: "financial",
+      BookImage: "https://m.media-amazon.com/images/I/71x2ClNPEzL._SL1500_.jpg",
+      price: 399,
+      discountPrice: 499,
+   },
+   {
       name: "Do Epic Shit",
       description: "This is Book's Description",
       author: "Ankur Warikoo",
       type: "Self Developmet",
-      BookImage:
-         "https://m.media-amazon.com/images/P/9391165486.01._SCLZZZZZZZ_SX500_.jpg",
+      BookImage: "https://m.media-amazon.com/images/P/9391165486.01._SCLZZZZZZZ_SX500_.jpg",
       price: 249,
       discountPrice: 459,
    },
