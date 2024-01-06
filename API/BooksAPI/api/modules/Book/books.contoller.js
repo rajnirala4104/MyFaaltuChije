@@ -10,17 +10,20 @@ const booksControllers = {
    // getting all the books
    getAllTheBooks: asyncHandler(async (req, res) => {
       try {
+
          // mongoose quary ".find()"
          const response = await BookModel.find({});
-         // if the database is empty or null then insert a dummyBookData
+
+         // if the database is empty or null then insert some dummy data from dummyBookData.js
          if (!response) {
-            // using .insertMany() mongoose query 
+            // using ".insertMany()" mongoose query 
             const { data } = await BookModel.insertMany(Books)
             return res.status(StatusCodes.CREATED).json({
                message: "inserted all the Books",
                data: data
             })
          }
+
          return res.status(StatusCodes.OK).json({
             message: "Here all the Book which we have",
             data: response,
