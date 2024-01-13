@@ -5,7 +5,7 @@ import { _StepsData } from '../data/StepsData'
 export const StepSection = () => {
   return (
     <Fragment>
-      <section className='w-full h-screen flex items-center flex-col justify-center'>
+      <section className='w-full h-screen flex items-center flex-col justify-center bg-white'>
         <div className="title w-full  flex justify-center">
           <span className='text-3xl font-semibold my-6'>
             How <span className='text-[#F66754]'>Gatoes</span> works?
