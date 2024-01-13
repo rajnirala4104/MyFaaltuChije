@@ -18,7 +18,7 @@ export const Hero = () => {
             <span className='text-[18px] text-gray-800'>Enter your location to find local restaurants</span>
             <div className='flex justify-between items-center my-2'>
               <input className='p-3 mr-2 rounded-lg w-[30rem] bg-[#F4F4F8] outline-red-400' type="text" placeholder='Type or Search your location here...' />
-              <button className='py-3 px-8 bg-[#F66754] rounded-lg text-white font-bold shadow-md hover:shadow-sm hover:bg-[#db4d4d]'>Search</button>
+              <button className='py-3 px-8 transition duration-200 bg-[#F66754] rounded-lg text-white font-bold shadow-md hover:shadow-sm hover:bg-[#db4d4d]'>Search</button>
             </div>
           </div>
         </div>
