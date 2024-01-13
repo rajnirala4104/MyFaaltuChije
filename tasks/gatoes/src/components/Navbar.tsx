@@ -7,7 +7,7 @@ export const Navbar = () => {
     <Fragment>
       <header className='h-[6rem] flex justify-evenly items-center'>
         <div className="logo">
-          <img src={allImage.logo} alt="" />
+          <img src={allImage.logo} className='cursor-pointer' alt="" />
         </div>
         <div className="menus flex items-center">
           <ul className='flex items-center'>
