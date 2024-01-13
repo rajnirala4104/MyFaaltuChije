@@ -1,8 +1,11 @@
-import React from 'react'
-import { Hero } from '../sections'
+import React, { Fragment } from 'react'
+import { Hero, StepSection } from '../sections'
 
 export const Home = () => {
   return (
-    <Hero />
+    <Fragment>
+      <Hero />
+      <StepSection />
+    </Fragment>
   )
 }
