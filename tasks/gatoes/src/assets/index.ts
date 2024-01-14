@@ -6,6 +6,8 @@ import STEP_3 from './step_3.png.png'
 import APPLE_STORE from './apple-store.svg.svg'
 import GOOGLE_PLAY from './google-play.svg.svg'
 import PHONES from './ phone_mockups.png'
+import FOOTER_LOGO from './footer-logo.svg.svg'
+
 export const allImage = {
   logo: LOGO,
   heroPic: HEROPIC,
@@ -14,5 +16,6 @@ export const allImage = {
   step3: STEP_3,
   appleStore: APPLE_STORE,
   googlePlay: GOOGLE_PLAY,
-  phones: PHONES
+  phones: PHONES,
+  footerLogo: FOOTER_LOGO
 }

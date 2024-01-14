@@ -1,3 +1,4 @@
 export * from './Hero'
 export * from './StepSection'
-export * from './AddSection'
+export * from './AdSection'
+export * from './Footer'

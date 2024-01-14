@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { AddSection, Hero, StepSection } from '../sections'
+import { AddSection, Footer, Hero, StepSection } from '../sections'
 
 export const Home = () => {
   return (
@@ -7,6 +7,7 @@ export const Home = () => {
       <Hero />
       <StepSection />
       <AddSection />
+      <Footer />
     </Fragment>
   )
 }

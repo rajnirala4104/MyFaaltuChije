@@ -5,7 +5,7 @@ export const AddSection = () => {
   return (
     <Fragment>
       <section className='p-36 bg-gray-100 h-screen flex justify-center items-center'>
-        <div className="mainContainer bg-[#ffeeec] w-[100%] h-[400px] flex rounded-lg ">
+        <div className="mainContainer bg-[#ffdfdb] w-[100%] h-[400px] flex rounded-xl ">
           <div className="infos flex flex-col justify-center items-center ">
             <div className='w-[90%]'>
               <span className='text-[#F66754] text-4xl font-bold'>Have you got our App?</span>
