@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import { steps } from '../data/StepsData'
 
 export const SetpCard: React.FC<steps> = (props) => {

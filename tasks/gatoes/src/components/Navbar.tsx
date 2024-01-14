@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import { allImage } from '../assets'
 import UserIcon from '../icons/UserIcon'
 

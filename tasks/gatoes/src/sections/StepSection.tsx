@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import { SetpCard } from '../components'
 import { _StepsData } from '../data/StepsData'
 

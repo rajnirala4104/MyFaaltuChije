@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import { AddSection, Footer, Hero, StepSection } from '../sections'
 
 export const Home = () => {
