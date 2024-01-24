@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AnimationGif } from '../components'
+import '../css/buttonAnimation.css'
 
 export const Home = () => {
 
+  const [myClass, setMyClass] = useState<string>("")
+  const [positionValue, setPositionValue] = useState<number>(10)
   const randomNumber = Math.floor(Math.random() * 100)
-  // console.log(randomNumber)
+
+  const hoverHandler = () => {
+    setMyClass(`bg-red-500 translate-x-[${positionValue}rem] -translate-y-[${positionValue}rem]`)
+    setPositionValue(0)
+    console.log("hovered", randomNumber)
+  }
 
   return (
     <React.Fragment>
@@ -16,7 +24,7 @@ export const Home = () => {
           <AnimationGif classes='my-6' srcPath="https://media.tenor.com/P5iiJiI_1tMAAAAi/please-begging.gif" />
           <div className='py-3 w-full flex justify-center items-center '>
             <span className='bg-blue-100 text-blue-950 text-2xl py-2 px-4 rounded-md cursor-pointer hover:bg-white font-semibold transition duration-400'>Yes</span>
-            <span onClick={() => alert("Ooh!! no.. 😟")} className={`bg-blue-100 text-blue-950 text-2xl py-2 px-4 rounded-md mx-10 cursor-pointer hover:bg-white transition duration-400 font-semibold hover:translate-x-10 hover:-translate-y-[10rem]`}>No</span>
+            <span onMouseEnter={() => hoverHandler()} onClick={() => alert("Ooh!! no.. 😟")} className={`bg-blue-100 text-blue-950 text-2xl ${myClass} py-2 px-4 rounded-md mx-10 cursor-pointer  transition duration-400 font-semibold `}>No</span>
           </div>
         </div>
       </section>
