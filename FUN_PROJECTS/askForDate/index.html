@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Request</title>
+</head>
+
+<body>
+  <section class='w-full h-screen bg-blue-400 flex justify-center items-center'>
+    <div class="container w-[50%] flex justify-center items-center flex-col relative">
+      <div class="title">
+        <h1 id="message" class='text-4xl text-center font-bold text-blue-900'>Do you wanna go out with me ?</h1>
+      </div>
+      <img class='my-6' id="gif" src="https://media.tenor.com/P5iiJiI_1tMAAAAi/please-begging.gif" />
+      <div class='py-3 w-full flex justify-center items-center '>
+        <span id="yesBtn"
+          class='bg-blue-700 text-white text-2xl py-2 px-4 rounded-md cursor-pointer hover:bg-blue-600 font-semibold transition duration-400 absolute mr-[10rem]'>Yes</span>
+        <span id="noBtn"
+          class='bg-white text-blue-950 text-2xl ${myClass} py-2 px-4 rounded-md mx-10 cursor-pointer  transition duration-400 font-semibold absolute -mr-[14rem]'>No</span>
+      </div>
+    </div>
+  </section>
+</body>
+<script src="./main.js"></script>
+
+</html>
