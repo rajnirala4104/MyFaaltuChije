@@ -9,9 +9,9 @@ const containerRect = container.getBoundingClientRect()
 const noBtnRect = noBtn.getBoundingClientRect()
 
 yesBtn.addEventListener('click', () => {
-  gif.src = "https://media.tenor.com/WmUsYN4sEEoAAAAi/milk-and.gif"
-  message.innerText = "Yeee.. ab maja ayega na bidoo.."
-  gif.classList.add('w-[26%] ')
+  // gif.src = "https://media.tenor.com/WmUsYN4sEEoAAAAi/milk-and.gif"
+  gif.src = "https://media.tenor.com/_HY_JDuXBjQAAAAi/cute-lovely.gif"
+  message.innerText = "Yee... I LOVE YOU TOO"
 })
 
 noBtn.addEventListener('mouseover', () => {
