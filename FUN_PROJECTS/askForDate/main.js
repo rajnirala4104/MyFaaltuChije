@@ -11,7 +11,7 @@ const noBtnRect = noBtn.getBoundingClientRect()
 yesBtn.addEventListener('click', () => {
   // gif.src = "https://media.tenor.com/WmUsYN4sEEoAAAAi/milk-and.gif"
   gif.src = "https://media.tenor.com/_HY_JDuXBjQAAAAi/cute-lovely.gif"
-  message.innerText = "Yee... I LOVE YOU TOO"
+  message.innerText = "Yeee.. "
 })
 
 noBtn.addEventListener('mouseover', () => {

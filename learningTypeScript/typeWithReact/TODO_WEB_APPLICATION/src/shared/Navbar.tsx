@@ -4,7 +4,7 @@ import { NavMenu } from '../icons'
 
 export const Navbar = () => {
 
-  const [navbarMenu, setNavbarMenu] = useState<boolean>(true)
+  const [navbarMenu, setNavbarMenu] = useState<boolean>(false)
 
   const navMenuResponsivenessHandler = () => {
     setNavbarMenu(!navbarMenu)
@@ -25,9 +25,9 @@ export const Navbar = () => {
         </div>
       </header>
       {navbarMenu ? (
-        <div className='bg-gray-300 transition p-4 flex justify-evenly items-center'>
-          <span>List</span>
-          <span>Seaech</span>
+        <div className='bg-blue-100 transition px-4 py-3 flex justify-end items-center'>
+          <span className='cursor-pointer hover:underline *:underline-offset-4'>TaskList</span>
+          <span className='bg-blue-300 ml-8 text-black p-2 rounded-md cursor-pointer hover:bg-blue-400 transition duration-200'>Seaech</span>
         </div>
       ) : ""}
     </React.Fragment>
