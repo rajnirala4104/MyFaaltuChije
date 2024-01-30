@@ -1,2 +1,8 @@
 import { createContext } from "react";
-export const TaskInfoProvider = createContext(false)
+
+import { taskPopupInterface } from '../interfaces/index'
+
+export const TaskInfoProvider = createContext<taskPopupInterface>({
+  taskPopup: false,
+  setTaskPopup: () => { }
+})

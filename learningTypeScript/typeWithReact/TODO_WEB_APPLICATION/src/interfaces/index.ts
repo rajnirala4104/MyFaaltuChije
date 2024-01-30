@@ -8,3 +8,8 @@ export interface SingleTaskCardProp {
   title: string,
   status: taskStatus
 }
+
+export interface taskPopupInterface {
+  taskPopup: boolean,
+  setTaskPopup: (STR: boolean) => void
+}
