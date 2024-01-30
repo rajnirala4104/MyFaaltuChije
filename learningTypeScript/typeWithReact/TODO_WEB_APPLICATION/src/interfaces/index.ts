@@ -13,3 +13,8 @@ export interface taskPopupInterface {
   taskPopup: boolean,
   setTaskPopup: (STR: boolean) => void
 }
+
+export interface CLASS {
+  classes: string,
+  eventHandler: () => void
+}

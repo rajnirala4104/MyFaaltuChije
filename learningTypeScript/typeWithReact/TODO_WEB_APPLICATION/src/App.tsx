@@ -6,7 +6,7 @@ import { TaskInfoProvider } from './context'
 
 function App() {
 
-  const [taskPopup, setTaskPopup] = useState(true)
+  const [taskPopup, setTaskPopup] = useState<boolean>(false)
 
   return (
     <Fragment>
