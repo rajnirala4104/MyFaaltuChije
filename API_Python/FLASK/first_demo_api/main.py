@@ -17,6 +17,12 @@ def name_route(name):
     "name": name
   })
 
+@app.route('/age/<int:age>')
+def user_age(age):
+  return jsonify({
+    "message":"user's age",
+    "age" :age
+  })
 
 if __name__ == "__main__":
   app.run(debug=True)
