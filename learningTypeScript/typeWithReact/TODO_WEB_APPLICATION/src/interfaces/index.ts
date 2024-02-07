@@ -18,3 +18,8 @@ export interface CLASS {
   classes: string,
   eventHandler: () => void
 }
+
+export interface dummyTaskDataInterface {
+  title: string,
+  status: taskStatus
+}

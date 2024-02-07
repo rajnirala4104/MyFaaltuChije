@@ -1,6 +1,6 @@
 import React from 'react'
 import { SingleTaskCard } from '.'
-import { taskStatus } from '../interfaces'
+import { dummyTaskData } from '../data/dummyTaskData'
 
 export const TaskContainer = () => {
   return (
@@ -14,9 +14,7 @@ export const TaskContainer = () => {
             </span>
           </div>
           <div className="singleTaskContainer">
-            <SingleTaskCard title='mai aaj ek kahani likhunga or mai jarura likhunga' status={taskStatus.peding} />
-            <SingleTaskCard title="aaj mai ek movie dekhunga" status={taskStatus.peding} />
-            <SingleTaskCard title='mai aaj ek kahani likhunga or mai jarura likhunga' status={taskStatus.peding} />
+            {dummyTaskData.map(singleDataObject => <SingleTaskCard {...singleDataObject} />)}
           </div>
         </div>
       </section>
