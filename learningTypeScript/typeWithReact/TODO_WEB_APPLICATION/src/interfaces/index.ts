@@ -1,10 +1,9 @@
 export enum taskStatus {
   completed = "completed",
-  peding = "peding",
+  pending = "pending",
   hold = "hold"
 }
-
-export interface SingleTaskCardProp {
+export interface taskInterface {
   title: string,
   status: taskStatus
 }
@@ -19,7 +18,6 @@ export interface CLASS {
   eventHandler: () => void
 }
 
-export interface dummyTaskDataInterface {
-  title: string,
-  status: taskStatus
+export interface JsxELement {
+  element: JSX.Element | null
 }

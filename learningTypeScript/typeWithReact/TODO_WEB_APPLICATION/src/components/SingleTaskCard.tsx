@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import { SingleTaskCardProp } from '../interfaces'
+import { taskInterface } from '../interfaces'
 import { sliceingText } from '../utils'
 import { TaskInfoProvider } from '../context'
 
-export const SingleTaskCard: React.FC<SingleTaskCardProp> = (props) => {
+export const SingleTaskCard: React.FC<taskInterface> = (props) => {
 
   const { taskPopup, setTaskPopup } = useContext(TaskInfoProvider)
 

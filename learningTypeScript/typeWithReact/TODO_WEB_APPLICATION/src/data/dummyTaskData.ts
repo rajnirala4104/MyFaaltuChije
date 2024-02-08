@@ -1,25 +1,8 @@
-import { dummyTaskDataInterface, taskStatus } from "../interfaces";
+import { taskInterface, taskStatus } from "../interfaces";
 
-export const dummyTaskData: dummyTaskDataInterface[] = [
+export const dummyTaskData: taskInterface[] = [
     {
-        title: "asdfa",
-        status: taskStatus.peding
+        title: "This is a dummy task",
+        status: taskStatus.pending
     },
-    {
-        title: "asdfa",
-        status: taskStatus.peding
-    },
-    {
-        title: "asdfa",
-        status: taskStatus.peding
-    },
-    {
-        title: "asdfa",
-        status: taskStatus.peding
-    },
-    {
-        title: "asdfa",
-        status: taskStatus.peding
-    },
-
 ]
