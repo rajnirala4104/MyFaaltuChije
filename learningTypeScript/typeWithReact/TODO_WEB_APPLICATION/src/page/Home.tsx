@@ -5,7 +5,6 @@ import { TaskInfoProvider } from '../context'
 export const Home = () => {
 
   const { taskPopup, setTaskPopup } = useContext(TaskInfoProvider)
-
   return (
     <React.Fragment>
 

@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState } from "react";
-import { JsxELement, taskInterface } from "../interfaces";
+import { taskInterface } from "../interfaces";
 import { dummyTaskData } from "../data/dummyTaskData";
 
 export const appContext = createContext([{}]);
-export const AppContextProvider = ({ element }: JsxELement) => {
+export const AppContextProvider = ({ element }: any) => {
 
     const [tasks, setTasks] = useState<taskInterface[]>(dummyTaskData)
 

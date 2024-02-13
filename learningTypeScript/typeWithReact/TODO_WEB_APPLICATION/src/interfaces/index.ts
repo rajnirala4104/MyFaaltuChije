@@ -1,3 +1,5 @@
+import React from "react"
+
 export enum taskStatus {
   completed = "completed",
   pending = "pending",
@@ -19,5 +21,5 @@ export interface CLASS {
 }
 
 export interface JsxELement {
-  element: JSX.Element | null
+  element: React.ComponentType
 }
