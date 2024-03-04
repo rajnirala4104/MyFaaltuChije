@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.news{
+    /* border: 2px solid blue; */
+    margin: 10px auto !important;
+    width: 30%;
+}
+
+.news img{
+    width: 88%;
+    margin: 8px auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .news {
+      width: 90%;
+    }
+}
+
+

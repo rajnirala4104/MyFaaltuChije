@@ -1,0 +1,10 @@
+.notes{
+    /* border: 2px solid red; */
+    width: 100% !important;
+    margin: 8px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  

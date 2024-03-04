@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .redBg300 {
+    @apply bg-red-300;
+  }
+  .redBg100 {
+    @apply bg-red-100;
+  }
+  .redBg200 {
+    @apply bg-red-200;
+  }
+  .redBg400 {
+    @apply bg-red-400;
+  }
+  .redText900 {
+    @apply text-red-900;
+  }
+  .redText900 {
+    @apply text-red-950;
+  }
+
+  .blueBg300 {
+    @apply bg-blue-300;
+  }
+  .blueBg200 {
+    @apply bg-blue-200;
+  }
+  .blueBg100 {
+    @apply bg-blue-100;
+  }
+  .blueBg400 {
+    @apply bg-blue-400;
+  }
+  .blueText900 {
+    @apply text-blue-900;
+  }
+  .blueText900 {
+    @apply text-blue-950;
+  }
+
+  .greenBg300 {
+    @apply bg-green-300;
+  }
+  .greenBg200 {
+    @apply bg-green-200;
+  }
+  .greenBg100 {
+    @apply bg-green-100;
+  }
+  .greenBg400 {
+    @apply bg-green-400;
+  }
+  .greenText900 {
+    @apply text-green-900;
+  }
+  .greenText900 {
+    @apply text-green-950;
+  }
+
+  .purpleBg300 {
+    @apply bg-purple-300;
+  }
+  .purpleBg200 {
+    @apply bg-purple-200;
+  }
+  .purpleBg100 {
+    @apply bg-purple-100;
+  }
+  .purpleBg400 {
+    @apply bg-purple-400;
+  }
+  .purpleText900 {
+    @apply text-purple-900;
+  }
+  .purpleText900 {
+    @apply text-purple-950;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
