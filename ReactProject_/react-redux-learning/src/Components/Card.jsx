@@ -7,7 +7,7 @@ export const Card = (props) => {
     return (
         <Fragment>
             <div className=' flex flex-col justify-between py-3 items-center border border-black rounded-md w-[20rem] h-[26rem] mb-2'>
-                <div className='w-[80%] mb-3 flex justify-between py-2 items-center flex-col border border-blue-500'>
+                <div className='w-[80%] mb-3 flex justify-between py-2 items-center flex-col '>
                     <div className="img  flex justify-center items-center w-[90%]">
                         <img src={props.image} loading='lazy' className='w-[50%]' alt={props.image} />
                     </div>
