@@ -1,17 +1,21 @@
+import { Fragment } from 'react'
 import './App.css'
+
+import { Provider } from 'react-redux'
+import appStore from './redux'
+
 import { RouterProvider } from 'react-router-dom'
-import { useState } from 'react'
-import { CartContaxt } from './contaxts'
 import { _ROUTER } from './routes'
+
 
 function App() {
 
-  const [cart, setCart] = useState([])
-
   return (
-    <CartContaxt.Provider value={{ cart, setCart }}>
-      <RouterProvider router={_ROUTER} />
-    </CartContaxt.Provider>
+    <Fragment>
+      <Provider store={appStore}>
+        <RouterProvider router={_ROUTER} />
+      </Provider>
+    </Fragment>
   )
 }
 

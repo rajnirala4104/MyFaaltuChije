@@ -1,9 +1,10 @@
-import React, { Fragment, useContext } from 'react'
-import { CartContaxt } from '../contaxts'
+import React, { Fragment } from 'react'
+import { useDispatch } from 'react-redux'
+import { addProductInCart } from '../redux/states/cart.state'
 
 export const Card = (props) => {
+    const dispatch = useDispatch()
 
-    const { cart, setCart } = useContext(CartContaxt)
     return (
         <Fragment>
             <div className=' flex flex-col justify-between py-3 items-center border border-black rounded-md w-[20rem] h-[26rem] mb-2'>
@@ -27,7 +28,7 @@ export const Card = (props) => {
                     <div
                         className="addToCart w-full flex justify-center items-center">
                         <span
-                            onClick={() => setCart([props, ...cart])}
+                            onClick={() => dispatch(addProductInCart(props))}
                             className='bg-orange-400 w-[100%] text-center mx-2 text-black rounded-md cursor-pointer font-bold p-2 hover:bg-orange-300 transition duration-200'>Add to Cart</span>
                     </div>
                 </div>
