@@ -9,9 +9,10 @@ const cartState = createSlice({
         addProductInCart(state, action) {
             state.push(action.payload)
         },
-        removeProduct(state, action) { }
+        removeProduct(state, action) {
+            console.log(action.payload)
+        }
     }
-
 })
 
 export default cartState;
