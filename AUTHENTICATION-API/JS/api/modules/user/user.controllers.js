@@ -1,5 +1,5 @@
 const expressAsyncHandler = require('express-async-handler');
-const { StatusCodes } = require('http-status-codes');
+const { StatusCodes, REQUEST_HEADER_FIELDS_TOO_LARGE } = require('http-status-codes');
 const { User } = require('./user.model');
 const { generateToken } = require('../../configs/generateJWToken');
 
@@ -84,7 +84,32 @@ const userControllers = {
 
         }
     }),
-    update: expressAsyncHandler(async (req, res) => { }),
+    update: expressAsyncHandler(async (req, res) => {
+        try {
+            const { id } = req.params;
+            const { name, email } = req.body;
+            console.log(id)
+            const userDoestExist = await User.find({ _id: id });
+            if (!userDoestExist) {
+                return res.status(StatusCodes.NOT_FOUND).json({
+                    message: "user doesn't exist",
+                    status: StatusCodes.NOT_FOUND,
+                    data: null
+                })
+            }
+            await User.updateOne({ name, email });
+
+
+            return res.status(StatusCodes.OK).json({
+                message: "updated successfully",
+                status: StatusCodes.OK
+            })
+
+        } catch (error) {
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR)
+            throw new Error(error.message)
+        }
+    }),
     delete: expressAsyncHandler(async (req, res) => { })
 }
 

@@ -5,7 +5,7 @@ const userRouter = Router();
 
 userRouter.post('/registration', userControllers.registration);
 userRouter.post('/login', userControllers.login);
-userRouter.put('/update', protect, userControllers.update);
+userRouter.put('/update/:id', protect, userControllers.update);
 userRouter.delete('/delete', protect, userControllers.delete);
 
 module.exports = { userRouter }
