@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 interface time {
-   value: string;
+   value: number;
    unit: string;
 }
 
