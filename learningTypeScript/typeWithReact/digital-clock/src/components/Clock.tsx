@@ -1,14 +1,22 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { SingleUnit } from ".";
 
+interface time {
+   seconds: number;
+   minutes: number;
+   hours: number;
+}
+
 const Clock: React.FC = () => {
-   const [seconds, setSeconds] = useState<number>(0);
-   const [minutes, setMinutes] = useState<number>(0);
-   const [hours, setHours] = useState<number>(0);
+   const [time, setTime] = useState<time>({
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+   });
 
    useEffect(() => {
       const secondTimeInterval = setInterval(() => {
-         setSeconds(seconds + 30);
+         setTime({ ...time, seconds: time.seconds + 1 });
       }, 1000);
 
       return () => {
@@ -17,17 +25,17 @@ const Clock: React.FC = () => {
    });
 
    useEffect(() => {
-      if (seconds >= 60) {
-         setSeconds(0);
-         setMinutes(minutes + 10);
+      if (time.seconds >= 60) {
+         setTime({ ...time, seconds: 0 });
+         setTime({ ...time, minutes: time.minutes + 1 });
       }
 
-      if (minutes >= 60) {
-         setSeconds(0);
-         setMinutes(0);
-         setHours(hours + 10);
+      if (time.minutes >= 60) {
+         setTime({ ...time, seconds: 0 });
+         setTime({ ...time, minutes: 0 });
+         setTime({ ...time, hours: time.hours + 1 });
       }
-   }, [seconds, minutes, hours]);
+   }, [time]);
 
    console.log("re-render");
 
@@ -37,9 +45,9 @@ const Clock: React.FC = () => {
             <div className="w-full h-screen bg-blue-950 grid place-items-center">
                <div className="flex justify-center flex-col items-center">
                   <div className="w-50 flex gap-x-2">
-                     <SingleUnit unit="Hours" value={hours} />
-                     <SingleUnit unit="Minutes" value={minutes} />
-                     <SingleUnit unit="Seconds" value={seconds} />
+                     <SingleUnit unit="Hours" value={time.hours} />
+                     <SingleUnit unit="Minutes" value={time.minutes} />
+                     <SingleUnit unit="Seconds" value={time.seconds} />
                   </div>
                   <div className="btn my-3">
                      <button className="text-white font-bold bg-cyan-900 p-3 rounded-md hover:bg-black ">
