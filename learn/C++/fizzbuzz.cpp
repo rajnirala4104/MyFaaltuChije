@@ -20,6 +20,6 @@ int main(int n)
         }
         else
         {
-                }
+        }
     }
 }
