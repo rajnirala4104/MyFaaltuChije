@@ -9,8 +9,10 @@ int main()
 
       float b = 23.53; // float keyword for storing decimals number
 
-      char n = 'r'; // char for storing a single charector
+      char n = 'r';               // char for storing a single charector
+      char name[] = "raj nirala"; // this is how you can sotre a string in a variable
 
+      cout << name << endl;
       cout << "int value " << a << " and flaot value is " << b << '\n';
 
       return 0;

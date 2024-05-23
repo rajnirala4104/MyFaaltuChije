@@ -31,20 +31,22 @@ int main()
       int startRang, endRang;
       cin >> startRang >> endRang;
 
-      for (int j = startRang; j < endRang; j++){
+      for (int j = startRang; j < endRang; j++)
+      {
             int i;
-            for (i = 2; i < j; i++){
-                  if (j % i == 0){
+            for (i = 2; i < j; i++)
+            {
+                  if (j % i == 0)
+                  {
                         cout << "non prime number " << j << endl;
                         break;
                   }
             }
-            if (i == j){
+            if (i == j)
+            {
                   cout << "prime number " << i << endl;
             }
       }
-
-      
 
       return 0;
 }

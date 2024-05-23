@@ -35,40 +35,20 @@ int main()
       // int sum = 0;
 
       // //  --------- using for loop -------
-      // // for (int i = 1; i < num; i++)
-      // // {
-      // //       sum = sum + i;
-      // // }
-
-      // // ---- using while loop ------
-      // int i = 1;
-      // while (i < num)
+      // for (int i = 1; i < num; i++)
       // {
       //       sum = sum + i;
-      //       i++;
       // }
-
-      // cout << "total = " << sum << endl;
-
-      // ------------ forth problem --------
-      // int num;
-      // cin >> num;
-
-      // int sum = 0;
-
-      // //  --------- using for loop -------
-      // // for (int i = 1; i < num; i++)
-      // // {
-      // //       sum = sum + i;
-      // // }
 
       // // ---- using while loop ------
-      // int i = 1;
-      // while (i < num)
-      // {
-      //       sum = sum + i;
-      //       i++;
-      // }
+      // // int i = 1;
+      // // while (i < num)
+      // // {
+      // //       sum = sum + i;
+      // //       i++;
+      // // }
+
+      // // cout << "total = " << sum << endl;
 
       return 0;
 }
