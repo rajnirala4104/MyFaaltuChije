@@ -395,6 +395,7 @@ int main()
 
     /*
         n=9;
+        row=3 //fixed
 
          *    *
         * *  * *
@@ -419,4 +420,6 @@ int main()
     //     }
     //     cout << endl;
     // }
+
+    return 0;
 }
