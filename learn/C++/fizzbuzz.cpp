@@ -1,7 +1,8 @@
 #include <iostream>
+#include <string.h>
 using namespace std;
 
-int main(int n)
+int main()
 {
     /*
         given an integer n
@@ -12,14 +13,5 @@ int main(int n)
         return i when none of above
     */
 
-    char output[] = {};
-    for (int i = 1; i <= n; i++)
-    {
-        if (i % 3 == 0)
-        {
-        }
-        else
-        {
-        }
-    }
+    return 0;
 }

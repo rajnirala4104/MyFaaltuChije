@@ -16,5 +16,18 @@ int main()
 
       cout << "the sum of all the value => " << amount1 + amount2 << endl;
 
+      // ---------------------------------------------------------------
+
+      string names[] = {"raj", "vicky", "vinit", "aryan"}; // this is how you can store string in array
+      string dost;
+      getline(cin, dost); // this is another way to take input and store in a variable
+
+      cout << "-------------" << endl;
+      for (int i = 0; i < names->length(); i++)
+      {
+            cout << names[i] << endl;
+      }
+      cout << dost << endl;
+
       return 0;
 }
