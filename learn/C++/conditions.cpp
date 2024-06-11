@@ -49,18 +49,19 @@ int main()
       // ------ second problem ----------
       // even and odd
 
-      cout << "Enter a number" << endl;
+      // cout << "Enter a number" << endl;
 
-      int num;
-      cin >> num;
+      // int num;
+      // cin >> num;
 
-      if (num % 2 == 0)
-      {
-            cout << "You've entered EVEN" << endl;
-      }
-      else
-      {
-            cout << "You've entered ODD" << endl;
-      }
+      // if (num % 2 == 0)
+      // {
+      //       cout << "You've entered EVEN" << endl;
+      // }
+      // else
+      // {
+      //       cout << "You've entered ODD" << endl;
+      // }
+
       return 0;
 }
