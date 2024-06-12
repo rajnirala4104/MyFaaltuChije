@@ -14,6 +14,8 @@ pickBtn.addEventListener('click', async () => {
 
         // a function that we want to run in current tab
         function: pickColor
+    }, async (injectionResult) => {
+        console.log(injectionResult)
     })
 });
 
@@ -21,8 +23,9 @@ async function pickColor() {
     try {
 
         const eyeDropper = new window.EyeDropper();
-        const selectedColor = await eyeDropper.open();
-        console.log(selectedColor);
+
+        // -------- BUG ---------- 
+        return await eyeDropper.open();
 
     } catch (error) {
         console.log(error)
