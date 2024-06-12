@@ -9,6 +9,10 @@
     "action": {
         "default_popup": "popup.html"
     },
+    "permissions": [
+        "scripting",
+        "activeTab"
+    ],
     "icons": {
         "48": "/images/pickerFavIcon.png"
     }
