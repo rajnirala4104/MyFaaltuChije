@@ -1,0 +1,19 @@
+{
+    "name": "ThankU",
+    "version": "0.1.0",
+    "discription": "this is an automation reply system for birthday wishes",
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": [
+        "scripting",
+        "activeTab"
+    ],
+    "host_permissions": [
+        "https://*.web.whatsapp.com/"
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "manifest_version": 3
+}
