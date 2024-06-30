@@ -6,8 +6,10 @@ for row in demo_metrix:
    # Printing each row
    print(f"row{demo_metrix.index(row)}: {row}")
    # checking if current row index is less than the lenght of the current row
+   # If true, then the current row is being pushed into the 'column' list
    if demo_metrix.index(row) < len(demo_metrix)-1:
-      # using append() function to add the current row to the column and map() function to iterate over the current row elements
+      # Using map() function to append the current row to the 'column' list.
+      # The map() function takes two arguments: a function and an iterable. 
       column.append(list(map(lambda x: x[demo_metrix.index(row)], demo_metrix)))
 
 print(column)
