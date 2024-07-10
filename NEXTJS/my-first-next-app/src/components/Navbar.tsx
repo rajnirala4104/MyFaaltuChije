@@ -63,8 +63,8 @@ const Navbar = () => {
                         <Link href="/about">
                            About
                         </Link>
-                        <Link href="/services">
-                           Services
+                        <Link href="/docs">
+                           Docs
                         </Link>
                         <Link href="/contact">
                            Contact
@@ -109,8 +109,8 @@ const Navbar = () => {
                <Link href="/about">
                   About
                </Link>
-               <Link href="/services">
-                  Services
+               <Link href="/docs">
+                  Docs
                </Link>
                <Link href="/contact">
                   Contact
