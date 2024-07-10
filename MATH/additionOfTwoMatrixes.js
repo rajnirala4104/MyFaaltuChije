@@ -4,6 +4,11 @@
 // dimensions (i.e., they don't have the same number of rows and columns).
 // If the matrices are valid, the function returns a new matrix that is the
 // sum of matrixA and matrixB.
+/**
+ * 
+ *  @param {Array<Array<number>>} matrixA - The first matrix to be subtracted.
+ * @param {Array<Array<number>>} matrixB - The matrix to subtract from matrixA.
+ */
 const addTwoMatrices = (matrixA, matrixB) => {
 
    // Check if the matrices have the same dimensions.
