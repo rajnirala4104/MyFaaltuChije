@@ -1,0 +1,84 @@
+{
+   "users": [
+  {
+    "id": 1,
+    "email": "john@mail.com",
+    "password": "changeme",
+    "name": "Jhon",
+    "role": "customer",
+    "avatar": "https://i.imgur.com/LDOO4Qs.jpg",
+    "creationAt": "2024-07-08T23:29:11.000Z",
+    "updatedAt": "2024-07-08T23:29:11.000Z"
+  },
+  {
+    "id": 2,
+    "email": "maria@mail.com",
+    "password": "12345",
+    "name": "Maria",
+    "role": "customer",
+    "avatar": "https://i.imgur.com/DTfowdu.jpg",
+    "creationAt": "2024-07-08T23:29:11.000Z",
+    "updatedAt": "2024-07-08T23:29:11.000Z"
+  },
+  {
+    "id": 3,
+    "email": "admin@mail.com",
+    "password": "admin123",
+    "name": "Admin",
+    "role": "admin",
+    "avatar": "https://i.imgur.com/yhW6Yw1.jpg",
+    "creationAt": "2024-07-08T23:29:11.000Z",
+    "updatedAt": "2024-07-08T23:29:11.000Z"
+  },
+  {
+    "id": 4,
+    "email": "Mita.viani86@yahoo.com",
+    "password": "alyaaqila86",
+    "name": "Mita Noviani",
+    "role": "customer",
+    "avatar": "https://api.lorem.space/image/face?w=640&h=480",
+    "creationAt": "2024-07-09T00:49:29.000Z",
+    "updatedAt": "2024-07-09T00:49:29.000Z"
+  },
+  {
+    "id": 5,
+    "email": "jhon_doe@gmail.com",
+    "password": "12345678",
+    "name": "Dina Boluarte",
+    "role": "customer",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEXZnduDr-DoAsI95jB1FpaFx3SW4od_Pljg&s",
+    "creationAt": "2024-07-09T01:17:24.000Z",
+    "updatedAt": "2024-07-09T01:19:34.000Z"
+  },
+  {
+    "id": 6,
+    "email": "varunlaul777@gmail.com",
+    "password": "hivarunhi",
+    "name": "varun",
+    "role": "customer",
+    "avatar": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wiktionary.org%2Fwiki%2Fcat&psig=AOvVaw1DuVVkqHihcd8D1lDnjSh5&ust=1720500692326000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCLiLyeXSlocDFQAAAAAdAAAAABAE",
+    "creationAt": "2024-07-09T02:12:33.000Z",
+    "updatedAt": "2024-07-09T02:12:33.000Z"
+  },
+  {
+    "id": 9,
+    "email": "youssef@gmail.com",
+    "password": "123456",
+    "name": "Youssef",
+    "role": "customer",
+    "avatar": "https://api.escuelajs.co/api/v1/files/a8eb.jpg",
+    "creationAt": "2024-07-09T02:34:17.000Z",
+    "updatedAt": "2024-07-09T02:34:17.000Z"
+  },
+  {
+    "id": 10,
+    "email": "varunlaul777@gmail.com",
+    "password": "varun123",
+    "name": "varunlaul24",
+    "role": "customer",
+    "avatar": "https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg",
+    "creationAt": "2024-07-09T02:36:06.000Z",
+    "updatedAt": "2024-07-09T02:36:06.000Z"
+  }
+]
+}
