@@ -1,0 +1,24 @@
+{
+   "users": [
+      {
+         "name": "raj nirala",
+         "email": "rajnirala910@gmail.com",
+         "password" :"rajishero"
+      },
+      {
+         "name": "john doe",
+         "email": "johndoe@gmail.com",
+         "password" :"john123"
+      },
+      {
+         "name": "aisha",
+         "email": "aisha@gmail.com",
+         "password" :"aisha123"
+      },
+      {
+         "name": "diksha",
+         "email": "diksha@gmail.com",
+         "password" :"lalalalala"
+      }
+   ]
+}
