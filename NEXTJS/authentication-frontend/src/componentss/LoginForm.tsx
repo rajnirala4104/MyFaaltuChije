@@ -12,11 +12,11 @@ const LoginForm: React.FC = () => {
    const allUsers = users
 
    /**
-    * Handles the form submission event.
-    *
-    * @param {React.FormEvent} e - The form submission event.
-    * @return {void} This function does not return anything.
-    */
+       * Handles the form submission event.
+       * 
+       * @param {React.FormEvent} e - The form submission event.
+       * @return {void} This function does not return anything.
+       */
    const handleSubmit = (e: React.FormEvent) => {
       // Prevent the default form submission behavior.
       e.preventDefault();
@@ -26,25 +26,33 @@ const LoginForm: React.FC = () => {
 
       // Convert the form data entries to an object using Object.fromEntries().
       const { email, password } = Object.fromEntries(formData.entries());
+
+      // Check if email or password is missing, show an alert if so.
       if (!email || !password) {
          alert("Please enter email and password")
       }
+
+      // Check if the user with provided credentials exists, show an alert if not.
       if (!allUsers.find(user => user.email === email && user.password === password)) {
          alert("Invalid credentials. Please try again.")
       }
 
-      // Store the user's email and password in the browser's local storage.
-      // Convert the user information object to a JSON string using JSON.stringify().
-      localStorage.setItem('userInfo', JSON.stringify({ email, password, name: allUsers.find(user => user.email === email)?.name }));
+      // Store the user's email, password, and name in the browser's local storage.
+      const userInfo = {
+         email,
+         profilePic: allUsers.find(user => user.email === email)?.profilePic,
+         password,
+         name: allUsers.find(user => user.email === email)?.name
+      };
+      localStorage.setItem('userInfo', JSON.stringify(userInfo));
 
+      // Reload the window to reflect the changes.
       window.location.reload();
    };
 
    useEffect(() => {
       const loggedUser = JSON.parse(localStorage.getItem('userInfo') as string);
-      if (loggedUser) {
-         router.push('/')
-      }
+      if (loggedUser) router.push('/')
    }, [])
 
    return (

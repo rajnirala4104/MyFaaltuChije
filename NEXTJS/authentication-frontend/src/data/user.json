@@ -3,21 +3,25 @@
       {
          "name": "raj nirala",
          "email": "rajnirala910@gmail.com",
+         "profilePic":"https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
          "password" :"rajishero"
       },
       {
          "name": "john doe",
          "email": "johndoe@gmail.com",
+         "profilePic":"https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
          "password" :"john123"
       },
       {
          "name": "aisha",
          "email": "aisha@gmail.com",
+         "profilePic":"https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
          "password" :"aisha123"
       },
       {
          "name": "diksha",
          "email": "diksha@gmail.com",
+         "profilePic":"https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
          "password" :"lalalalala"
       }
    ]

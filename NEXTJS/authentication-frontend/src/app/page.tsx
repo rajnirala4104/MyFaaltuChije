@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link";
+import Spinner from "@/componentss/Spinner";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -10,16 +10,12 @@ export default function Home() {
 
   useEffect(() => {
     const loggesUser = JSON.parse(localStorage.getItem('userInfo') as string);
-    if (!loggesUser) {
-      router.push('/login')
-    }
+    !loggesUser ? router.push('/login') : router.push('/dashboard')
   }, [])
 
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <Link href="/dashboard">
-        <span className="text-3xl bg-gray-300 p-3 rounded-lg hover:bg-gray-200">Go to dashboard</span>
-      </Link>
+      <Spinner />
     </div>
   );
 }
