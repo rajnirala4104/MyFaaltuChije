@@ -1,0 +1,64 @@
+{
+   "_USER": [
+      {
+         "name":"Raj",
+         "email":"rajnirala910@gmail.com",
+         "password": "rajishero",
+         "age":25,
+         "hobbies": ["music","coding","reading"],
+         "gender":"male",
+         "isActive":true,
+         "id":1,
+         "createdOn":"2022-01-01T00:00:00",
+         "updatedOn":"2022-01-01T00:00:00" 
+      },
+      {
+         "name":"Ashish",
+         "email":"ashish@example.com",
+         "password": "password",
+         "age":27,
+         "hobbies": ["cricket", "traveling"],
+         "gender":"male",
+         "isActive":false,
+         "id":2,
+         "createdOn":"2022-01-01T00:00:00",
+         "updatedOn":"2022-01-01T00:00:00" 
+      },
+      {
+         "name":"Diksha",
+         "email":"diksha@example.com",
+         "password": "password",
+         "age":25,
+         "hobbies": ["music", "reading", "philosophy"],
+         "gender":"female",
+         "isActive":true,
+         "id":3,
+         "createdOn":"2022-01-01T00:00:00",
+         "updatedOn":"2022-01-01T00:00:00" 
+      },
+      {
+         "name":"Neha",
+         "email":"neha@example.com",
+         "password": "password",
+         "age":24,
+         "hobbies": ["sleeping"],
+         "gender":"female",
+         "isActive":false,
+         "id":4,
+         "createdOn":"2022-01-01T00:00:00",
+         "updatedOn":"2022-01-01T00:00:00" 
+      },
+      {
+         "name":"vinit",
+         "email":"vinit@example.com",
+         "password": "password",
+         "age":24,
+         "hobbies": ["desinging"],
+         "gender":"male",
+         "isActive":true,
+         "id":5,
+         "createdOn":"2022-01-01T00:00:00",
+         "updatedOn":"2022-01-01T00:00:00" 
+      }
+   ]
+}
