@@ -9,3 +9,13 @@ export interface userInterface {
    createdOn?: string,
    updatedOn?: string
 }
+
+export interface messageBoxInterface {
+   showMessageBox: boolean,
+   setShowMessageBox: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export interface messageBoxPropInterface {
+   message: string,
+   title: string
+}

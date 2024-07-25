@@ -1,42 +1,63 @@
 import { Box, Button, Flex, Text } from '@radix-ui/themes'
-import React, { Fragment, useEffect, useState } from 'react'
-import * as Form from '@radix-ui/react-form';
+import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { _USER } from '../data/demoUserData.json'
 import useLocalStorage from 'use-local-storage'
 import { userInterface } from '../interfaces';
+import MessageBox from './MessageBox';
+import { MessageBoxContext } from '../contexts';
 
 const LoginForm: React.FC = () => {
    document.title = "Login"
 
    const [hidePassword, setHidePassword] = useState<boolean>(true)
    const [wrongPassword, setWrongPassword] = useState<boolean>(false)
+   const [wrongEmail, setWrongEmail] = useState<boolean>(false)
    const [userInfo, setUserInfo] = useLocalStorage<userInterface>("userInfo", {});
+
+   const { setShowMessageBox } = useContext(MessageBoxContext)
+
    const navigator = useNavigate()
 
    const formHandler = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const formData = new FormData(e.target as HTMLFormElement);
       const { email, password } = Object.fromEntries(formData);
-      try {
 
+      try {
          if (!email || !password) {
             alert("fill the inputs")
          }
 
          const data = _USER.find((user) => {
-            user.email === email && user.password === password
-         });
-         setUserInfo(data)
-         // window.location.reload();
+            if (user.email !== email) {
+               setWrongEmail(true)
+               setShowMessageBox(true)
+               return;
+            }
 
+            if (user.email === email && user.password !== password) {
+               setWrongPassword(true)
+               setShowMessageBox(true)
+               return;
+            }
+
+            if (user.email === email && user.password === password) {
+               setWrongPassword(false)
+               return user.email === email && user.password === password
+            }
+         });
+
+         setUserInfo(data)
+         if (userInfo.email || userInfo.password) {
+            window.location.reload();
+         }
       } catch (error) {
-         alert("something went wrong")
+         console.error("something went wrong")
       }
    }
 
    useEffect(() => {
-      console.log(userInfo)
       if (userInfo.email || userInfo.password) {
          navigator('/')
       }
@@ -49,43 +70,48 @@ const LoginForm: React.FC = () => {
                <Text className='text-white font-semibold text-center text-2xl my-2'>LoginForm</Text>
             </Box>
             <Box as='div' className='w-full my-2 border border-gray-600 p-4 rounded-md'>
-               <Form.Root className="w-[260px]" onSubmit={formHandler}>
-                  <Form.Field className="grid mb-[10px]" name="email">
+               <form className="w-[260px] " onSubmit={formHandler}>
+                  <div className="grid mb-[10px]">
                      <div className="flex items-baseline justify-between">
-                        <Form.Label className="text-[15px] font-medium leading-[35px] text-white">Email</Form.Label>
+                        <label className="text-[15px] font-medium leading-[35px] text-white">Email</label>
                      </div>
-                     <Form.Control asChild>
+                     <div className=' '>
+                        {wrongEmail ? <MessageBox message='Email Galat hai dost' title='Wrong Email' /> : null}
                         <input
-                           className="px-3 py-2 border border-gray-600 rounded-md"
+                           className="px-3 py-2 w-full border border-gray-600 rounded-md"
                            placeholder='name@example.com'
+                           name='email'
                            type="email"
                            required
                         />
-                     </Form.Control>
-                  </Form.Field>
-                  <Form.Field className="grid mb-[10px]" name="email">
-                     <div className="flex items-baseline justify-between">
-                        <Form.Label className="text-[15px] font-medium leading-[35px] text-white">Password</Form.Label>
                      </div>
-                     <div className='flex justify-between items-center'>
-                        <Form.Control asChild className='w-[77%]'>
+                  </div>
+                  <div className="grid mb-[10px]">
+                     <div className="flex items-baseline justify-between">
+                        <label className="text-[15px] font-medium leading-[35px] text-white">Password</label>
+                     </div>
+                     <div className='flex justify-between items-center '>
+                        <div className='w-[77%] '>
+                           {wrongPassword ? <MessageBox message='Apni Ex Number to nhi bhoolta kabhi' title='Wrong Password' /> : null}
                            <input
-                              className="px-3 py-2 border border-gray-600 rounded-md"
+                              className="px-3 py-2 w-full border border-gray-600 rounded-md"
                               placeholder="password"
                               name="password"
                               type={hidePassword ? "password" : "text"}
                               required
                            />
-                        </Form.Control>
-                        <Button onClick={() => setHidePassword(!hidePassword)} className='h-[90%] w-[20%] rounded-[6px] hover:bg-gray-200 bg-white text-black cursor-pointer'>{hidePassword ? "Show" : "Hide"}</Button>
+                        </div>
+                        <button onClick={() => setHidePassword(!hidePassword)} className='font-medium h-[90%] w-[20%] rounded-[6px] hover:bg-gray-200 bg-white text-black cursor-pointer'>{hidePassword ? "Show" : "Hide"}</button>
                      </div>
-                  </Form.Field>
-                  <Form.Submit asChild>
-                     <button className="box-border hover:bg-gray-200 w-full text-black inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none  focus:outline-none mt-[10px]">
+                  </div>
+                  <div>
+                     <button
+                        className="box-border hover:bg-gray-200 w-full text-black inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none  focus:outline-none mt-[10px]"
+                     >
                         Login
                      </button>
-                  </Form.Submit>
-               </Form.Root>
+                  </div>
+               </form>
             </Box>
             <Link to="/auth/register" className='underline text-slate-500 hover:text-white transition duration-300 hover:no-underline'>Register</Link>
          </Flex>
