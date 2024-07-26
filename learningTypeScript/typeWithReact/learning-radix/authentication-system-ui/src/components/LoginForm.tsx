@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text } from '@radix-ui/themes'
+import { Box, Flex, Text, Tooltip } from '@radix-ui/themes'
 import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { _USER } from '../data/demoUserData.json'
@@ -58,7 +58,8 @@ const LoginForm: React.FC = () => {
    }
 
    useEffect(() => {
-      if (userInfo.email || userInfo.password) {
+      // console.log(Object.keys(userInfo))
+      if (Object.keys(userInfo).length !== 0) {
          navigator('/')
       }
    }, [])
@@ -67,13 +68,13 @@ const LoginForm: React.FC = () => {
       <Fragment>
          <Flex align={'center'} justify={'center'} direction={'column'}>
             <Box>
-               <Text className='text-white font-semibold text-center text-2xl my-2'>LoginForm</Text>
+               <Text className='text-white font-semibold text-center text-2xl my-2'>Login</Text>
             </Box>
             <Box as='div' className='w-full my-2 border border-gray-600 p-4 rounded-md'>
                <form className="w-[260px] " onSubmit={formHandler}>
                   <div className="grid mb-[10px]">
                      <div className="flex items-baseline justify-between">
-                        <label className="text-[15px] font-medium leading-[35px] text-white">Email</label>
+                        <label className={`text-[15px] font-medium leading-[35px] text-white`}>Email</label>
                      </div>
                      <div className=' '>
                         {wrongEmail ? <MessageBox message='Email Galat hai dost' title='Wrong Email' /> : null}
@@ -88,11 +89,11 @@ const LoginForm: React.FC = () => {
                   </div>
                   <div className="grid mb-[10px]">
                      <div className="flex items-baseline justify-between">
-                        <label className="text-[15px] font-medium leading-[35px] text-white">Password</label>
+                        <label className={`text-[15px] font-medium leading-[35px] text-white`}>Password</label>
                      </div>
                      <div className='flex justify-between items-center '>
-                        <div className='w-[77%] '>
-                           {wrongPassword ? <MessageBox message='Apni Ex Number to nhi bhoolta kabhi' title='Wrong Password' /> : null}
+                        <div className='w-[77%] relative top-0'>
+                           {wrongPassword ? <MessageBox title='Wrong Password' message='Apne Ex ka number to nhi bhoolte kabhi' /> : null}
                            <input
                               className="px-3 py-2 w-full border border-gray-600 rounded-md"
                               placeholder="password"
@@ -113,7 +114,9 @@ const LoginForm: React.FC = () => {
                   </div>
                </form>
             </Box>
-            <Link to="/auth/register" className='underline text-slate-500 hover:text-white transition duration-300 hover:no-underline'>Register</Link>
+            <Tooltip content="If you don't have an account click here" >
+               <Link to="/auth/register" className='underline text-slate-500 hover:text-white transition duration-300 hover:no-underline'>Register</Link>
+            </Tooltip>
          </Flex>
       </Fragment>
    )

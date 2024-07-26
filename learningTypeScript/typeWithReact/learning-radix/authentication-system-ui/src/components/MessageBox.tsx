@@ -17,7 +17,7 @@ const MessageBox: React.FC<messageBoxPropInterface> = (props) => {
                {props.title}
             </Toast.Title>
             <Toast.Description asChild>
-               <span className='text-slate-900'>{props.message}</span>
+               <span className='text-slate-900 font-semibold '>{props.message}</span>
             </Toast.Description>
             <Toast.Action className="[grid-area:_action]" asChild altText="Goto schedule to undo">
                <button className="inline-flex items-center justify-center rounded font-medium text-xs px-[10px] leading-[25px] h-[25px] bg-green2 text-green11 shadow-[inset_0_0_0_1px] shadow-green7 hover:shadow-[inset_0_0_0_1px] hover:shadow-green8 focus:shadow-[0_0_0_2px] focus:shadow-green8">
