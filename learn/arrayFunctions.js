@@ -116,3 +116,76 @@ console.log(something);
 something.fill("wow", 2, 6); // [1, 2, "wow", "wow", "wow", "wow", 7, 8, 9, 10]
 console.log(something);
 
+// ----------- array.shift() ---------- 
+console.log("------------ .shift() ------------")
+const arr = [23, 5, 6, 3, 6, 8, 867, 54, 3];
+console.log(arr.shift()) // .shift() remove the first element from an array and it returns the removed element
+console.log(arr) // .shift() changes the original array
+
+
+// ----------- array.with() ----------
+// SYNTAX -> array.with(index, value)
+
+/*
+The with() method updates a specified array element.
+
+The with() method returns a new array.
+
+The with() method does not change the original array.
+
+*/
+
+console.log("------------ .with() ------------")
+
+const withArr = [
+   {
+      name: "raj nirala",
+      age: 20,
+      work: "software developer"
+   }, {
+      name: "diksha",
+      age: 21,
+      work: "artist",
+   }, {
+      name: "ashish",
+      age: 22,
+      work: "cricket"
+   }
+];
+console.log(withArr)
+const updatedWithArr = withArr.with(1, { ...withArr[1], work: "philosopher" })
+console.log(updatedWithArr)
+
+
+
+// // ----------- array.reduce() ----------
+// SYNTAX -> array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
+console.log("------------ .reduce() ------------")
+
+const reduceArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// We are using the reduce() method on the reduceArr array.
+// The reduce() method applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value.
+// The reduce() method takes in two arguments: a callback function and an initial value.
+// The callback function takes in four arguments: the accumulator, the current value, the current index, and the array itself.
+// The accumulator is the value that we are building up over each iteration of the reduce() method. It starts with the initial value of 0.
+// The current value is the current element in the array that we are iterating over.
+// The current index is the index of the current element in the array.
+// The array itself is the original array that we are iterating over.
+
+// In the callback function, we are adding the current value to the accumulator.
+// We are then returning the updated accumulator.
+
+// The reduce() method will iterate over each element in the array and build up a single value.
+// The final value of the reduce() method is the accumulated value.
+
+const updatedArr = reduceArr.reduce((acc, value, index, arr) => {
+   // Add the current value to the accumulator
+   acc = acc + value
+   // Return the updated accumulator
+   return acc
+}, 0) // Start with an initial value of 0
+
+
+console.log(updatedArr)
+
+
