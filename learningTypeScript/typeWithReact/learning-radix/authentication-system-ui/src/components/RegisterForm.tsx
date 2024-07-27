@@ -1,11 +1,24 @@
 import { Box, Flex, Text } from '@radix-ui/themes'
 import React, { Fragment } from 'react'
-import * as Form from '@radix-ui/react-form';
 import { Link } from 'react-router-dom';
 
 const RegisterForm: React.FC = () => {
 
    document.title = "Register"
+
+   const formHandler = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+
+      const fromData = new FormData(e.target as HTMLFormElement)
+      const fromObject = Object.fromEntries(fromData);
+
+      if (fromObject.confirmPassword !== fromObject.createPassword) {
+         console.error("Passwords are not same")
+      }
+
+      console.log(fromObject)
+
+   }
 
    return (
       <Fragment>
@@ -14,7 +27,7 @@ const RegisterForm: React.FC = () => {
                <Text className='text-white font-semibold text-center text-2xl my-2'>Registeration</Text>
             </Box>
             <Box as='div' className='w-full my-2 border border-gray-600 p-4 rounded-md'>
-               <form className="w-[260px]">
+               <form className="w-[260px]" onSubmit={formHandler}>
                   <div className="grid mb-[10px]">
                      <div className="flex items-baseline justify-between">
                         <label className="text-[15px] font-medium leading-[35px] text-white">Name</label>
@@ -22,7 +35,8 @@ const RegisterForm: React.FC = () => {
                      <div>
                         <input
                            className="px-3 py-2 w-full border border-gray-600 rounded-md"
-                           placeholder='name@example.com'
+                           name="name"
+                           placeholder='example singh'
                            type="text"
                            required
                         />
@@ -35,6 +49,7 @@ const RegisterForm: React.FC = () => {
                      <div>
                         <input
                            className="px-3 py-2 w-full border border-gray-600 rounded-md"
+                           name="email"
                            placeholder='name@example.com'
                            type="email"
                            required
@@ -48,6 +63,7 @@ const RegisterForm: React.FC = () => {
                      <div>
                         <input
                            className="px-3 py-2 w-full border border-gray-600 rounded-md"
+                           name="createPassword"
                            placeholder="Create Password"
                            type="password"
                            required
@@ -61,6 +77,7 @@ const RegisterForm: React.FC = () => {
                      <div>
                         <input
                            className="px-3 py-2 w-full border border-gray-600 rounded-md"
+                           name="confirmPassword"
                            placeholder="Confirm Password"
                            type="password"
                            required
