@@ -7,14 +7,33 @@ const mean = (sortedArr) => {
 }
 
 
+// This function calculates the mode of a sorted array. 
+// The mode is the value that appears most frequently in an array.
 const mode = (sortedArr) => {
-   let repeatedElement = {};
-   sortedArr.map(el => repeatedElement[el] = repeatedElement[el] + 1 || 1)
+   // Initialize an object to store the count of each number in the array.
+   let count = {};
 
-   const max = Math.max(...Object.values(repeatedElement))
-   const lagestKey = Object.keys(repeatedElement).filter(key => repeatedElement[key] === max)
+   // Initialize variables to keep track of the maximum count and the corresponding number.
+   let maxCount = 0;
+   let maxNum = 0;
 
-   return Number(lagestKey[0])
+   // Loop through each number in the sorted array.
+   for (let num of sortedArr) {
+
+      // Increment the count of the current number in the count object.
+      // If the count for the current number is not yet initialized, initialize it to 1.
+      count[num] = count[num] + 1 || 1;
+
+      // If the count for the current number is greater than the current maximum count,
+      // update the maximum count and the corresponding number.
+      if (count[num] > maxCount) {
+         maxCount = count[num];
+         maxNum = num;
+      }
+   }
+
+   // Return the number with the maximum count.
+   return maxNum;
 }
 
 console.log(mean(arr))
