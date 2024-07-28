@@ -1,4 +1,4 @@
-const arr = [23, 4, 5, 633, 79, 2, 1, 78, 9, 2, 3, 3, 2, 2, 2, 2, 2];
+const arr = [1, 3, 2, 4];
 arr.sort((a, b) => a - b);
 
 const mean = (sortedArr) => {
@@ -36,5 +36,25 @@ const mode = (sortedArr) => {
    return maxNum;
 }
 
-console.log(mean(arr))
-console.log(mode(arr))
+const median = (sortedArr) => {
+
+   const evenMedian = (n = sortedArr.length) => {
+      const nBy2Index = (n / 2); // (n/2)th item
+      const nBy2Plus1Index = ((n / 2) + 1) // {(n/2) + 1}th item
+      const finalEvenMedianValue = (((sortedArr[nBy2Index - 1] + sortedArr[nBy2Plus1Index - 1])) / 2); // [(n/2)th item + {(n/2) + 1}th item] / 2
+
+      return parseFloat(finalEvenMedianValue)
+   }
+   const oddMedian = (n = sortedArr.length) => {
+      const nthIndex = (n + 1) / 2
+      return parseFloat(sortedArr[nthIndex - 1])
+   }
+
+   if (sortedArr.length % 2 === 0) return evenMedian()
+   else return oddMedian()
+
+}
+
+// console.log(mean(arr))
+// console.log(mode(arr))
+console.log(median(arr))
