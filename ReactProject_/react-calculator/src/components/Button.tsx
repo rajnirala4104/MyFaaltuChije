@@ -1,10 +1,6 @@
 import React from "react";
+import { ButtonInterface } from "../interfaces";
 
-interface Prop {
-  value: string;
-  customClassName: string;
-}
-
-export const Button = ({ value, customClassName }: Prop) => {
-  return <span className={`${customClassName}`}>{value}</span>;
+export const Button: React.FC<ButtonInterface> = (props) => {
+   return <span className={`${props.customClassName}`}>{props.value}</span>;
 };
