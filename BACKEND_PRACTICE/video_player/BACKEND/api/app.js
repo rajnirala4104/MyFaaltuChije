@@ -17,10 +17,10 @@ app.use(cookieParser());
 app.use("/api", apiRouter);
 
 app.get("/", (req, res) => {
-  res.status(StatusCodes.OK).json({
-    message: "Api is running successfully",
-    status: StatusCodes.OK,
-  });
+   res.status(StatusCodes.OK).json({
+      message: "Api is running successfully",
+      status: StatusCodes.OK,
+   });
 });
 
 export { app };
