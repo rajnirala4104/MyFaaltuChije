@@ -44,7 +44,6 @@ export const userControllers = {
             "User with email or username already exist ",
          );
 
-      console.log(req.body);
       console.log(req.files);
       // step-4
       const avatarLocalPath = req.files.avatar[0].path;
@@ -62,14 +61,14 @@ export const userControllers = {
       if (!avatarLocalPath)
          throw new ApiError(StatusCodes.NOT_FOUND, "avatar is required");
 
-      // step-5 : BUG
+      // step-6 : BUG
       const avatarResponse = await uploadOnCloudinary(avatarLocalPath);
       const coverImageResponse = await uploadOnCloudinary(coverImageLocalPath);
 
       if (!avatarResponse)
          throw new ApiError(
             StatusCodes.INTERNAL_SERVER_ERROR,
-            "Oops!! avatar has not been uploaded on cloudinary",
+            "Oops!! avatar not uploaded",
          );
 
       const userResponse = await User.create({
@@ -80,6 +79,8 @@ export const userControllers = {
          avatar: avatarResponse.url,
          coverImage: coverImageResponse.url || "",
       });
+
+      console.log(userResponse);
 
       const createdUser = await User.find({ _id: userResponse._id }).select(
          "-password -refreshToken",
