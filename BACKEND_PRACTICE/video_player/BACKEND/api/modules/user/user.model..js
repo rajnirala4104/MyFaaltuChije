@@ -23,7 +23,7 @@ const userSchema = new Schema(
          required: true,
          unique: true,
       },
-      profilePic: {
+      avatar: {
          type: String,
          requied: true,
       },
@@ -41,7 +41,7 @@ const userSchema = new Schema(
          requied: [true, "Password is required"],
       },
       refreshToken: {
-         type: string,
+         type: String,
       },
    },
    { timestamps: true },

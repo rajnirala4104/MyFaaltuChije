@@ -1,8 +1,23 @@
 import { Router } from "express";
-import { asyncHandler } from "../../utils/asyncHandler.js";
+import { upload } from "../../middlewares/multer.middleware.js";
 import { userControllers } from "./user.controllers.js";
+
 const userRouter = Router();
 
 userRouter.get("/", userControllers.getAllTheUser);
+userRouter.post(
+   "/register",
+   upload.fields([
+      {
+         name: "avatar",
+         maxCount: 1,
+      },
+      {
+         name: "coverImage",
+         maxCount: 1,
+      },
+   ]),
+   userControllers.registration,
+);
 
 export { userRouter };
