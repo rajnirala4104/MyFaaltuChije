@@ -47,7 +47,7 @@ export const userControllers = {
       console.log(req.body);
       console.log(req.files);
       // step-4
-      const avatarLocalPath = req.files?.avatar[0]?.path;
+      const avatarLocalPath = req.files.avatar[0].path;
       let coverImageLocalPath;
 
       if (
@@ -56,22 +56,19 @@ export const userControllers = {
          req.files.coverImage.length > 0
       ) {
          coverImageLocalPath = req.files.coverImage[0].path;
-         console.log(coverImageLocalPath);
       }
 
       // step-5
       if (!avatarLocalPath)
          throw new ApiError(StatusCodes.NOT_FOUND, "avatar is required");
 
-      // step-5
+      // step-5 : BUG
       const avatarResponse = await uploadOnCloudinary(avatarLocalPath);
-      if (coverImageLocalPath) {
-         var coverImageResponse = await uploadOnCloudinary(coverImageLocalPath);
-      }
+      const coverImageResponse = await uploadOnCloudinary(coverImageLocalPath);
 
       if (!avatarResponse)
          throw new ApiError(
-            StatusCodes.CONFLICT,
+            StatusCodes.INTERNAL_SERVER_ERROR,
             "Oops!! avatar has not been uploaded on cloudinary",
          );
 
