@@ -1,5 +1,4 @@
 import { StatusCodes } from "http-status-codes";
-import { DUMMY_USERS } from "../../constants.js";
 import { ApiError } from "../../utils/apiError.js";
 import { ApiResponse } from "../../utils/apiResponse.js";
 import { asyncHandler } from "../../utils/asyncHandler.js";
@@ -7,17 +6,7 @@ import { uploadOnCloudinary } from "../../utils/cloudinary.js";
 import { User } from "./user.model..js";
 
 export const userControllers = {
-   getAllTheUser: asyncHandler(async (req, res) => {
-      try {
-         return res.status(StatusCodes.OK).json({
-            message: "Here all the users",
-            code: StatusCodes.OK,
-            data: DUMMY_USERS,
-         });
-      } catch (error) {
-         return new ApiError(StatusCodes.BAD_REQUEST, "BAD REQUEST");
-      }
-   }),
+   getAllTheUser: asyncHandler(async (req, res) => {}),
    registration: asyncHandler(async (req, res) => {
       // step-1. get all the data from client
       // step-2. check null values and validate rest of thedata
@@ -44,22 +33,28 @@ export const userControllers = {
             "User with email or username already exist ",
          );
 
-      console.log(req.files);
-      // step-4
-      const avatarLocalPath = req.files.avatar[0].path;
+      // console.log(req.files);
+      let avatarLocalPath;
       let coverImageLocalPath;
 
       if (
          req.files &&
-         Array.isArray(req.files.coverImage) &&
-         req.files.coverImage.length > 0
+         Array.isArray(req.files.avatar) &&
+         req.files.avatar.length > 0
       ) {
-         coverImageLocalPath = req.files.coverImage[0].path;
+         avatarLocalPath = req.files?.avatar[0]?.path;
+         if (
+            req.files &&
+            Array.isArray(req.files.coverImage) &&
+            req.files.coverImage.length > 0
+         ) {
+            coverImageLocalPath = req.files.coverImage[0].path;
+         }
+      } else {
+         // step-5
+         if (!avatarLocalPath)
+            throw new ApiError(StatusCodes.NOT_FOUND, "avatar is required");
       }
-
-      // step-5
-      if (!avatarLocalPath)
-         throw new ApiError(StatusCodes.NOT_FOUND, "avatar is required");
 
       // step-6 : BUG
       const avatarResponse = await uploadOnCloudinary(avatarLocalPath);
