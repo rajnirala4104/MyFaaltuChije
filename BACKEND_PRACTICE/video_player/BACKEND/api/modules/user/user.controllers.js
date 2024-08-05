@@ -1,9 +1,16 @@
+import { v2 as cloudinary } from "cloudinary";
 import { StatusCodes } from "http-status-codes";
 import { ApiError } from "../../utils/apiError.js";
 import { ApiResponse } from "../../utils/apiResponse.js";
 import { asyncHandler } from "../../utils/asyncHandler.js";
 import { uploadOnCloudinary } from "../../utils/cloudinary.js";
 import { User } from "./user.model..js";
+
+cloudinary.config({
+   cloud_name: process.env.CLOUDINARY_NAME,
+   api_key: process.env.CLOUDINARY_API_KEY,
+   api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 export const userControllers = {
    getAllTheUser: asyncHandler(async (req, res) => {}),
@@ -33,32 +40,18 @@ export const userControllers = {
             "User with email or username already exist ",
          );
 
-      // console.log(req.files);
-      let avatarLocalPath;
-      let coverImageLocalPath;
+      console.log(req.file);
+      const avatarLocalPath = req.file.path;
 
-      if (
-         req.files &&
-         Array.isArray(req.files.avatar) &&
-         req.files.avatar.length > 0
-      ) {
-         avatarLocalPath = req.files?.avatar[0]?.path;
-         if (
-            req.files &&
-            Array.isArray(req.files.coverImage) &&
-            req.files.coverImage.length > 0
-         ) {
-            coverImageLocalPath = req.files.coverImage[0].path;
-         }
-      } else {
-         // step-5
-         if (!avatarLocalPath)
-            throw new ApiError(StatusCodes.NOT_FOUND, "avatar is required");
-      }
+      // step-5
+      if (!avatarLocalPath)
+         throw new ApiError(StatusCodes.NOT_FOUND, "avatar is required");
 
       // step-6 : BUG
-      const avatarResponse = await uploadOnCloudinary(avatarLocalPath);
-      const coverImageResponse = await uploadOnCloudinary(coverImageLocalPath);
+      // const avatarResponse = await uploadOnCloudinary(avatarLocalPath);
+      const avatarResponse = await cloudinary.uploader.upload(avatarLocalPath, {
+         resource_type: "auto",
+      });
 
       if (!avatarResponse)
          throw new ApiError(
@@ -72,7 +65,7 @@ export const userControllers = {
          email,
          password,
          avatar: avatarResponse.url,
-         coverImage: coverImageResponse.url || "",
+         coverImage: "",
       });
 
       console.log(userResponse);
