@@ -1,4 +1,3 @@
-import { v2 as cloudinary } from "cloudinary";
 import { StatusCodes } from "http-status-codes";
 import { ApiError } from "../../utils/apiError.js";
 import { ApiResponse } from "../../utils/apiResponse.js";
@@ -34,42 +33,59 @@ export const userControllers = {
             "User with email or username already exist ",
          );
 
-      // console.log(req.file);
-      const avatarLocalPath = req.file.path;
+      if (!req.files.avatar)
+         throw new ApiError(StatusCodes.NOT_FOUND, "avatar is required");
+
+      //   step - 4
+      const avatarLocalPath = req.files.avatar[0].path;
+      let coverImagePath;
+      if (
+         req.files &&
+         req.files.coverImage &&
+         req.files.coverImage.length > 0
+      ) {
+         coverImagePath = req.files.coverImage[0].path;
+      }
 
       // step-5
       if (!avatarLocalPath)
          throw new ApiError(StatusCodes.NOT_FOUND, "avatar is required");
 
-      // step-6 : BUG
+      // step-6
       const avatarResponse = await uploadOnCloudinary(avatarLocalPath);
-      // const avatarResponse = await cloudinary.uploader.upload(avatarLocalPath, {
-      // resource_type: "auto",
-      // });
+      if (coverImagePath) {
+         var coverImageResponse = await uploadOnCloudinary(coverImagePath);
+      }
 
+      // step - 7
       if (!avatarResponse)
          throw new ApiError(
             StatusCodes.INTERNAL_SERVER_ERROR,
             "Oops!! avatar not uploaded",
          );
 
-      console.log(avatarResponse);
-
+      // step - 8
       const userResponse = await User.create({
          fullName,
          userName,
          email,
          password,
-         avatar: avatarResponse.url,
-         coverImage: "",
+         avatar: avatarResponse,
+         coverImage: coverImageResponse,
       });
 
+      // step- 9
       const createdUser = await User.find({ _id: userResponse._id }).select(
          "-password -refreshToken",
       );
 
-      if (!createdUser) throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR);
+      if (!createdUser)
+         throw new ApiError(
+            StatusCodes.INTERNAL_SERVER_ERROR,
+            "use is not created",
+         );
 
+      // step - 10
       return res
          .status(StatusCodes.CREATED)
          .json(

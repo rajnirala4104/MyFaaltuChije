@@ -7,7 +7,16 @@ const userRouter = Router();
 userRouter.get("/", userControllers.getAllTheUser);
 userRouter.post(
    "/register",
-   upload.single("avatar"),
+   upload.fields([
+      {
+         name: "avatar",
+         maxCount: 1,
+      },
+      {
+         name: "coverImage",
+         maxCount: 1,
+      },
+   ]),
    userControllers.registration,
 );
 
