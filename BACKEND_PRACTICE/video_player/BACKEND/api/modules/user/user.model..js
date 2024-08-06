@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import { compare, genSalt, hash } from "bcrypt";
 import jsonwebtoken from "jsonwebtoken";
 import { Schema, model } from "mongoose";
 
@@ -25,7 +25,7 @@ const userSchema = new Schema(
       },
       avatar: {
          type: String,
-         requied: true,
+         required: true,
       },
       coverImage: {
          type: String,
@@ -38,7 +38,7 @@ const userSchema = new Schema(
       ],
       password: {
          type: String,
-         requied: [true, "Password is required"],
+         required: [true, "Password is required"],
       },
       refreshToken: {
          type: String,
@@ -49,16 +49,20 @@ const userSchema = new Schema(
 
 // for encrypting the password
 userSchema.pre("save", async function (next) {
-   if (!this.isModified("password")) return next();
-
-   const salt = 45;
-   this.password = bcrypt.hash(this.password, salt);
-   next();
+   try {
+      if (this.isModified("password")) {
+         const salt = await genSalt(10);
+         this.password = await hash(this.password, salt);
+      }
+      return next();
+   } catch (error) {
+      return next(error);
+   }
 });
 
 // method to check password
 userSchema.methods.isPasswordTrue = async function (password) {
-   return await bcrypt.compare(password, this.password); // true and false
+   return await compare(password, this.password); // true and false
 };
 
 // method to generate access token

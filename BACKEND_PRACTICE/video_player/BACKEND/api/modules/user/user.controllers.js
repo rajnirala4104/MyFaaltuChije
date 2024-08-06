@@ -6,12 +6,6 @@ import { asyncHandler } from "../../utils/asyncHandler.js";
 import { uploadOnCloudinary } from "../../utils/cloudinary.js";
 import { User } from "./user.model..js";
 
-cloudinary.config({
-   cloud_name: process.env.CLOUDINARY_NAME,
-   api_key: process.env.CLOUDINARY_API_KEY,
-   api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
 export const userControllers = {
    getAllTheUser: asyncHandler(async (req, res) => {}),
    registration: asyncHandler(async (req, res) => {
@@ -40,7 +34,7 @@ export const userControllers = {
             "User with email or username already exist ",
          );
 
-      console.log(req.file);
+      // console.log(req.file);
       const avatarLocalPath = req.file.path;
 
       // step-5
@@ -48,16 +42,18 @@ export const userControllers = {
          throw new ApiError(StatusCodes.NOT_FOUND, "avatar is required");
 
       // step-6 : BUG
-      // const avatarResponse = await uploadOnCloudinary(avatarLocalPath);
-      const avatarResponse = await cloudinary.uploader.upload(avatarLocalPath, {
-         resource_type: "auto",
-      });
+      const avatarResponse = await uploadOnCloudinary(avatarLocalPath);
+      // const avatarResponse = await cloudinary.uploader.upload(avatarLocalPath, {
+      // resource_type: "auto",
+      // });
 
       if (!avatarResponse)
          throw new ApiError(
             StatusCodes.INTERNAL_SERVER_ERROR,
             "Oops!! avatar not uploaded",
          );
+
+      console.log(avatarResponse);
 
       const userResponse = await User.create({
          fullName,
@@ -68,8 +64,6 @@ export const userControllers = {
          coverImage: "",
       });
 
-      console.log(userResponse);
-
       const createdUser = await User.find({ _id: userResponse._id }).select(
          "-password -refreshToken",
       );
@@ -78,7 +72,7 @@ export const userControllers = {
 
       return res
          .status(StatusCodes.CREATED)
-         .jons(
+         .json(
             new ApiResponse(
                StatusCodes.CREATED,
                "user has been created",
