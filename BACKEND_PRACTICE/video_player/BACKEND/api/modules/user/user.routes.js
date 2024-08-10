@@ -19,5 +19,6 @@ userRouter.post(
    ]),
    userControllers.registration,
 );
+userRouter.post("/login", userControllers.login);
 
 export { userRouter };

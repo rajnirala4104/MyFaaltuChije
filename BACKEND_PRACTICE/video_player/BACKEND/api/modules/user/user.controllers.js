@@ -122,14 +122,16 @@ export const userControllers = {
       // step-5, set cookies
       // step-6, get the user's data from the database and send as response
 
+      // step-1
       const { email, userName, password } = req.body;
-      if (!email || !userName) {
+      if (!email && !userName) {
          throw new ApiError(
             StatusCodes.BAD_REQUEST,
             "userName or email is required",
          );
       }
 
+      // step-2
       const user = await User.findOne({
          $or: [{ email }, { userName }],
       });
@@ -138,21 +140,25 @@ export const userControllers = {
          throw new ApiError(StatusCodes.NOT_FOUND, "user doesn't exist");
       }
 
+      // step-3
       const validPassword = await user.isPasswordTrue(password);
       if (!validPassword) {
          throw new ApiError(StatusCodes.BAD_REQUEST, "password is not valid");
       }
 
+      // step-4
       const tokens = await generateAccessAndRefreshToken(user._id);
 
-      const loggedUser = await User.findOne({ _id: user._id }).select(
-         "-password -refreshToken",
-      );
-
+      // step-5
       const option = {
          httpOnly: true,
          secure: true,
       };
+
+      // step-6
+      const loggedUser = await User.findOne({ _id: user._id }).select(
+         "-password -refreshToken",
+      );
 
       return res
          .status(StatusCodes.OK)
