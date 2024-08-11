@@ -116,7 +116,7 @@ export const userControllers = {
    }),
    login: asyncHandler(async (req, res) => {
       // step-1, get email and password from the user
-      // step-2, check user is exist or not using email
+      // step-2, check user is exist or not
       // step-3, check password is curract or not
       // step-4, generate all Tokens
       // step-5, set cookies
@@ -172,7 +172,32 @@ export const userControllers = {
             }),
          );
    }),
-   logOut: asyncHandler(async (req, res) => {}),
+   logOut: asyncHandler(async (req, res) => {
+      // step-1 find the user and remove the refreshToken;
+      // step-2 clear all the cookies
+
+      // step-1
+      await User.findByIdAndUpdate(
+         req.user_id,
+         {
+            $set: {
+               refreshToken: undefined,
+            },
+         },
+         { new: true },
+      );
+
+      const option = {
+         httpOnly: true,
+         secure: true,
+      };
+      // step-2
+      return res
+         .status(StatusCodes.OK)
+         .clearCookie("accessToken", option)
+         .clearCookie("refreshToken", option)
+         .json(new ApiResponse(StatusCodes.OK, null, "User logged Out"));
+   }),
    updatePassword: asyncHandler(async (req, res) => {}),
    updateUser: asyncHandler(async (req, res) => {}),
    deleteUserAndAllStuffRelatedToIt: asyncHandler(async (req, res) => {}),

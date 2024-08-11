@@ -73,7 +73,6 @@ userSchema.methods.generateAccessToken = function () {
          _id: this._id,
          email: this.email,
          userName: this.userName,
-         fullName: this.fullName,
       },
       process.env.ACCESS_JWT_SECRET,
       { expiresIn: process.env.ACCESS_JWT_EXPIRY },

@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { checkJWTokens } from "../../middlewares/auth.middleware.js";
 import { upload } from "../../middlewares/multer.middleware.js";
 import { userControllers } from "./user.controllers.js";
 
@@ -20,5 +21,6 @@ userRouter.post(
    userControllers.registration,
 );
 userRouter.post("/login", userControllers.login);
+userRouter.post("/logout", checkJWTokens, userControllers.logOut);
 
 export { userRouter };
