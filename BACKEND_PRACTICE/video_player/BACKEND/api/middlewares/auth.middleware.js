@@ -1,10 +1,10 @@
 import { StatusCodes } from "http-status-codes";
-import { verify } from "jsonwebtoken";
-import { User } from "../modules/user/user.model.";
-import { ApiError } from "../utils/apiError";
-import { asyncHandler } from "../utils/asyncHandler";
+import jwt from "jsonwebtoken";
+import { User } from "../modules/user/user.model.js";
+import { ApiError } from "../utils/apiError.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 
-export const checkJWTokens = asyncHandler(async (req, res, next) => {
+export const checkJWTokens = asyncHandler(async (req, _, next) => {
    // step-1 get access token from request
    // step-2 check token is valid or not
    // step-3 verify the token
@@ -25,7 +25,7 @@ export const checkJWTokens = asyncHandler(async (req, res, next) => {
       }
 
       // step-3
-      const decodedToken = verify(token, process.env.ACCESS_JWT_SECRET);
+      const decodedToken = jwt.verify(token, process.env.ACCESS_JWT_SECRET);
 
       // step-4
       const user = await User.findOne({
