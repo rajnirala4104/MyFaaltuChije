@@ -22,5 +22,6 @@ userRouter.post(
 );
 userRouter.post("/login", userControllers.login);
 userRouter.post("/logout", checkJWTokens, userControllers.logOut);
+userRouter.post("/refresh-access-token", userControllers.refreshAccessToken);
 
 export { userRouter };

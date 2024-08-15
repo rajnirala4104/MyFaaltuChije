@@ -1,4 +1,5 @@
 import { StatusCodes } from "http-status-codes";
+import jsonwebtoken from "jsonwebtoken";
 import { ApiError } from "../../utils/apiError.js";
 import { ApiResponse } from "../../utils/apiResponse.js";
 import { asyncHandler } from "../../utils/asyncHandler.js";
@@ -197,6 +198,65 @@ export const userControllers = {
          .clearCookie("accessToken", option)
          .clearCookie("refreshToken", option)
          .json(new ApiResponse(StatusCodes.OK, null, "User logged Out"));
+   }),
+   refreshAccessToken: asyncHandler(async (req, res) => {
+      // step-1 get refresh Token
+      // step-2 verify that token and decode the data from it which we gave while generating the refreshToken in model
+      // step-3 find the user by using _id from the decodedTokenData
+      // step-4 generate all the tokens
+      // step-5 set the cookies with new tokens that we've just generated
+
+      // step-1
+      const incomingRefreshToken =
+         req.cookies.refreshToken || req.body.refreshToken;
+
+      if (!incomingRefreshToken) {
+         throw new ApiError(StatusCodes.UNAUTHORIZED, "Unauthorized Request");
+      }
+
+      try {
+         // step-2
+         const decodedTokenData = jsonwebtoken.verify(
+            incomingRefreshToken,
+            process.env.REFRESH_TOKEN_SECRETE,
+         );
+
+         // step-3
+         const user = await User.findById(decodedTokenData._id);
+
+         if (!user) {
+            throw new ApiError(
+               StatusCodes.UNAUTHORIZED,
+               "Invalid RefreshToken",
+            );
+         }
+
+         // step-4
+         const allGeneratedTokens = await generateAccessAndRefreshToken(
+            user._id,
+         );
+
+         // step-5
+         return res
+            .status(StatusCodes.OK)
+            .cookie("accessToken", allGeneratedTokens.accessToken)
+            .cookie("refreshToken", allGeneratedTokens.refreshToken)
+            .json(
+               new ApiResponse(
+                  StatusCodes.OK,
+                  {
+                     accessToken: allGeneratedTokens.accessToken,
+                     refreshToken: allGeneratedTokens.refreshToken,
+                  },
+                  "Access Token refreshed",
+               ),
+            );
+      } catch (error) {
+         throw new ApiError(
+            StatusCodes.UNAUTHORIZED,
+            error.message || "Invalid refresh Token",
+         );
+      }
    }),
    updatePassword: asyncHandler(async (req, res) => {}),
    updateUser: asyncHandler(async (req, res) => {}),
