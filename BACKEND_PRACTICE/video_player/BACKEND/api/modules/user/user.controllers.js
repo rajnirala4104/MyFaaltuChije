@@ -260,5 +260,5 @@ export const userControllers = {
    }),
    updatePassword: asyncHandler(async (req, res) => {}),
    updateUser: asyncHandler(async (req, res) => {}),
-   deleteUserAndAllStuffRelatedToIt: asyncHandler(async (req, res) => {}),
+   deleteUserAndAllStuffRelatedToTheUser: asyncHandler(async (req, res) => {}),
 };

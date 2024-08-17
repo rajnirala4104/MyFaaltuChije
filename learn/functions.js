@@ -1,7 +1,20 @@
-// console.log("testing..");
+// 1 method to write a function
+function functionKeywordSyntex(name) {
+   // code
+   return name;
+}
 
-const funcValue = (name) => {
-   return "this is something.. " + name;
+// 2 method to write a function
+const functionKeywordButWithVariable = function (name) {
+   // code
+   return name;
 };
 
-console.log(funcValue("raj nirala"));
+// 3 method to write a function
+const arrowFunction = (name) => {
+   // code
+   return name;
+};
+
+// one liner syntex
+const singleArrowFunction = (name) => name;
