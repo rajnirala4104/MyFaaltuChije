@@ -258,7 +258,51 @@ export const userControllers = {
          );
       }
    }),
-   updatePassword: asyncHandler(async (req, res) => {}),
+   updatePassword: asyncHandler(async (req, res) => {
+      // step-1 get emai or userName and oldPassword and newPassword from the body
+      // step-2 validate the given data
+      // step-3 find a user with same email or userName that we got from the body
+      // step-4 check user is exist or not
+      // step-5 check the user's current password with given oldPassword
+      // step-6 save the user with newPassword
+      // step-7 return the response what you want
+
+      // step-1
+      const { email, userName, oldPassword, newPassword } = req.body;
+      // step-2
+      if ((!email && !userName) || !oldPassword || !newPassword) {
+         throw new ApiError(StatusCodes.NOT_FOUND, "all fields are neccessury");
+      }
+
+      // step-3
+      const user = await User.findOne({ $or: [{ email }, { userName }] });
+      // step-4
+      if (!user) {
+         throw new ApiError(StatusCodes.NOT_FOUND, "User does not exist");
+      }
+
+      // step-5
+      const isPasswordCurrect = await user.isPasswordTrue(oldPassword);
+
+      if (!isPasswordCurrect) {
+         throw new ApiError("old password is not currect");
+      }
+
+      // step-6
+      user.password = newPassword;
+      await user.save({ validateBeforeSave: false });
+
+      // step-7
+      return res
+         .status(StatusCodes.OK)
+         .json(
+            new ApiResponse(
+               StatusCodes.OK,
+               {},
+               "password updated successfully",
+            ),
+         );
+   }),
    updateUser: asyncHandler(async (req, res) => {}),
    deleteUserAndAllStuffRelatedToTheUser: asyncHandler(async (req, res) => {}),
 };
