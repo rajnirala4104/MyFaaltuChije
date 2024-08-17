@@ -1,0 +1,18 @@
+/**
+ *
+ * --------- data type -----------
+ * Number - 2 to power 53 - 2^53
+ * String
+ * Boolean - true/false - 0/1
+ * BigInt - for large number than Number
+ * --------- imp types -------
+ * null
+ * undefined
+ *
+ */
+
+let nullVariable = null; // null is nothing but just a fascinating word of empty in other word it's a standalone value. - if try to pring its typeof it'll return "Object"
+let undefinedVariable; // OUTPUT: "undefined" because we've decleare the variable but haven't got assgined it.
+
+console.log(typeof nullVariable);
+console.log(typeof undefinedVariable);
