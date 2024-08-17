@@ -303,6 +303,17 @@ export const userControllers = {
             ),
          );
    }),
+   getCurrentUser: asyncHandler(async (req, res) => {
+      return res
+         .status(StatusCodes.OK)
+         .json(
+            new ApiResponse(
+               StatusCodes.OK,
+               req.user,
+               "here is the current or loggedin user",
+            ),
+         );
+   }),
    updateUser: asyncHandler(async (req, res) => {}),
    deleteUserAndAllStuffRelatedToTheUser: asyncHandler(async (req, res) => {}),
 };
