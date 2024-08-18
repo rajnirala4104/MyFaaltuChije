@@ -3,7 +3,7 @@
  * --------- data type -----------
  * Number - 2 to power 53 - 2^53
  * String
- * Boolean - true/false - 0/1
+ * Boolean - true/false - 1/0
  * BigInt - for large number than Number
  * --------- imp types -------
  * null
