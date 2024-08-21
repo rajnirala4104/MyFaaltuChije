@@ -164,9 +164,9 @@ const withArr = [
       work: "cricket",
    },
 ];
-console.log(withArr);
-const updatedWithArr = withArr.with(1, { ...withArr[1], work: "philosopher" });
-console.log(updatedWithArr);
+// console.log(withArr);
+// const updatedWithArr = withArr.with(1, { ...withArr[1], work: "philosopher" });
+// console.log(updatedWithArr);
 
 // // ----------- array.reduce() ----------
 // SYNTAX -> array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
@@ -196,3 +196,25 @@ const updatedArr = reduceArr.reduce((accumulator, value, index, arr) => {
 }, 0); // Start with an initial value of 0
 
 console.log(updatedArr);
+
+// // ----------- array.slice() ----------
+// SYNTAX -> array.slice(startIndex, endIndex)
+console.log("------------ .slice() ------------");
+// slice prints an array between given range but it doesn't consider the endIndex
+// slice doesn't change the original array
+
+let sliceExArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let slicedArr = sliceExArr.slice(1, 5);
+console.log(slicedArr);
+console.log(sliceExArr);
+
+// // ----------- array.splice() ----------
+// SYNTAX -> array.splice(startIndex, endIndex)
+console.log("------------ .splice() ------------");
+// splice prints an array between given range but it doesn't consider the endIndex
+// splice change the original array as well. it removes the element from the original array
+
+let spliceExArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let splicedArr = spliceExArr.splice(1, 5);
+console.log(splicedArr);
+console.log(spliceExArr);
