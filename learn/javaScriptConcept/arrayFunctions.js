@@ -218,3 +218,21 @@ let spliceExArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let splicedArr = spliceExArr.splice(1, 5);
 console.log(splicedArr);
 console.log(spliceExArr);
+
+//  ----------- array.flat() ----------
+// SYNTAX -> array.flat(depth)
+console.log("------------ .flat()------------");
+
+const nestedArrayOfNestedArr = [
+   0,
+   1,
+   2,
+   3,
+   4,
+   [5, 6, 7],
+   8,
+   [9, 10, 11],
+   [12, 13, [14, 15, 16, 17], [18, 19, 20]],
+];
+
+console.log(nestedArrayOfNestedArr.flat(Infinity));
