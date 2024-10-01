@@ -17,6 +17,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
  * This function will create a div and append it to the error container which is
  * in the popup.html. This div will have a message about which website you are
  * trying to block. After 3 seconds this div will be removed.
+ * @param {string} message - message which will be show in the popup
  * @param {string} hostname - hostname of the website which you are trying to block
  */
 const showError = (message, hostname) => {
@@ -45,26 +46,37 @@ document.getElementById("blockBtn").addEventListener("click", () => {
       showError("You can't block", webHostname);
       return;
    } else {
-      //    getting the data from chrome storage
+      // getting the data from chrome storage
       chrome.storage.local.get("BlockedUrls", (result) => {
-         result?.BlockedUrls.forEach((item) => {
-            //  checking if the website is already blocked or not
-            if (item.hostname === webHostname) {
-               showError("Already blocked", webHostname);
-               return;
-            } else {
-               // to store data in chrome storage
-               // .storage.local.set(data)
-               chrome.storage.local.set({
-                  BlockedUrls: [
-                     {
-                        status: "Inprogress",
-                        hostname: webHostname,
-                     },
-                  ],
-               });
-            }
-         });
+         if (result.BlockedUrls !== undefined || result.BlockedUrls !== null) {
+            result?.BlockedUrls.forEach((item) => {
+               //  checking if the website is already blocked or not
+               if (
+                  item.hostname === webHostname &&
+                  item.status === "Inprogress"
+               ) {
+                  showError("This website will be blocked", webHostname);
+                  return;
+               } else if (
+                  item.hostname === webHostname &&
+                  item.status === "Blocked"
+               ) {
+                  showError("Already blocked", webHostname);
+                  return;
+               } else {
+                  // to store data in chrome storage
+                  // .storage.local.set(data)
+                  chrome.storage.local.set({
+                     BlockedUrls: [
+                        {
+                           status: "Inprogress",
+                           hostname: webHostname,
+                        },
+                     ],
+                  });
+               }
+            });
+         }
       });
    }
 });
