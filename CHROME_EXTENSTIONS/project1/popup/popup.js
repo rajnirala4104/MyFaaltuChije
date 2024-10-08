@@ -93,6 +93,7 @@ document.getElementById("blockBtn").addEventListener("click", () => {
             console.log("else block");
             //  checking if the website is already blocked or not
             if (
+               // it returns true if at least one element in the array pass the test implemented by the provided function
                result?.BlockedUrls.some(
                   (item) =>
                      item.hostname === webHostname &&

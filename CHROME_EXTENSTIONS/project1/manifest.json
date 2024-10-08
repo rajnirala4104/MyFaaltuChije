@@ -9,9 +9,13 @@
    "content_scripts": [
       {
          "matches": ["<all_urls>"],
+         "css": ["./scripts/scriptStyles.css"],
          "js": ["./scripts/content.js"]
       }
    ],
-   "permissions": ["activeTab", "scripting", "storage", "tabs"],
+   "background": {
+      "service_worker": "./background.js"
+   },
+   "permissions": ["tabs", "activeTab", "storage"],
    "host_permissions": ["<all_urls>"]
 }

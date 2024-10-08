@@ -1,20 +1,40 @@
-chrome.runtime.onMessage.addListener((message, sender) => {
+const sendMessageToBackgroundJs = (message) => {
+   chrome.runtime.sendMessage(message);
+};
+
+chrome.runtime.onMessage.addListener((message) => {
+   console.log(message.from, message.message);
+   console.log(message.from === "popup" && message.message === "startTimer");
    if (message.from === "popup" && message.message === "startTimer") {
       let confirmation = confirm("Do you want to block this site?");
       if (confirmation) {
+         var hour = 0;
+         var minute = 0;
+         var second = 5;
          let div = document.createElement("div");
          div.setAttribute("id", "timerContainer");
-         div.innerHTML = `<div class="w-full h-full flex justify-center items-center w-full h-[10rem] bg-black text-white position-absolute top-0 z-10">
-               <span>
-                  00:00:00
-               </span>
+         div.innerHTML = `
+         <div class="timerContainer">
+            <div class="timerBox">
+               <div class="timer">
+                  <span>${("0" + hour).slice(-2)}</span>
+                  :
+                  <span>${("0" + minute).slice(-2)}</span>
+                  :
+                  <span>${("0" + second).slice(-2)}</span>
+               </div>
+            </div>
          </div>`;
 
-         document.body.appendChild(div);
+         document.body.prepend(div);
 
-         setTimeout(() => {
-            document.getElementById("timer").remove();
-         }, 5000);
+         setInterval(() => {
+            if (second >= 1) {
+               second = second - 1;
+            } else {
+               sendMessageToBackgroundJs({ closeTab: true });
+            }
+         }, 1000);
       }
    }
 });
