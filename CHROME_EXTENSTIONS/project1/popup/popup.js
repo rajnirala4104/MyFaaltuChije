@@ -87,6 +87,7 @@ document.getElementById("blockBtn").addEventListener("click", () => {
                chrome.tabs.sendMessage(tabs[0].id, {
                   from: "popup",
                   message: "startTimer",
+                  tabUrl: webHostname,
                });
             });
          } else {
@@ -128,6 +129,7 @@ document.getElementById("blockBtn").addEventListener("click", () => {
                      chrome.tabs.sendMessage(tabs[0].id, {
                         from: "popup",
                         message: "startTimer",
+                        tabUrl: webHostname,
                      });
                   }
                );

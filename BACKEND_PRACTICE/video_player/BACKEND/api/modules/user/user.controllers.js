@@ -28,11 +28,11 @@ export const userControllers = {
    getAllTheUser: asyncHandler(async (req, res) => {}),
    registration: asyncHandler(async (req, res) => {
       // step-1. get all the data from client
-      // step-2. check null values and validate rest of thedata
+      // step-2. check null values and validate rest of the data
       // step-3. check user is already in the database or not
       // step-4. get images
       // step-5. check avatar is given or not
-      // step-6. upload images to cloudinary, specialy avatar
+      // step-6. upload images to cloudinary, specially avatar
       // step-7. check are we getting the image url or not
       // step-8. create user object and upload to the mongodb database
       // step-9. remove password and refreshToken field from response
@@ -118,7 +118,7 @@ export const userControllers = {
    login: asyncHandler(async (req, res) => {
       // step-1, get email and password from the user
       // step-2, check user is exist or not
-      // step-3, check password is curract or not
+      // step-3, check password is correct or not
       // step-4, generate all Tokens
       // step-5, set cookies
       // step-6, get the user's data from the database and send as response
@@ -259,7 +259,7 @@ export const userControllers = {
       }
    }),
    updatePassword: asyncHandler(async (req, res) => {
-      // step-1 get emai or userName and oldPassword and newPassword from the body
+      // step-1 get email or userName and oldPassword and newPassword from the body
       // step-2 validate the given data
       // step-3 find a user with same email or userName that we got from the body
       // step-4 check user is exist or not
@@ -271,7 +271,7 @@ export const userControllers = {
       const { email, userName, oldPassword, newPassword } = req.body;
       // step-2
       if ((!email && !userName) || !oldPassword || !newPassword) {
-         throw new ApiError(StatusCodes.NOT_FOUND, "all fields are neccessury");
+         throw new ApiError(StatusCodes.NOT_FOUND, "all fields are necessary");
       }
 
       // step-3
@@ -282,10 +282,10 @@ export const userControllers = {
       }
 
       // step-5
-      const isPasswordCurrect = await user.isPasswordTrue(oldPassword);
+      const isPasswordCorrect = await user.isPasswordTrue(oldPassword);
 
-      if (!isPasswordCurrect) {
-         throw new ApiError("old password is not currect");
+      if (!isPasswordCorrect) {
+         throw new ApiError("old password is not correct");
       }
 
       // step-6
@@ -310,7 +310,7 @@ export const userControllers = {
             new ApiResponse(
                StatusCodes.OK,
                req.user,
-               "here is the current or loggedin user",
+               "here is the current or logged user",
             ),
          );
    }),

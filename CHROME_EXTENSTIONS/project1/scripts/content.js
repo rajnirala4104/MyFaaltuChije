@@ -16,21 +16,32 @@ chrome.runtime.onMessage.addListener((message) => {
          div.innerHTML = `
          <div class="timerContainer">
             <div class="timerBox">
+               <div class="title">
+                  <h3 class="text-2xl">
+                     <span class="hostname"> ${message.tabUrl} </span>
+                     will be 
+                     <span class="blocked"> blocked</span> in
+                  </h3>
+               </div>
                <div class="timer">
-                  <span>${("0" + hour).slice(-2)}</span>
+                  <span id="hour">${("0" + hour).slice(-2)}</span>
                   :
-                  <span>${("0" + minute).slice(-2)}</span>
+                  <span id="minute">${("0" + minute).slice(-2)}</span>
                   :
-                  <span>${("0" + second).slice(-2)}</span>
+                  <span id="second">${("0" + second).slice(-2)}s</span>
                </div>
             </div>
          </div>`;
 
          document.body.prepend(div);
+         document.body.style.overflow = "hidden";
 
          setInterval(() => {
             if (second >= 1) {
                second = second - 1;
+               document.getElementById("second").innerHTML = `${(
+                  "0" + second
+               ).slice(-2)}s`;
             } else {
                sendMessageToBackgroundJs({ closeTab: true });
             }
