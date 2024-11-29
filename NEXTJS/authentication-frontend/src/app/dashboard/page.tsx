@@ -1,5 +1,5 @@
 "use client"
-import Spinner from '@/componentss/Spinner';
+import Spinner from '@/components/Spinner';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';

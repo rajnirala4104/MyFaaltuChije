@@ -1,11 +1,8 @@
-"use client"
+import Link from 'next/link';
+import React from 'react';
 
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+export const SignupForm: React.FC = () => {
 
-const SignupForm: React.FC = () => {
-
-   const router = useRouter()
 
    const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();
@@ -18,16 +15,10 @@ const SignupForm: React.FC = () => {
       let finalProfile = profilePic ? profilePic : "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
       localStorage.setItem('userInfo', JSON.stringify({ name, email, password, profilePic: finalProfile }));
       window.location.reload();
-
    };
 
-   useEffect(() => {
-      const loggedUser = JSON.parse(localStorage.getItem('userInfo') as string);
-      if (loggedUser) router.push('/dashboard')
-   }, [])
-
    return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
          <div className="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-md">
             <h2 className="text-2xl font-bold text-center">Sign Up</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -102,8 +93,11 @@ const SignupForm: React.FC = () => {
                </div>
             </form>
          </div>
+         <div className='my-3'>
+            <Link href={'/login'}>
+               <span className='text-blue-500 hover:text-blue-600 hover:underline'>Already have an account</span>
+            </Link>
+         </div>
       </div>
-   );
-};
-
-export default SignupForm;
+   )
+}

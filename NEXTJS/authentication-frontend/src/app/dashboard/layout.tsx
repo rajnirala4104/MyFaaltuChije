@@ -1,14 +1,9 @@
 "use client"
-import DashboardSideBar from '@/componentss/DashboardSideBar';
+import { DashboardSideBar } from '@/components';
 import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 
-export default function DashboardLayout({
-   children,
-}: Readonly<{
-   children: React.ReactNode;
-}>) {
-
+export default function DashboardLayout({ children }: Readonly<{ children: React.ReactNode }>) {
    const router = useRouter()
 
    useEffect(() => {

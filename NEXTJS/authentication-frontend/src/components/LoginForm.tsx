@@ -1,8 +1,8 @@
 "use client"
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { users } from '../data/user.json';
-import Link from 'next/link';
 
 const LoginForm: React.FC = () => {
 
@@ -103,8 +103,8 @@ const LoginForm: React.FC = () => {
             </form>
          </div>
          <div className='my-3'>
-            <Link href={'/singup'}>
-               <span className='text-blue-500 hover:text-blue-600 hover:underline'>don't have account</span>
+            <Link href={'/signup'}>
+               <span className='text-blue-500 hover:text-blue-600 hover:underline'>Do not have an account</span>
             </Link>
          </div>
       </div>
