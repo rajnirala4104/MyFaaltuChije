@@ -12,7 +12,7 @@
  */
 
 let nullVariable = null; // null is nothing but just a fascinating word of empty in other word it's a standalone value. - if try to pring its typeof it'll return "Object"
-let undefinedVariable; // OUTPUT: "undefined" because we've decleare the variable but haven't got assgined it.
+let undefinedVariable; // OUTPUT: "undefined" because we've declare the variable but haven't got assigned it.
 
 console.log(typeof nullVariable);
 console.log(typeof undefinedVariable);

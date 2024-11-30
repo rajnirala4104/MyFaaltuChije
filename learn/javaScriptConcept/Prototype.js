@@ -1,12 +1,12 @@
 // this is how you can create a method in any javaScript object
 String.prototype.trueValue = function () {
-   let finalarValue = "";
+   let finalValue = "";
    this.split(" ").forEach((singleValue) => {
       if (singleValue.length > 0) {
-         finalarValue += singleValue + " ";
+         finalValue += singleValue + " ";
       }
    });
-   return finalarValue.trim();
+   return finalValue.trim();
 };
 
 String.prototype.trueLength = function () {
@@ -14,7 +14,7 @@ String.prototype.trueLength = function () {
 };
 
 // this is how you can create a constant in any javaScript object
-String.prototype.defaulValue = "this is default value";
+String.prototype.defaultValue = "this is default value";
 
 const someString = "raj    nirala        ";
 const anotherString =
@@ -22,6 +22,6 @@ const anotherString =
 // console.log(someString.trueLength());
 // console.log(anotherString.trueValue());
 
-Object.prototype.defaulVariable = "this is default variable";
+Object.prototype.defaultVariable = "this is default variable";
 
 // ---------------------------------------------------------------------------

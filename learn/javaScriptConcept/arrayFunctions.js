@@ -1,6 +1,8 @@
 console.log("---------- .at() ---------");
 console.log("---------- number[] -----------");
 const numbers = [11, 12, 13, 14, 15, 16, 17, 18, 19, 110];
+console.log('array = '); console.log(numbers);
+console.log("results =");
 // array.at(index);
 console.log(numbers.at()); // index = 0
 console.log(numbers.at(0)); // 11
@@ -19,6 +21,8 @@ const instruments = [
    "ukelele",
    "saxophone",
 ];
+console.log('array = '); console.log(instruments);
+console.log("results =");
 console.log(instruments.at(3)); // banjo
 console.log(instruments.at(-1)); // saxophone
 
@@ -43,7 +47,8 @@ const users = [
       hobbies: ["Painting", "Travelling"],
    },
 ];
-
+console.log('array = '); console.log(users);
+console.log("results =");
 console.log(users.at().work); // Musician, Singer and writer
 console.log(users.at(-1).hobbies.at(0)); // Painting
 console.log(users.at(-2).name); // Achich
@@ -63,7 +68,7 @@ const arrOfObject = [
    { name: "Vinit" },
    { name: "Neha" },
 ];
-
+console.log(`arrays = ${arr1, arr2, arrOfObject}`);
 const concatArr = arr1.concat(arr2, arrOfObject);
 console.log(concatArr);
 
@@ -78,7 +83,8 @@ console.log("------------ .entries() ------------");
   [0, "Banana"]
    The entries() method does not change the original array.
  */
-
+console.log('array = '); console.log(instruments);
+console.log("results =");
 const list = instruments.entries();
 let text = [];
 for (let x of list) {
@@ -101,6 +107,8 @@ The every() method does not change the original array
 */
 
 const ages = [19, 43, 54, 65, 14, 55];
+console.log('array = '); console.log(ages);
+console.log("results =");
 const newAeges = ages.every((age) => {
    // this function will return Boolen
 
@@ -121,6 +129,8 @@ end - Optional. The stop index (position). Default is array length.
 */
 
 const something = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log('array = '); console.log(something);
+console.log("results =");
 console.log(something);
 something.fill(0); // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 console.log(something);
@@ -130,6 +140,8 @@ console.log(something);
 // ----------- array.shift() ----------
 console.log("------------ .shift() ------------");
 const arr = [23, 5, 6, 3, 6, 8, 867, 54, 3];
+console.log('array = '); console.log(arr);
+console.log("results =");
 console.log(arr.shift()); // .shift() remove the first element from an array and it returns the removed element
 console.log(arr); // .shift() changes the original array
 
@@ -187,7 +199,8 @@ const reduceArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 // The reduce() method will iterate over each element in the array and build up a single value.
 // The final value of the reduce() method is the accumulated value.
-
+console.log('array = '); console.log(reduceArr);
+console.log("results =");
 const updatedArr = reduceArr.reduce((accumulator, value, index, arr) => {
    // Add the current value to the accumulator
    accumulator = accumulator + value;
@@ -205,8 +218,9 @@ console.log("------------ .slice() ------------");
 
 let sliceExArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let slicedArr = sliceExArr.slice(1, 5);
+console.log('array = '); console.log(sliceExArr);
+console.log("results =");
 console.log(slicedArr);
-console.log(sliceExArr);
 
 // // ----------- array.splice() ----------
 // SYNTAX -> array.splice(startIndex, endIndex)
@@ -216,8 +230,9 @@ console.log("------------ .splice() ------------");
 
 let spliceExArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let splicedArr = spliceExArr.splice(1, 5);
+console.log('array = '); console.log(spliceExArr);
+console.log("results =");
 console.log(splicedArr);
-console.log(spliceExArr);
 
 //  ----------- array.flat() ----------
 // SYNTAX -> array.flat(depth)
@@ -235,4 +250,6 @@ const nestedArrayOfNestedArr = [
    [12, 13, [14, 15, 16, 17], [18, 19, 20]],
 ];
 
+console.log('array = '); console.log(nestedArrayOfNestedArr);
+console.log("results =");
 console.log(nestedArrayOfNestedArr.flat(Infinity));
