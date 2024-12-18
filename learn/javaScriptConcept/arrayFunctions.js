@@ -68,7 +68,8 @@ const arrOfObject = [
    { name: "Vinit" },
    { name: "Neha" },
 ];
-console.log(`arrays = ${arr1, arr2, arrOfObject}`);
+console.log(`arrays =`);
+console.log(arr1, arr2, arrOfObject);
 const concatArr = arr1.concat(arr2, arrOfObject);
 console.log(concatArr);
 
