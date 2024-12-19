@@ -11,6 +11,7 @@ const nodeMailer = require("nodemailer");
 const Logo = require("../models/Logo");
 const OtpSchema = require("../models/Otp");
 const NewsSchema = require("../models/News");
+const { uploadToCloudinary } = require("../config/Cloudinary");
 
 const createJobApplication = async (req, res) => {
   try {
@@ -528,63 +529,57 @@ const createLogo = async (req, res) => {
 
 const createBlog = async (req, res) => {
   try {
-    const userId = req.user._id;
-    const {
-      author,
-      sector,
-      source,
-      title,
-      content,
-      authorImg,
-      blogImg,
-      views,
-      likes,
-    } = req.body;
-    if (
-      !author ||
-      !sector ||
-      !source ||
-      !title ||
-      !content ||
-      !authorImg ||
-      !blogImg ||
-      !views ||
-      !likes
-    ) {
-      return res.status(400).json({ message: "All fields are required." });
-    }
+    // Validate required fields
+    const { title, content, author, sector, source } = req.body;
 
-    const existingUser = await AuthSchema.findById(userId);
-    if (!existingUser) {
-      return res.status(404).json({ message: "User does not exist." });
-    }
-    if (existingUser.status === "Pending") {
-      return res.status(403).json({
-        message:
-          "Your account is in Pending Status. You can't access the details.",
+    if (!title || !content || !author || !sector || !source) {
+      return res.status(400).json({
+        success: false,
+        message: 'All fields are required'
       });
     }
 
-    await BlogSchema.create({
-      author,
-      sector,
-      source,
+    // Check if images were uploaded
+    if (!req.files || !req.files.authorImg || !req.files.blogImg) {
+      return res.status(400).json({
+        success: false,
+        message: 'Both author and blog images are required'
+      });
+    }
+
+    // Upload images to Cloudinary
+    const authorImgResult = await uploadToCloudinary(
+      req.files.authorImg[0].buffer
+    );
+
+    const blogImgResult = await uploadToCloudinary(
+      req.files.blogImg[0].buffer
+    );
+
+    // Create new blog post
+    const newBlog = await BlogSchema.create({
       title,
       content,
-      authorImg,
-      blogImg,
-      views,
-      likes,
+      author,
+      authorImg: authorImgResult.secure_url,
+      blogImg: blogImgResult.secure_url,
+      sector,
+      source
     });
 
-    return res.status(200).json({
+    res.status(201).json({
       success: true,
-      message: "Blogs Added successfully",
+      data: newBlog,
+      message: 'Blog post created successfully'
     });
+
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Something went wrong.", error: error.message });
+    console.error('Error creating blog post:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error creating blog post',
+      error: error.message
+    });
   }
 };
 
@@ -757,6 +752,7 @@ const createJobPosting = async (req, res) => {
       success: true,
       message: "New Job Posted successfully",
     });
+
   } catch (error) {
     res.status(500).json({ message: error.message, error: error.message });
   }

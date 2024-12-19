@@ -1,9 +1,8 @@
 const express = require("express");
 const cors = require("cors");
-const fileUpload = require("express-fileupload");
 const adminRoutes = require("./routes/allRoutes");
 const { connectDB } = require("./config/mongoose");
-const path = require('path')
+const path = require('path');
 const { ConnectCloudinary } = require("./config/Cloudinary");
 require("dotenv").config();
 
@@ -20,11 +19,6 @@ const app = express();
 app.use(cors());
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
-app.use(
-  fileUpload({
-    useTempFiles: true
-  })
-);
 
 // Serve static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

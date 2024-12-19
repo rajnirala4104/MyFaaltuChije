@@ -1,26 +1,25 @@
+import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
-import { useTable } from "react-table";
-import { FaEdit, FaTrash } from "react-icons/fa";
-import { RiFolderAddFill } from "react-icons/ri";
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { IoIosCloseCircle, IoMdEye } from "react-icons/io";
+import { IoHeartCircleOutline, IoLink } from "react-icons/io5";
 import { LuUpload } from "react-icons/lu";
 import { MdDeleteOutline } from "react-icons/md";
-import { FaEye } from "react-icons/fa";
-import { IoLink } from "react-icons/io5";
-import BlogCard from "./BlogCard";
-import { IoHeartCircleOutline } from "react-icons/io5";
+import { RiFolderAddFill } from "react-icons/ri";
+import { useTable } from "react-table";
 import { toast } from "react-toastify";
-import Loading from "./Loading";
-import axios from "axios";
-import { Blogs } from "../Recoil/index";
 import { useSetRecoilState } from "recoil";
 import {
   ADD_BLOG,
+  addBlogFunction,
   DELETE_BLOG,
   GET_BLOGS,
   IMAGE_UPLOAD,
   UPDATE_BLOG,
 } from "../Api";
+import { Blogs } from "../Recoil/index";
+import BlogCard from "./BlogCard";
+import Loading from "./Loading";
 
 function BlogCardMenu({ Blogss, setShowBlogCardMenu }) {
   const setBlogs = useSetRecoilState(Blogs);
@@ -34,6 +33,7 @@ function BlogCardMenu({ Blogss, setShowBlogCardMenu }) {
   const [editLikes, setEditLikes] = useState(1);
   const [editSector, setEditSector] = useState("Renewable Sector");
   const [editSource, setEditSource] = useState("");
+
   const [addHeading, setAddHeading] = useState("");
   const [addDetails, setAddDetails] = useState("");
   const [addLogo, setAddLogo] = useState("");
@@ -43,6 +43,7 @@ function BlogCardMenu({ Blogss, setShowBlogCardMenu }) {
   const [addLikes, setAddLikes] = useState(1);
   const [addSector, setAddSector] = useState("Renewable Sector");
   const [addSource, setAddSource] = useState("");
+
   const [showAddBox, setShowAddBox] = useState(false);
   const [showEditBox, setShowEditBox] = useState(undefined);
   const [showViewBox, setShowViewBox] = useState(undefined);
@@ -80,7 +81,7 @@ function BlogCardMenu({ Blogss, setShowBlogCardMenu }) {
               onClick={() => setShowEditBox(original)}
               className="text-white px-2 py-1 rounded hover:bg-blue-100"
             >
-              <img loading="lazy" src="/edit.png" />
+              <img loading="lazy" src="" />
             </button>
             <button
               onClick={() => setShowDeleteDialogBox(original)}
@@ -129,8 +130,8 @@ function BlogCardMenu({ Blogss, setShowBlogCardMenu }) {
         } catch (error) {
           toast.error(
             error?.response?.data?.message ||
-              error?.data?.message ||
-              error.message
+            error?.data?.message ||
+            error.message
           );
           setLoading(false);
           return;
@@ -154,8 +155,8 @@ function BlogCardMenu({ Blogss, setShowBlogCardMenu }) {
         } catch (error) {
           toast.error(
             error?.response?.data?.message ||
-              error?.data?.message ||
-              error.message
+            error?.data?.message ||
+            error.message
           );
           setLoading(false);
           return;
@@ -195,8 +196,8 @@ function BlogCardMenu({ Blogss, setShowBlogCardMenu }) {
       } catch (error) {
         toast.error(
           error?.response?.data?.message ||
-            error?.data?.message ||
-            error.message
+          error?.data?.message ||
+          error.message
         );
       } finally {
         setLoading(false);
@@ -238,128 +239,51 @@ function BlogCardMenu({ Blogss, setShowBlogCardMenu }) {
   };
 
   const addNewService = async () => {
-    setLoading(true);
 
-    if (
-      addHeading &&
-      addDetails &&
-      addLogo &&
-      addBgImage &&
-      addAuthor &&
-      addViews &&
-      addLikes &&
-      addSector &&
-      addSource
-    ) {
-      let link1 = addLogo;
-      let link2 = addBgImage;
+    // Prepare form data
+    const formData = new FormData();
+    formData.append('title', addHeading);
+    formData.append('content', addDetails);
+    formData.append('author', addAuthor);
+    formData.append('sector', addSector);
+    formData.append('source', addSource);
+    formData.append('authorImg', addLogo);
+    formData.append('blogImg', addBgImage);
 
-      // If editLogo is not a string, upload the new logo
-      if (typeof addLogo !== "string") {
-        try {
-          const formData = new FormData();
-          formData.append("image", addLogo); // Use addLogo here
-          const { data } = await axios.post(IMAGE_UPLOAD, formData, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          if (data.success) {
-            link1 = data.fileUrl;
-          } else {
-            toast.error(data.message || "Image upload failed");
-          }
-        } catch (error) {
-          toast.error(
-            error?.response?.data?.message ||
-              error?.data?.message ||
-              error.message
-          );
-          setLoading(false);
-          return;
-        }
-      }
-      // If addBgImage is not a string, upload the new logo
-      if (typeof addBgImage !== "string") {
-        try {
-          const formData = new FormData();
-          formData.append("image", addBgImage); // Use addBgImage here
-          const { data } = await axios.post(IMAGE_UPLOAD, formData, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          if (data.success) {
-            link2 = data.fileUrl;
-          } else {
-            toast.error(data.message || "Image upload failed");
-          }
-        } catch (error) {
-          toast.error(
-            error?.response?.data?.message ||
-              error?.data?.message ||
-              error.message
-          );
-          setLoading(false);
-          return;
-        }
-      }
+    try {
+      setLoading(true);
 
-      // Proceed with updating the service
-      try {
-        const { data } = await axios.post(
-          ADD_BLOG,
-          {
-            author: addAuthor,
-            sector: addSector,
-            source: addSource,
-            title: addHeading,
-            content: addDetails,
-            authorImg: link1,
-            blogImg: link2,
-            views: addViews,
-            likes: addLikes,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+      const userToken = localStorage.getItem('token');
+      // API call
+      const response = await addBlogFunction(formData, userToken);
 
-        if (data.success) {
-          setShowAddBox(undefined);
-          setAddHeading("");
-          setAddDetails("");
-          setAddLogo("");
-          setAddBgImage("");
-          setAddAuthor("");
-          setAddViews("");
-          setAddLikes("");
-          setAddSector("Renewable Sector");
-          setAddSource("");
-          const blogdata = await GET_BLOGS();
-          setBlogs(blogdata);
-          toast.success(data.message);
-        } else {
-          toast.error(data.message);
-        }
-      } catch (error) {
-        toast.error(
-          error?.response?.data?.message ||
-            error?.data?.message ||
-            error.message
-        );
-      } finally {
-        setLoading(false);
-      }
-    } else if (!token) {
+      // Success
+      toast.success('Blog post created successfully!');
+
+      // Reset form
+      resetForm();
+
+      return response.data;
+
+    } catch (error) {
+      // Error handling
+      const errorMessage = error.response?.data?.message || 'Failed to create blog post';
+      toast.error(errorMessage);
+      console.error('Blog Post Creation Error:', error);
+      return null;
+    } finally {
       setLoading(false);
-      return toast.error("You don't have access to perform this action");
-    } else {
-      setLoading(false);
-      return toast.error("All Fields are Required");
     }
+  };
+
+  const resetForm = () => {
+    setAddHeading('');
+    setAddDetails('');
+    setAddAuthor('');
+    setAddSector('');
+    setAddSource('');
+    // setAuthorImg(null);
+    setAddBgImage(null);
   };
 
   const tableInstance = useTable({ columns, data: Blogss });
@@ -454,18 +378,16 @@ function BlogCardMenu({ Blogss, setShowBlogCardMenu }) {
             <div className="overflow-scrolloverflow-y-auto">
               <div className="flex items-center justify-center w-full mt-5">
                 <div
-                  className={`w-[1037px] h-[450px] rounded-lg flex items-center justify-evenly bg-cover relative  border-[#05A6F0] outline-none ${
-                    !editBgImage && "bg-[#05A6F01A]"
-                  }`}
+                  className={`w-[1037px] h-[450px] rounded-lg flex items-center justify-evenly bg-cover relative  border-[#05A6F0] outline-none ${!editBgImage && "bg-[#05A6F01A]"
+                    }`}
                   style={
                     editBgImage
                       ? {
-                          backgroundImage: `url(${
-                            typeof editBgImage !== "string"
-                              ? URL.createObjectURL(editBgImage)
-                              : editBgImage
+                        backgroundImage: `url(${typeof editBgImage !== "string"
+                          ? URL.createObjectURL(editBgImage)
+                          : editBgImage
                           })`,
-                        }
+                      }
                       : {}
                   }
                 >
@@ -489,18 +411,16 @@ function BlogCardMenu({ Blogss, setShowBlogCardMenu }) {
               <div className="flex items-center justify-between p-10">
                 <span className="flex items-center justify-center gap-2">
                   <div
-                    className={`bg-[#D9D9D9] flex items-center  justify-evenly w-[42px] h-[34.29px] rounded-full bg-cover relative ${
-                      !editLogo && "bg-[#D9D9D9]"
-                    }`}
+                    className={`bg-[#D9D9D9] flex items-center  justify-evenly w-[42px] h-[34.29px] rounded-full bg-cover relative ${!editLogo && "bg-[#D9D9D9]"
+                      }`}
                     style={
                       editLogo
                         ? {
-                            backgroundImage: `url(${
-                              typeof editLogo !== "string"
-                                ? URL.createObjectURL(editLogo)
-                                : editLogo
+                          backgroundImage: `url(${typeof editLogo !== "string"
+                            ? URL.createObjectURL(editLogo)
+                            : editLogo
                             })`,
-                          }
+                        }
                         : {}
                     }
                   >
@@ -660,18 +580,16 @@ function BlogCardMenu({ Blogss, setShowBlogCardMenu }) {
             <div className="overflow-scrolloverflow-y-auto">
               <div className="flex items-center justify-center w-full mt-5">
                 <div
-                  className={`w-[1037px] h-[450px] rounded-t-lg flex items-center justify-evenly bg-cover relative border border-[#05A6F0] rounded-lg ${
-                    !addBgImage && "bg-[#05A6F01A]"
-                  }`}
+                  className={`w-[1037px] h-[450px] rounded-t-lg flex items-center justify-evenly bg-cover relative border border-[#05A6F0] rounded-lg ${!addBgImage && "bg-[#05A6F01A]"
+                    }`}
                   style={
                     addBgImage
                       ? {
-                          backgroundImage: `url(${
-                            typeof addBgImage !== "string"
-                              ? URL.createObjectURL(addBgImage)
-                              : addBgImage
+                        backgroundImage: `url(${typeof addBgImage !== "string"
+                          ? URL.createObjectURL(addBgImage)
+                          : addBgImage
                           })`,
-                        }
+                      }
                       : {}
                   }
                 >
@@ -698,18 +616,16 @@ function BlogCardMenu({ Blogss, setShowBlogCardMenu }) {
                     <label>Author Image</label>
                     <span className="flex items-center justify-center bg-[#05A6F01A] border-[#05A6F0] gap-2 border mt-2  rounded-md py-2 px-4">
                       <div
-                        className={`bg-[#D9D9D9] flex items-center justify-evenly w-[42px] h-[34.29px] rounded-full bg-cover relative ${
-                          !addLogo && "bg-[#D9D9D9]"
-                        }`}
+                        className={`bg-[#D9D9D9] flex items-center justify-evenly w-[42px] h-[34.29px] rounded-full bg-cover relative ${!addLogo && "bg-[#D9D9D9]"
+                          }`}
                         style={
                           addLogo
                             ? {
-                                backgroundImage: `url(${
-                                  typeof addLogo !== "string"
-                                    ? URL.createObjectURL(addLogo)
-                                    : addLogo
+                              backgroundImage: `url(${typeof addLogo !== "string"
+                                ? URL.createObjectURL(addLogo)
+                                : addLogo
                                 })`,
-                              }
+                            }
                             : {}
                         }
                       >

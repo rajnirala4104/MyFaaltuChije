@@ -1,13 +1,72 @@
 const express = require("express");
 const router = express.Router();
 const { authMiddleware, GoogleAuthMiddleware } = require("../middleware/auth");
-const { register, checkUser, loginWithGoogle, login, allAdminsRequest, allAdmins, approveAdmins, deleteAdmins, updateMail, } = require("../controller/AuthController");
-const { fetchAllBlogs, fetchAllNews, getClients, getFeedbacks, getJobPostings, getProducts, getServices, fetchJobApplications, fetchLogo, } = require("../controller/FetchController");
-const { createBlog, createNews, createClient, createFeedback, createJobPosting, createLogo, createProduct, createService, createJobApplication, createContactForm, createInnerService, Send_Otp, AddSection, } = require("../controller/AddController");
-const { updateBlog, updateNews, updateClient, updateFeedback, updateJobPosting, updateProduct, updateService, UpdateInnerService, UpdateCarrerBanner, Forget_Password, } = require("../controller/UpdateController");
-const { deleteBlog, deleteNews, deleteClient, deleteFeedback, deleteJobPosting, deleteProduct, deleteService, deleteInnerService, deleteSection, } = require("../controller/DeleteController");
-const { uploadFileController, uploadImageController, getUserInfo, } = require("../controller/UploadController");
-const { upload } = require("../middleware/multer");
+const {
+  register,
+  checkUser,
+  loginWithGoogle,
+  login,
+  allAdminsRequest,
+  allAdmins,
+  approveAdmins,
+  deleteAdmins,
+  updateMail,
+} = require("../controller/AuthController");
+const {
+  fetchAllBlogs,
+  fetchAllNews,
+  getClients,
+  getFeedbacks,
+  getJobPostings,
+  getProducts,
+  getServices,
+  fetchJobApplications,
+  fetchLogo,
+} = require("../controller/FetchController");
+const {
+  createBlog,
+  createNews,
+  createClient,
+  createFeedback,
+  createJobPosting,
+  createLogo,
+  createProduct,
+  createService,
+  createJobApplication,
+  createContactForm,
+  createInnerService,
+  Send_Otp,
+  AddSection,
+} = require("../controller/AddController");
+const {
+  updateBlog,
+  updateNews,
+  updateClient,
+  updateFeedback,
+  updateJobPosting,
+  updateProduct,
+  updateService,
+  UpdateInnerService,
+  UpdateCarrerBanner,
+  Forget_Password,
+} = require("../controller/UpdateController");
+const {
+  deleteBlog,
+  deleteNews,
+  deleteClient,
+  deleteFeedback,
+  deleteJobPosting,
+  deleteProduct,
+  deleteService,
+  deleteInnerService,
+  deleteSection,
+} = require("../controller/DeleteController");
+const {
+  uploadFileController,
+  uploadImageController,
+  getUserInfo,
+} = require("../controller/UploadController");
+const uploadImages = require("../middleware/multer");
 
 //Carreer banner
 router.post("/UpdateCarrerBanner", authMiddleware, UpdateCarrerBanner);
@@ -26,7 +85,7 @@ router.post("/deleteAdmin", authMiddleware, deleteAdmins);
 router.post("/updateMail", authMiddleware, updateMail);
 
 // Blog Routes
-router.post("/addBlog", authMiddleware, createBlog);
+router.post("/addBlog", authMiddleware, uploadImages, createBlog);
 router.get("/fetchAllBlog", fetchAllBlogs); //GET_BLOGS
 router.put("/updateBlog/:id", authMiddleware, updateBlog);
 router.delete("/deleteBlog/:id", authMiddleware, deleteBlog);
@@ -92,7 +151,7 @@ router.delete(
 );
 
 // Image Upload
-router.post("/UploadImageOnServer", upload.single("image"), authMiddleware, uploadImageController);
+router.post("/UploadImageOnServer", authMiddleware, uploadImageController);
 // File Upload
 router.post("/UploadFilesOnServer", uploadFileController);
 // Get User Infp

@@ -42,17 +42,17 @@ const InnerServiceSchema = new mongoose.Schema({
 
 const ServiceSchemas = new mongoose.Schema(
   {
-    name: {
+    logo: {
       type: String,
-      required: true
+      required: true,
     },
-    coverImage: {
+    title: {
       type: String,
-      required: true
+      required: true,
+      unique: true,
     },
     desc: {
       type: String,
-      required: true
     },
     section: [
       {

@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Host
 // export const Host = "https://api.suvira.com";
-export const Host = "http://localhost:8001";
+export const Host = "http://127.0.0.1:8001";
 
 //Api Routes
 export const SEND_OTP = `${Host}/api/v1/sendOtp`;
@@ -148,6 +148,27 @@ export const GET_LOGO = async () => {
     const { data } = await axios.get(`${Host}/api/v1/fetchLogo`);
     if (data.success) {
       return data.logos;
+    } else {
+      console.log("Something Went Wrong", data);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const addBlogFunction = async (blogData, token) => {
+  try {
+
+    const config = {
+      "Content-type": "application/json",
+      headers: {
+        Authorization: `Bearer ${token}`, // Set the authorization header to include the user's token.
+      },
+    };
+
+    const { data } = await axios.post(`${Host}/api/v1/addBlog`, blogData, config);
+    if (data.success) {
+      return data;
     } else {
       console.log("Something Went Wrong", data);
     }

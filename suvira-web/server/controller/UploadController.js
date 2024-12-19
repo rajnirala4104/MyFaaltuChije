@@ -14,61 +14,55 @@ const uploadImageController = async (req, res) => {
       });
     }
 
-    const imageUrl = await uploadOnCloudinary(file.tempFilePath);
+    // Check file size (2 MB = 2 * 1024 * 1024 bytes)
+    if (file.size > 2 * 1024 * 1024) {
+      return res.status(400).json({
+        message: "Image size exceeds 2 MB",
+      });
+    }
 
-    //  { // Check file size (2 MB = 2 * 1024 * 1024 bytes)
-    //   if (file.size > 2 * 1024 * 1024) {
-    //     return res.status(400).json({
-    //       message: "Image size exceeds 2 MB",
-    //     });
-    //   }
+    const allowedImageTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/gif",
+      "image/bmp",
+      "image/webp",
+      "image/svg+xml",
+      "image/tiff",
+      "image/vnd.microsoft.icon",
+      "image/x-icon",
+      "image/vnd.wap.wbmp",
+      "image/apng",
+      "image/avif",
+    ];
 
-    //   const allowedImageTypes = [
-    //     "image/jpeg",
-    //     "image/png",
-    //     "image/gif",
-    //     "image/bmp",
-    //     "image/webp",
-    //     "image/svg+xml",
-    //     "image/tiff",
-    //     "image/vnd.microsoft.icon",
-    //     "image/x-icon",
-    //     "image/vnd.wap.wbmp",
-    //     "image/apng",
-    //     "image/avif",
-    //   ];
+    if (!allowedImageTypes.includes(file.mimetype)) {
+      return res.status(400).json({
+        message:
+          "Only JPEG, PNG, GIF, BMP, WEBP,TIFF,ICON,X-ICON,WBMP,APNG,AVIF, and SVG images are allowed",
+      });
+    }
 
-    //   if (!allowedImageTypes.includes(file.mimetype)) {
-    //     return res.status(400).json({
-    //       message:
-    //         "Only JPEG, PNG, GIF, BMP, WEBP,TIFF,ICON,X-ICON,WBMP,APNG,AVIF, and SVG images are allowed",
-    //     });
-    //   }
+    // Create a temporary path to save the file
+    const tempFilePath = path.join(__dirname, "../uploads", file.name);
+    await file.mv(tempFilePath);
 
-    //   // Create a temporary path to save the file
-    //   const tempFilePath = path.join(__dirname, "../uploads", file.name);
-    //   await file.mv(tempFilePath);
+    // Upload image to Cloudinary
+    const result = await cloudinary.uploader.upload(tempFilePath, {
+      folder: "user-images",
+      public_id: `user-${Date.now()}`,
+      overwrite: true,
+      resource_type: "image",
+    });
 
-    //   // Upload image to Cloudinary
-    //   const result = await cloudinary.uploader.upload(tempFilePath, {
-    //     folder: "user-images",
-    //     public_id: `user-${Date.now()}`,
-    //     overwrite: true,
-    //     resource_type: "image",
-    //   });
+    // Delete uploaded image from local storage
+    fs.unlinkSync(tempFilePath);
 
-    //   // Delete uploaded image from local storage
-    //   fs.unlinkSync(tempFilePath);
-
-    //   return res.status(200).json({
-    //     success: true,
-    //     message: "Image uploaded successfully",
-    //     fileUrl: result.secure_url,
-    //   });
-    //   }
-
-    console.log(imageUrl);
-    return imageUrl;
+    return res.status(200).json({
+      success: true,
+      message: "Image uploaded successfully",
+      fileUrl: result.secure_url,
+    });
   } catch (err) {
     console.error(err);
     return res.status(500).json({
