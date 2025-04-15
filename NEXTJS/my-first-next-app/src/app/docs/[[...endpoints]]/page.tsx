@@ -1,4 +1,11 @@
+import { Metadata } from 'next'
 import React from 'react'
+
+export const metadata: Metadata = {
+   title: {
+      absolute: "Documentation"
+   }
+}
 
 // This is the Docs component. It is a React functional component that receives
 // an object as a prop with a property named "params". The "params" property is
