@@ -11,3 +11,6 @@ export  const singUpValidation = z.object({
     email: z.string().regex(/.+\@.+\..+/, "Invalid Email ID"),
     password: z.string().min(4, "password should be atleast 4 characters")
 })
+
+
+
