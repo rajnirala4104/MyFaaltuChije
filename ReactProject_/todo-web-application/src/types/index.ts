@@ -4,3 +4,8 @@ export interface taskInterface {
   taskDescription: string,
   taskStatus: boolean
 }
+
+export interface InputTaskPopupContextInterface {
+  isInputTaskOn:boolean,
+  setIsInputTaskOn:React.Dispatch<React.SetStateAction<boolean>>
+}

@@ -1,13 +1,18 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import './App.css'
 import { RouterProvider } from 'react-router'
 import _ROUTER from './routers'
+import { InputTaskPopupContext } from './context';
 
 function App() {
 
+  const [isInputTaskOn, setIsInputTaskOn] = useState<Boolean>(true);
+
   return (
     <Fragment>
-      <RouterProvider router={_ROUTER}/>      
+      <InputTaskPopupContext.Provider value={{isInputTaskOn, setIsInputTaskOn}}>
+        <RouterProvider router={_ROUTER}/>     
+      </InputTaskPopupContext.Provider>
     </Fragment>
   )
 }
