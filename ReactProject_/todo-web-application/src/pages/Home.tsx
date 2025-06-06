@@ -76,7 +76,7 @@ const Home:React.FC = () => {
 
   return (
     <Fragment>
-      <section className="w-full bg-green-100 h-screen flex justify-center items-center ">
+      <section className="w-full bg-green-50 h-screen flex justify-center items-center ">
         <div className="shadow-xl bg-green-200 w-[95%] h-[90%] rounded-lg flex justify-center items-center p-4">
           <div className="leftContainer taskContainer w-[45%] h-full justify-start items-center flex-col overflow-auto">
             {tasks.map((singleObj:taskInterface) => (
