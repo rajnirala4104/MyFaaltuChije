@@ -2,7 +2,7 @@
 export interface taskInterface {
   taskTitle: string,
   taskDescription: string,
-  taskStatus: boolean
+  taskStatus?: boolean
 }
 
 export interface InputTaskPopupContextInterface {
