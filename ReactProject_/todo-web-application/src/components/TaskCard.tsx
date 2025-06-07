@@ -6,7 +6,7 @@ const TaskCard:React.FC<taskInterface> = (props) => {
     <Fragment>
       <div className="w-[94%] mx-auto h-4 p-5 bg-green-50 hover:bg-green-200 border border-transparent hover:border-green-300 hover:shadow-md translate-3 transition flex justify-start items-center mb-2 rounded-md -ml-[.25px]">
         <input type="checkbox"/>
-        <span className="mx-2 text-lg"> {props.taskTitle}</span>
+        <span className="mx-2 text-lg text-slate-600"> {props.taskTitle}</span>
       </div>
     </Fragment>
   )

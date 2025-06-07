@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Fragment } from "react/jsx-runtime"
 import { InputTaskPopupContext } from "../context";
 import type { taskInterface } from "../types";
 
 const TaskInputPopup:React.FC = () => {
   const {isInputTaskOn,setIsInputTaskOn} = useContext(InputTaskPopupContext);
-
- const [formData, setFormData] = useState<taskInterface>({
+  const [tasksArr, setTaskArr] = useState<taskInterface[]>(JSON.parse(localStorage.getItem('tasks') as string));
+  const [formData, setFormData] = useState<taskInterface>({
     taskTitle: "",
     taskDescription: "",
     taskStatus: false
@@ -17,18 +17,25 @@ const TaskInputPopup:React.FC = () => {
     
     setFormData(prev => ({
       ...prev, 
-      [name]: value
+      [name]: value,
+      taskStatus: false
     }))
   }
 
   const handleSubmit= (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData)
+    setTaskArr(prev => ([...prev, formData ]))
+    handlerResetBtn()
+    window.location.reload();
   }
 
   const handlerResetBtn = () => {
     setFormData({taskTitle:"", taskDescription:"",})
   }
+  
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasksArr));
+  }, [tasksArr])
 
   return(
     <Fragment>
@@ -52,7 +59,7 @@ const TaskInputPopup:React.FC = () => {
                     name="taskTitle"
                     value={formData.taskTitle}
                     onChange={handlerInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
                     placeholder="Enter task name"
                     required
                   />
@@ -67,7 +74,7 @@ const TaskInputPopup:React.FC = () => {
                     rows={10}
                     value={formData.taskDescription}
                     onChange={handlerInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors resize-vertical"
                     placeholder="Enter task description"
                     required
                   />

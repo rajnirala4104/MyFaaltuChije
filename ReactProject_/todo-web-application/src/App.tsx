@@ -6,7 +6,7 @@ import { InputTaskPopupContext } from './context';
 
 function App() {
 
-  const [isInputTaskOn, setIsInputTaskOn] = useState<Boolean>(true);
+  const [isInputTaskOn, setIsInputTaskOn] = useState<Boolean>(false);
 
   return (
     <Fragment>
