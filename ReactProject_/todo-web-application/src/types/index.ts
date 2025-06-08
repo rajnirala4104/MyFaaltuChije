@@ -1,4 +1,3 @@
-
 export interface taskInterface {
   taskTitle: string,
   taskDescription: string,
@@ -8,4 +7,9 @@ export interface taskInterface {
 export interface InputTaskPopupContextInterface {
   isInputTaskOn:boolean,
   setIsInputTaskOn:React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export interface ActiveTaskContextInterface {
+  activeTask: taskInterface[]
+  setActiveTask:React.Dispatch<React.SetStateAction<taskInterface[]>>
 }

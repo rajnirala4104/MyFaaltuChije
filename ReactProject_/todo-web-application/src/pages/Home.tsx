@@ -3,7 +3,7 @@ import { Fragment } from "react/jsx-runtime"
 import { DetailSection, TaskCard } from "../components"
 import type { taskInterface } from "../types"
 import AddTaskBtn from "../components/AddTaskBtn"
-import { InputTaskPopupContext } from "../context"
+import { ActiveTaskContext, InputTaskPopupContext } from "../context"
 import TaskInputPopup from "../components/TaskInputPopup"
 
 
@@ -15,6 +15,12 @@ const Home:React.FC = () => {
   }, [])
 
   const {isInputTaskOn} = useContext(InputTaskPopupContext);
+  const {activeTask,setActiveTask} = useContext(ActiveTaskContext);
+
+  const cardClickHandler = (singleObj:taskInterface) => {
+    const singleTaskData = tasks.filter(singleData => (singleData.taskTitle === singleObj.taskTitle));
+    setActiveTask(singleTaskData)
+  }
 
   return (
     <Fragment>
@@ -24,7 +30,9 @@ const Home:React.FC = () => {
           <div className="leftContainer taskContainer w-[45%] h-full justify-start items-center flex-col overflow-auto relative top-0 left-0">
             {tasks.map((singleObj:taskInterface, i) => (
               <Fragment key={i}>
-                <TaskCard {...singleObj} />
+                <div onClick={() => cardClickHandler(singleObj)}>
+                  <TaskCard {...singleObj} />
+                </div>
               </Fragment>
             ))}
             <AddTaskBtn />
