@@ -15,7 +15,7 @@ const Home:React.FC = () => {
   }, [])
 
   const {isInputTaskOn} = useContext(InputTaskPopupContext);
-  const {activeTask,setActiveTask} = useContext(ActiveTaskContext);
+  const {setActiveTask} = useContext(ActiveTaskContext);
 
   const cardClickHandler = (singleObj:taskInterface) => {
     const singleTaskData = tasks.filter(singleData => (singleData.taskTitle === singleObj.taskTitle));

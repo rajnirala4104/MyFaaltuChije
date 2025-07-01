@@ -22,7 +22,7 @@ export async function POST(request:NextRequest){
             })
         }
 
-        // has the password
+        // hash the password
         const salt = await bcryptjs.genSalt(12);
         const hashedPassword = await bcryptjs.hash(password, salt)
 
