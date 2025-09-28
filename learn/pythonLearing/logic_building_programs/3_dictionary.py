@@ -59,3 +59,32 @@ def sumOfAllTheValuesOfDictionary(dictionary):
 
 
 print(sumOfAllTheValuesOfDictionary(newDicWithWordLength(demoDict.keys())))
+
+
+# 8th find the maximum value wali key from a dictionary
+def findMaximumValuWaliKey(aDict):
+    finalOutput = ""
+    pointer = "0"
+    for key, value in aDict.items():
+        if int(pointer) < int(value):
+            pointer = value
+            finalOutput = key
+        else:
+            pass
+
+    return finalOutput
+
+
+print(findMaximumValuWaliKey(demoDict["diksha"]))
+
+
+# 9th sort a dictionary by their values
+def sortDictionaryByValue(aDict):
+    finalOutput = {}
+    sorted_items = sorted(aDict.items(), key=lambda item: int(item[1]))
+    for key, value in sorted_items:
+        finalOutput.update({key: value})
+    return finalOutput
+
+
+print(sortDictionaryByValue(demoDict["raj"]))
