@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Practice</title>
+    <link src="./style.css" />
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 30px;
+        }
+
+        .highlight {
+            background-color: yellow;
+        }
+
+        #hiddenDiv {
+            background: lightcoral;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        #todoList li.completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .thumbnail {
+            width: 60px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        #preview {
+            display: block;
+            width: 200px;
+            margin-top: 10px;
+        }
+
+        .accordion-content {
+            display: none;
+            margin-bottom: 10px;
+        }
+
+        .accordion.active .accordion-content {
+            display: block;
+        }
+
+        #progressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: dodgerblue;
+            width: 0;
+            transition: width 0.1s;
+        }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        #overlay img {
+            max-width: 80%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="progressBar">raj nirala</div>
+
+    <h1 id="title">DOM Practice Page</h1>
+    <p>Welcome to the DOM manipulation playground.</p>
+    <p>Try out your scripts here!</p>
+
+    <h2>Section Heading 1</h2>
+    <h2>Section Heading 2</h2>
+
+    <ul id="itemList">
+        <li>List Item 1</li>
+        <li>List Item 2</li>
+        <li>List Item 3</li>
+    </ul>
+
+    <div id="hiddenDiv">I can be toggled!</div>
+
+    <div>
+        <label>Username: </label>
+        <input type="text" id="username" placeholder="Enter your name" />
+        <button id="showUsernameBtn">Show Username</button>
+        <span id="displayName"></span>
+    </div>
+
+    <div>
+        <img id="mainImage" src="https://via.placeholder.com/150" alt="Sample" />
+        <button id="changeImgBtn">Change Image</button>
+    </div>
+
+    <div>
+        <button id="toggleBtn">Toggle Div</button>
+    </div>
+
+    <div>
+        <button id="darkModeBtn">Dark Mode</button>
+    </div>
+
+    <div id="gallery">
+        <img class="thumbnail" src="https://via.placeholder.com/60" alt="thumb1" />
+        <img class="thumbnail" src="https://via.placeholder.com/61" alt="thumb2" />
+        <img class="thumbnail" src="https://via.placeholder.com/62" alt="thumb3" />
+        <img id="preview" src="https://via.placeholder.com/200" alt="preview" />
+    </div>
+
+    <div id="overlay">
+        <img src="" alt="Full Image" id="overlayImage" />
+    </div>
+
+    <div>
+        <h3>Todo List</h3>
+        <input type="text" id="todoInput" placeholder="Add a task..." />
+        <button id="addTodoBtn">Add</button>
+        <ul id="todoList"></ul>
+    </div>
+
+    <div>
+        <h3>Live Character Counter</h3>
+        <textarea id="messageBox" rows="4" cols="40" placeholder="Type something..."></textarea>
+        <p>Characters: <span id="charCount">0</span></p>
+    </div>
+
+    <div>
+        <h3>Accordion Example</h3>
+        <div class="accordion">
+            <button class="accordion-btn">Section 1</button>
+            <div class="accordion-content">This is section 1 content.</div>
+        </div>
+        <div class="accordion">
+            <button class="accordion-btn">Section 2</button>
+            <div class="accordion-content">This is section 2 content.</div>
+        </div>
+    </div>
+
+    <div>
+        <h3>Color Picker</h3>
+        <input type="color" id="colorPicker" />
+        <div id="colorPreview" style="width: 100px; height: 100px; background: #ccc; margin-top: 10px"></div>
+    </div>
+
+    <div>
+        <h3>Live Clock</h3>
+        <p id="clock">00:00:00</p>
+    </div>
+
+    <div>
+        <h3>Form Validation</h3>
+        <form id="signupForm">
+            <input type="text" id="nameInput" placeholder="Name" />
+            <input type="email" id="emailInput" placeholder="Email" />
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>

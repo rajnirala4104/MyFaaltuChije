@@ -4,7 +4,7 @@ const numbers = [11, 12, 13, 14, 15, 16, 17, 18, 19, 110];
 console.log('array = '); console.log(numbers);
 console.log("results =");
 // array.at(index);
-console.log(numbers.at()); // index = 0
+console.log(numbers.at()); // index = 0, 11
 console.log(numbers.at(0)); // 11
 console.log(numbers.at(1)); // 12
 // -1 means start from last item
