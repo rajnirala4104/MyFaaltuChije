@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design 1</title>
+    <link rel="./style.css" type="" href="" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        border: 2px solid red;
+        width: 100wh;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .mainContainer {
+        border: 2px solid blue;
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .contentContainer {
+        border: 2px solid yellow;
+        margin: 10px 10px;
+        width: 70%;
+        height: 70vh;
+        dispay: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .inputText {
+        width: 50%;
+        height: 50%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="mainContainer">
+      <div class="contentContainer">
+        <textarea class="inputText"> </textarea>
+        <div class="btns">
+          <button class="saveBtn">Save</button>
+          <button class="clearBtn">Clear</button>
+        </div>
+      </div>
+      <div class="showSaveContent"></div>
+    </div>
+  </body>
+  <script src="./main.js"></script>
+</html>
