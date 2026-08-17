@@ -1,174 +1,107 @@
 <!doctype html>
-<html lang="en">
-
-<head>
+<html lang="len">
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DOM Practice</title>
-    <link src="./style.css" />
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 30px;
-        }
+    <title>DOM Manipulation</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
 
-        .highlight {
-            background-color: yellow;
-        }
-
-        #hiddenDiv {
-            background: lightcoral;
-            padding: 10px;
-            margin: 10px 0;
-        }
-
-        #todoList li.completed {
-            text-decoration: line-through;
-            color: gray;
-        }
-
-        .thumbnail {
-            width: 60px;
-            margin: 5px;
-            cursor: pointer;
-        }
-
-        #preview {
-            display: block;
-            width: 200px;
-            margin-top: 10px;
-        }
-
-        .accordion-content {
-            display: none;
-            margin-bottom: 10px;
-        }
-
-        .accordion.active .accordion-content {
-            display: block;
-        }
-
-        #progressBar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 5px;
-            background: dodgerblue;
-            width: 0;
-            transition: width 0.1s;
-        }
-
-        #overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-        }
-
-        #overlay img {
-            max-width: 80%;
-            border-radius: 10px;
-        }
-    </style>
-</head>
-
-<body>
-    <div id="progressBar">raj nirala</div>
-
-    <h1 id="title">DOM Practice Page</h1>
-    <p>Welcome to the DOM manipulation playground.</p>
-    <p>Try out your scripts here!</p>
-
-    <h2>Section Heading 1</h2>
-    <h2>Section Heading 2</h2>
-
-    <ul id="itemList">
-        <li>List Item 1</li>
-        <li>List Item 2</li>
-        <li>List Item 3</li>
-    </ul>
-
-    <div id="hiddenDiv">I can be toggled!</div>
-
-    <div>
-        <label>Username: </label>
-        <input type="text" id="username" placeholder="Enter your name" />
-        <button id="showUsernameBtn">Show Username</button>
-        <span id="displayName"></span>
-    </div>
-
-    <div>
-        <img id="mainImage" src="https://via.placeholder.com/150" alt="Sample" />
-        <button id="changeImgBtn">Change Image</button>
-    </div>
-
-    <div>
-        <button id="toggleBtn">Toggle Div</button>
-    </div>
-
-    <div>
-        <button id="darkModeBtn">Dark Mode</button>
-    </div>
-
-    <div id="gallery">
-        <img class="thumbnail" src="https://via.placeholder.com/60" alt="thumb1" />
-        <img class="thumbnail" src="https://via.placeholder.com/61" alt="thumb2" />
-        <img class="thumbnail" src="https://via.placeholder.com/62" alt="thumb3" />
-        <img id="preview" src="https://via.placeholder.com/200" alt="preview" />
-    </div>
-
-    <div id="overlay">
-        <img src="" alt="Full Image" id="overlayImage" />
-    </div>
-
-    <div>
-        <h3>Todo List</h3>
-        <input type="text" id="todoInput" placeholder="Add a task..." />
-        <button id="addTodoBtn">Add</button>
-        <ul id="todoList"></ul>
-    </div>
-
-    <div>
-        <h3>Live Character Counter</h3>
-        <textarea id="messageBox" rows="4" cols="40" placeholder="Type something..."></textarea>
-        <p>Characters: <span id="charCount">0</span></p>
-    </div>
-
-    <div>
-        <h3>Accordion Example</h3>
-        <div class="accordion">
-            <button class="accordion-btn">Section 1</button>
-            <div class="accordion-content">This is section 1 content.</div>
+  <body>
+    <div
+      class="navbarContainer w-full h-[5rem] bg-slate-900 text-white flex items-center justify-center"
+    >
+      <div
+        class="navbar flex items-center justify-between border-blue-500 w-[90%]"
+      >
+        <div class="logoContainer">
+          <div class="font-bold text-4xl">
+            <span class="text-red-500 text-4xl">.</span>
+            <span class="">demoSite</span>
+          </div>
         </div>
-        <div class="accordion">
-            <button class="accordion-btn">Section 2</button>
-            <div class="accordion-content">This is section 2 content.</div>
+        <div class="menuContainer border-green-500 flex w-[26%] px-10">
+          <div class="menu flex items-center justify-center w-full">
+            <ul
+              class="flex w-full items-center justify-between text-lg text-slate-300 *:hover:text-slate-50 *:cursor-pointer"
+            >
+              <li>Home</li>
+              <li>About</li>
+              <li>Contact</li>
+              <li>Something</li>
+            </ul>
+          </div>
         </div>
+        <div
+          class="rightSideBtns w-[15%] flex items-center justify-between px-10"
+        >
+          <div
+            class="btnContainer *:hover:cursor-pointer *:hover:text-gray-950 *:rounded-lg *:px-3 flex justify-between items-center w-full"
+          >
+            <button
+              class="loginBtn px-3 py-1 bg-red-400 text-gray-900 text-xl font-bold text-center"
+            >
+              Login
+            </button>
+            <button
+              class="signUpBtn px-3 py-1 bg-red-400 text-gray-900 text-xl font-bold text-center"
+            >
+              Sing Up
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div>
-        <h3>Color Picker</h3>
-        <input type="color" id="colorPicker" />
-        <div id="colorPreview" style="width: 100px; height: 100px; background: #ccc; margin-top: 10px"></div>
-    </div>
-
-    <div>
-        <h3>Live Clock</h3>
-        <p id="clock">00:00:00</p>
-    </div>
-
-    <div>
-        <h3>Form Validation</h3>
-        <form id="signupForm">
-            <input type="text" id="nameInput" placeholder="Name" />
-            <input type="email" id="emailInput" placeholder="Email" />
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-
-    <script src="./main.js"></script>
-</body>
-
+    <section class="crudOpprations">
+      <section class="searchBarSection w-full flex items-center justify-center">
+        <div
+          class="searchBar w-[35%] flex justify-between items-center p-2 flex items-center justify-center border-2 rounded-full border-slate-400 my-3 mt-10"
+        >
+          <span class="bg-red-500 rounded-full p-4 border border-black">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+              class="text-2xl font-bold"
+            >
+              <title xmlns="">search</title>
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="3"
+                d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"
+              />
+            </svg>
+          </span>
+          <input
+            id="searchBarInputElem"
+            class="searchBarInputElem px-3 py-2 w-full outline-none text-xl text-slate-900"
+            placeholder="Search.."
+          />
+        </div>
+      </section>
+      <div class="mainContent flex justify-between items-center">
+        <section class="leftSection border border-green-500 w-[60%]">
+          <div class="noteCardsContainer">
+            <div class="singleCard"></div>
+          </div>
+        </section>
+        <section
+          class="rightSection border border-blue-500 w-[40%] flex justify-center items-center"
+        >
+          <div class="">
+            <textarea
+              rows="15"
+              cols="70"
+              class="border border-black"
+              placeholder="write a note here.."
+            ></textarea>
+          </div>
+        </section>
+      </div>
+    </section>
+  </body>
 </html>
