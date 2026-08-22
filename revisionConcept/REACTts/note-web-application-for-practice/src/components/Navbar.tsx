@@ -7,9 +7,15 @@ export const Navbar:React.FC = () => {
       <section className="navbar py-2 px-3 bg-black sticky top-0 w-full flex justify-center items-center">
         <div className="m-2 flex justify-between items-center w-[95%]">
           <div className="logo">
-            <span className="text-4xl font-bold">
-              <span className="text-3xl font-bold text-emerald-400">.</span>
-              <span className="text-white">demoSite</span>
+            <span
+              onClick={() => window.location.href = "/"}
+              className="text-4xl font-bold cursor-pointer">
+              <span className="text-5xl font-bold text-emerald-400">.</span>
+              <span className="text-white">demo
+                <span className="text-emerald-400">
+                  Site
+                </span>
+              </span>
             </span>
           </div>
           <div className="middelSection w-[30%]">
@@ -18,7 +24,7 @@ export const Navbar:React.FC = () => {
                 <FaSearch className="" />
               </div>
               <div className="w-full">
-                <input name="navabarKaSearchBar" type="text" className="p-3 bg-transparent w-[96%] text-emerald-400 outline-none placeholder:text-emerald-500 focus:border-b focus:border-emerald-400" placeholder="type something.." />
+                <input name="navabarKaSearchBar" type="text" className="p-3 bg-transparent w-[96%] text-white outline-none placeholder:text-emerald-500 focus:border-b focus:border-white" placeholder="type something.." />
               </div>
             </div>
           </div>
